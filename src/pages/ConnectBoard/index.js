@@ -1,11 +1,48 @@
 import React from 'react'
-import {} from 'react-native'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity } from 'react-native-safe-area-context'
+import {SafeAreaView, View, Text, TextInput, TouchableOpacity} from 'react-native'
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
 
-export default function Connect() {
+init ({
+    size: 10000,
+    storageBackend: AsyncStorage,
+    defaultExpires: 1000 * 3600 * 24,
+    enableCache: true,
+    reconnect: true,
+    sync: {
+
+    }
+});
+
+export default function ConnectBoard() {
+
+    const options = {
+        host: 'maqiatto.com',
+        port: 8883,
+        path: '/switch1',
+        id: '1'
+    }
+
+    function onConnect() {
+        console.warn("onConnect")
+    }
+
+    function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+            console.warn(`onConnectionLost: ${responseObject.errorMessage}`)
+        }
+    }
+
+    function sendMessage() {
+        client.publish('heitorfiuza@unitins.br/switchs1', '0npm install sp-react-native-mqtt --save')
+    }
+
+    const client = new Paho.MQTT.Client(options.host, options.port, options.id)
+    client.onConnectionLost = onConnectionLost
+    client.sendMessage = sendMessage
+    client.connect({usarName: 'heitorfiuza@unitins.br', password: '12345678', onSucess: onConnect, useSSL: false})
+
     return (
         <SafeAreaView style={styles.container_connect}>
             <Animatable.View animation={'fadeInLeft'} delay={500} style={styles.container__header}>
@@ -26,8 +63,8 @@ export default function Connect() {
                         placeholder=''
                     />
                 </View>
-                <TouchableOpacity>
-                    <Text></Text>
+                <TouchableOpacity style={styles.connect__button} onPress={sendMessage}>
+                    <Text style={styles.button_text}>Conectar</Text>
                 </TouchableOpacity>
                 
             </Animatable.View>
