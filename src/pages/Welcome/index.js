@@ -6,9 +6,9 @@ import * as Animatable from 'react-native-animatable'
 
 import { useNavigation } from "@react-navigation/native";
 
-
 export default function Welcome() {
-    const navigation = useNavigation()
+
+    const Navigation = useNavigation()
 
     return (
         <SafeAreaView style={styles.container_app}>
@@ -23,7 +23,7 @@ export default function Welcome() {
             <Animatable.View delay={600} animation={"fadeInUp"} style={styles.app__main}>
                 <Text style={styles.main__title}>Automatize, monitore e gerencie o seu cultivo de qualquer lugar!</Text>
                 <Text style={styles.main__text}>Faça a conexão do sistema com o aplicativo.</Text>
-                <TouchableOpacity style={styles.main__button} onPress={() => navigation.navigate('ConnectBoard')}>
+                <TouchableOpacity style={styles.main__button} onPress={() => Navigation.navigate('ConnectBoard')}>
                     <Text style={styles.button_text}>Acessar</Text>
                 </TouchableOpacity>
             </Animatable.View>
