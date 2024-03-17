@@ -1,26 +1,32 @@
 import React from "react";
 import {} from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import 'react-native-gesture-handler';
 
-import Welcome from '../pages/Welcome'
-import ConnectBoard from '../pages/ConnectBoard'
+import Welcome from '../pages/Welcome/index'
+import ConnectBoard from '../pages/ConnectBoard/index'
+import Stack from './Stack'
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function Routes() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen 
-                name='Welcome'
-                component={Welcome}
-                options={{headerShown: false}}
+        <Drawer.Navigator screenOptions={{
+            headerTransparent: true,
+            headerTitle: '',
+            headerShown: true
+            }}>
+            <Drawer.Screen
+                name="Home"
+                component={Stack}
+                headerShown= {false}
             />
-            <Stack.Screen 
-                name="ConnectBoard"
+            <Drawer.Screen
+                name="Conexão"
                 component={ConnectBoard}
-                options={{headerShown: false}}
+                headerShown={false}
             />
-        </Stack.Navigator>
+        </Drawer.Navigator>
     )
 }
 
