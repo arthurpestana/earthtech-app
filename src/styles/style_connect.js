@@ -4,66 +4,110 @@ import { StyleSheet, Dimensions } from 'react-native'
 export default StyleSheet.create ({
     container_connect: {
         flex: 1,
-        backgroundColor: '#79927d',
-        alignItems: 'center',
-        justifyContent: 'center',    
+        backgroundColor: '#79927d', 
     },
-    container__main:{
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '80%',
-        height: Dimensions.get('window').height/1.4,
-        borderRadius: 20,
-    },
+
     container__header:{
-        flex: 1,
-        top: Dimensions.get('window').height/35,
+        marginTop: "25%",
+        marginBottom: '15%',
+        paddingStart: '5%'
     },
-    container__form: {
-        flex: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+
     header__title:{
-        color:'black',
-        fontSize: 26,
+        color:"#FFF",
+        fontSize: 32,
         fontWeight: 'bold'
     },
-    header__subtitle:{
+
+    container__main:{
+        flex: 1,
+        backgroundColor: '#FFF',
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+        paddingStart: '8%',
+        paddingEnd: '8%',
+        paddingTop: '5%',
+    },
+
+    main__form: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%'
+    },
+
+    form_box__text: {
+        marginBottom: 12,
+    },
+
+    form_box__textFocused: {
+        marginBottom: 40,
+    },
+
+
+    form__text: {
+        position: 'absolute',
+        fontSize: 16,
+        color: "#0a8967",
+        marginTop: 20,
+        fontWeight: 'bold'
+    }, 
+
+    blur_text: {
+        backgroundColor: '#000'
+    },  
+
+    focus_text: {
+        backgroundColor: "#555"
+    },
+
+    form__input: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#0a8967',
+        height: 40,
+        marginBottom: 20,
+        fontSize: 14,
         color: '#a1a1a1'
     },
-    form__input: {
-        backgroundColor: 'white',
-        width: Dimensions.get('window').width/1.6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        padding: 10,
-        bottom: Dimensions.get('window').height/20,
-        alignSelf: 'center',
-        borderWidth: 1,
-    },
+
     main__button: {
-        backgroundColor: 'white',       
-        width: Dimensions.get('window').width/4,
+        backgroundColor: '#0a8967',
+        width: '100%',
+        borderRadius: 10,
+        paddingVertical: 10,
+        marginTop: 20,
+        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 10,
-        padding: 8,
-        bottom: '10%',
-        alignSelf: 'center',
-        borderWidth: 1,
     },
+
     button_text: {
-        color: 'black',
-        fontSize: 15,
+        color: '#FFF',
+        fontSize: 18,
         fontWeight: 'bold',
     },
-    statusTextNo: {
-        color: 'crimson'
+
+    connection__box: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        marginTop: 10,
+    },  
+
+    connection_status:{
+        color: '#a1a1a1',
+        fontSize: 12,
+        fontWeight: '400',
+        backgroundColor: '#ccc',
+        padding: 5,
+        borderRadius: 10,
+        fontWeight: 'bold'
     },
-    statusTextYes: {
-        color: 'green'
+
+    connectionOff: {
+        color: 'rgba(220, 20, 60, 0.600)'
+    },
+
+    connectionOn: {
+        color: 'rgba(0, 128, 0, 0.600)'
     },
 })
