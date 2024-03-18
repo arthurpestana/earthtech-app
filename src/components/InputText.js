@@ -1,20 +1,41 @@
-import React from 'react'
+import {useState} from 'react'
 import { View, Text, TextInput } from "react-native";
 
 import styles from '../styles/style_connect'
+import * as Animatable from 'react-native-animatable'
+
 
 export default function (props) {
+    const [onFocusedInput, setFocusedInput] = useState(false)
+
+    const customOnFocus = () => {
+        setFocusedInput(true)
+    }
+
+    const customOnBlur = () => {
+        if (props.value != '') {
+            setFocusedInput(true)
+        }
+        else {
+            setFocusedInput(false)
+        }
+    }
+
     return (
-        <View style={[styles.forms, styles.form_1]}>
-            <Text style={styles.form__text}></Text>
-                <TextInput 
+        <Animatable.View animation={'fadeInLeft'} delay={props.delay} style={styles.main__form}>
+            <View style={onFocusedInput ? styles.form_box__textFocused : styles.form_box__text}>
+                <Text style={styles.form__text}>{props.placeholder}</Text>
+            </View>
+            <TextInput 
                 style={styles.form__input}
-                placeholder={props.placeholder}
+                placeholder=''
                 value={props.value}
                 onChangeText={props.onChangeText}
                 keyboardType={props.numeric?'numeric':'default'}
                 secureTextEntry={props.password?true:false}
-                />
-        </View>
+                onFocus={customOnFocus}
+                onBlur={customOnBlur}
+            />
+        </Animatable.View>
     )
 }
