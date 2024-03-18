@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -60,19 +60,21 @@ export default function Connect() {
                     </Text>
                 </View> 
             </Animatable.View>
-            <Animatable.View animation={'fadeInUp'} style={styles.container__main}>
-                <InputText delay={500} placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
-                <InputText delay={600} placeholder="Username" value={userName} onChangeText={setUsername}></InputText>
-                <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
-                <InputText delay={800} placeholder="Host" value={host} onChangeText={setHost}></InputText>
-                <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1}></InputText>
-                <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
-                    <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
-                        <Text style={styles.button_text}>Connect</Text>
-                    </TouchableOpacity>
-                             
+            <ScrollView style={styles.container__main}>
+                <Animatable.View animation={'fadeInUp'}>
+                    <InputText delay={500} placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
+                    <InputText delay={600} placeholder="Username" value={userName} onChangeText={setUsername}></InputText>
+                    <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
+                    <InputText delay={800} placeholder="Host" value={host} onChangeText={setHost}></InputText>
+                    <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1}></InputText>
+                    <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
+                        <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
+                            <Text style={styles.button_text}>Connect</Text>
+                        </TouchableOpacity>
+                                 
+                    </Animatable.View>
                 </Animatable.View>
-            </Animatable.View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
