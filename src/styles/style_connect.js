@@ -64,7 +64,7 @@ export default StyleSheet.create ({
         borderBottomWidth: 1,
         borderBottomColor: '#0a8967',
         height: 40,
-        marginBottom: 20,
+        marginBottom: 10,
         fontSize: 14,
         color: '#a1a1a1'
     },
