@@ -5,6 +5,7 @@ import 'react-native-gesture-handler';
 
 import Welcome from '../pages/Welcome/index'
 import ConnectBoard from '../pages/ConnectBoard/index'
+import TurnOnOff from "../pages/TurnOnOff";
 import Stack from './Stack'
 
 const Drawer = createDrawerNavigator();
@@ -24,6 +25,11 @@ export default function Routes() {
             <Drawer.Screen
                 name="Conexão"
                 component={ConnectBoard}
+                headerShown={false}
+            />
+            <Drawer.Screen
+                name="TurnOnOff"
+                component={TurnOnOff}
                 headerShown={false}
             />
         </Drawer.Navigator>
