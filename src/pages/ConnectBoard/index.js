@@ -17,9 +17,9 @@ export default function Connect() {
     const [isConnected, setConnected] = useState('Desconectado')
     const [nome, setNome] = useState('')
     const [userName, setUsername] = useState('')
-    const [senha, setSenha] = useState()
+    const [senha, setSenha] = useState('')
     const [host, setHost] = useState('')
-    const [port, setPort] = useState()
+    const [port, setPort] = useState('')
 
     init({
         size: 10000,
@@ -29,7 +29,7 @@ export default function Connect() {
         reconnect: true,
         sync : {
         }
-      });
+    });
     function onSuccess(){
         setConnected('Conectado')
     }
@@ -52,23 +52,25 @@ export default function Connect() {
     }
     return (
         <SafeAreaView style={styles.container_connect}>
+            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
+                <Text style={styles.header__title}>Bem-vindo(a)</Text>
+                <View style={styles.connection__box}>
+                    <Text style={isConnected=='Conectado'?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
+                        {isConnected}
+                    </Text>
+                </View> 
+            </Animatable.View>
             <Animatable.View animation={'fadeInUp'} style={styles.container__main}>
-                <Animatable.View animation={'fadeInLeft'} delay={500} style={styles.container__header}>
-                    <Text style={styles.header__title}>Bem-vindo(a)</Text>
-                    <Text style={isConnected=='Conectado'?[styles.header__subtitle, styles.statusTextYes]: 
-                    [styles.header__subtitle, styles.statusTextNo]}>Status: {isConnected}</Text>
-                </Animatable.View>
-                <Animatable.View animation={'fadeInUp'} style={styles.container__form}>
-                    <InputText placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
-                    <InputText placeholder="Username" value={userName} onChangeText={setUsername}></InputText>
-                    <InputText placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
-                    <InputText placeholder="Host" value={host} onChangeText={setHost}></InputText>
-                    <InputText placeholder="Porta" value={port} onChangeText={setPort} numeric = {1}></InputText>
-                    <View style={styles.button__box}>
-                        <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
-                            <Text style={styles.button_text}>Connect</Text>
-                        </TouchableOpacity>              
-                    </View>
+                <InputText delay={500} placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
+                <InputText delay={600} placeholder="Username" value={userName} onChangeText={setUsername}></InputText>
+                <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
+                <InputText delay={800} placeholder="Host" value={host} onChangeText={setHost}></InputText>
+                <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1}></InputText>
+                <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
+                    <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
+                        <Text style={styles.button_text}>Connect</Text>
+                    </TouchableOpacity>
+                             
                 </Animatable.View>
             </Animatable.View>
         </SafeAreaView>
