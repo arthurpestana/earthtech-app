@@ -4,6 +4,7 @@ import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useNavigation } from "@react-navigation/native";
+import { useMQTT } from '../../components/Context';
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
@@ -12,8 +13,8 @@ import InputText from '../../components/InputText';
 export default function Connect() {
 
     const Navigation = useNavigation()
+    const { client, setClient } = useMQTT();
 
-    var client
     const [isConnected, setConnected] = useState('Desconectado')
     const [nome, setNome] = useState('')
     const [userName, setUsername] = useState('')
@@ -40,10 +41,11 @@ export default function Connect() {
         console.warn('Message arrived')
     }
     function connectBoard(){
-        client = new Paho.MQTT.Client(host, parseInt(port), nome)
-        client.onConnectionLost = onConnectionLost;
-        client.onMessageArrived = onMessageArrived;
-        client.connect({ userName:userName, password: senha, onSuccess:onSuccess, useSSL: false });
+        const mqttClient = new Paho.MQTT.Client(host, parseInt(port), nome);
+        mqttClient.onConnectionLost = onConnectionLost;
+        mqttClient.onMessageArrived = onMessageArrived;
+        mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
+        setClient(mqttClient);
     }
     function publishMsg(){
         var message = new Paho.MQTT.Message(userMessage ); //criar variavel userMessage no formulário do publish
