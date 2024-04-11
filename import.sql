@@ -28,7 +28,6 @@ host_mqtt VARCHAR(255) NOT NULL,
 porta INT NOT NULL )
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Insert's
 -- -----------------------------------------------------
@@ -39,6 +38,3 @@ INSERT INTO users (nome, username, senha, host_user, porta) VALUES
 ('Cristiano Sales', 'csales', '67792', 'localhost', 3306),
 ('Heitor Fiuza', 'h_fiuza', 'xyz123', '127.0.0.1', 3306),
 ('Carlos Henrique', 'henrique-carlos', '13lpo', 'localhost', 3306);
-
-
-
