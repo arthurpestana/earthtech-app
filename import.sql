@@ -17,6 +17,19 @@ porta INT NOT NULL )
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table earthTech_db.mqtt
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS mqtt (
+id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+nome VARCHAR(500) NOT NULL,
+username VARCHAR(70) ,
+senha VARCHAR(600) NOT NULL,
+host_mqtt VARCHAR(255) NOT NULL,
+porta INT NOT NULL )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Insert's
 -- -----------------------------------------------------
 
