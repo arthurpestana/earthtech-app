@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- Insert's
 -- -----------------------------------------------------
 
-INSERT INTO users (nome, username, senha, host_user, porta) VALUES
+INSERT INTO users (nome, username, senha) VALUES
 ('Patricio Sousa', 'patricio_s', 'Hop32'),
 ('Paula Ferraz', 'pa_ferr', 'abc456'),
 ('Cristiano Sales', 'csales', '67792'),
