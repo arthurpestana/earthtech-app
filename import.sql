@@ -11,16 +11,14 @@ CREATE TABLE IF NOT EXISTS users (
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 nome VARCHAR(500) NOT NULL,
 username VARCHAR(60) ,
-senha VARCHAR(600) NOT NULL,
-host_user VARCHAR(255) NOT NULL,
-porta INT NOT NULL )
+senha VARCHAR(600) NOT NULL)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table earthTech_db.mqtt
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS mqtt (
-id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+id INT NOT NULL PRIMARY KEY,
 nome VARCHAR(500) NOT NULL,
 username VARCHAR(70) ,
 senha VARCHAR(600) NOT NULL,
@@ -33,8 +31,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 
 INSERT INTO users (nome, username, senha, host_user, porta) VALUES
-('Patricio Sousa', 'patricio_s', 'Hop32', 'localhost', 3306),
-('Paula Ferraz', 'pa_ferr', 'abc456', '127.0.0.1', 3306),
-('Cristiano Sales', 'csales', '67792', 'localhost', 3306),
-('Heitor Fiuza', 'h_fiuza', 'xyz123', '127.0.0.1', 3306),
-('Carlos Henrique', 'henrique-carlos', '13lpo', 'localhost', 3306);
+('Patricio Sousa', 'patricio_s', 'Hop32'),
+('Paula Ferraz', 'pa_ferr', 'abc456'),
+('Cristiano Sales', 'csales', '67792'),
+('Heitor Fiuza', 'h_fiuza', 'xyz123'),
+('Carlos Henrique', 'henrique-carlos', '13lpo');
