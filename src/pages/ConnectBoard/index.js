@@ -3,8 +3,8 @@ import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } fro
 import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useNavigation } from "@react-navigation/native";
 import { useMQTT } from '../../components/Context';
+import { useSQLiteContext } from 'expo-sqlite/next'
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
@@ -12,7 +12,7 @@ import InputText from '../../components/InputText';
 
 export default function Connect() {
 
-    const Navigation = useNavigation()
+    const db = useSQLiteContext()
     const { client, setClient, isConnected, setConnected } = useMQTT();
     const [nome, setNome] = useState('')
     const [userName, setUsername] = useState('')
@@ -29,6 +29,19 @@ export default function Connect() {
         sync : {
         }
     });
+    React.useEffect(() => {
+        db.withTransactionAsync(async() => {
+            await getData();
+        });
+    }, [db]);
+    async function addMQTT(){
+        await db.execAsync(`INSERT INTO mqtt (name, username, senha, host, port) VALUES ("${nome}", "${userName}", 
+        "${senha}", "${host}", "${port}")`)
+    }
+    async function getData(){
+        result = await db.getAllAsync(`SELECT * FROM mqtt`)
+        console.log(result)
+    }
     function onSuccess(){
         setConnected('Conectado')
     }
@@ -44,6 +57,7 @@ export default function Connect() {
         mqttClient.onMessageArrived = onMessageArrived;
         mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
+        addMQTT()
     }
     function publishMsg(){
         var message = new Paho.MQTT.Message(userMessage ); //criar variavel userMessage no formulário do publish
@@ -69,7 +83,7 @@ export default function Connect() {
                     <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1}></InputText>
                     <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
                         <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
-                            <Text style={styles.button_text}>Connect</Text>
+                            <Text style={styles.button_text}>Conectar</Text>
                         </TouchableOpacity>
                                  
                     </Animatable.View>

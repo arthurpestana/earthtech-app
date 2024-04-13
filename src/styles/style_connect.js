@@ -51,7 +51,16 @@ export default StyleSheet.create ({
         marginTop: 20,
         fontWeight: 'bold'
     }, 
-
+    main__text: {
+        color: '#a1a1a1',
+        fontSize: 14,
+        alignSelf: 'flex-end',
+        marginTop: 5,
+    },
+    hyperlink__style: {
+        color: 'blue',
+        textDecorationLine: 'underline'
+    }, 
     blur_text: {
         backgroundColor: '#000'
     },  

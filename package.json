@@ -31,7 +31,10 @@
     "react-native-screens": "~3.29.0",
     "react-native-vector-icons": "^10.0.3",
     "react-native-web": "~0.19.6",
-    "sp-react-native-mqtt": "^0.5.1"
+    "sp-react-native-mqtt": "^0.5.1",
+    "expo-sqlite": "~13.4.0",
+    "expo-file-system": "~16.0.8",
+    "expo-asset": "~9.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
