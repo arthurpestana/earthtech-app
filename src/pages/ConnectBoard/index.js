@@ -13,9 +13,7 @@ import InputText from '../../components/InputText';
 export default function Connect() {
 
     const Navigation = useNavigation()
-    const { client, setClient } = useMQTT();
-
-    const [isConnected, setConnected] = useState('Desconectado')
+    const { client, setClient, isConnected, setConnected } = useMQTT();
     const [nome, setNome] = useState('')
     const [userName, setUsername] = useState('')
     const [senha, setSenha] = useState('')
