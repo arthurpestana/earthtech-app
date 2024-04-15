@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,14 +11,15 @@ import styles from '../../styles/style_connect'
 import InputText from '../../components/InputText';
 
 export default function Connect() {
-
     const db = useSQLiteContext()
-    const { client, setClient, isConnected, setConnected } = useMQTT();
+    const { userId, setId, client, setClient, isConnected, setConnected } = useMQTT();
     const [nome, setNome] = useState('')
     const [userName, setUsername] = useState('')
     const [senha, setSenha] = useState('')
     const [host, setHost] = useState('')
     const [port, setPort] = useState('')
+    const [fromBd, setFromBd] = useState(false)
+    const [controle, setControle] = useState('1')
 
     init({
         size: 10000,
@@ -29,19 +30,34 @@ export default function Connect() {
         sync : {
         }
     });
-    React.useEffect(() => {
-        db.withTransactionAsync(async() => {
-            await getData();
-        });
-    }, [db]);
-    async function addMQTT(){
-        await db.execAsync(`INSERT INTO mqtt (name, username, senha, host, port) VALUES ("${nome}", "${userName}", 
-        "${senha}", "${host}", "${port}")`)
+    async function setData(results){
+        setNome(results[0].name)
+        setUsername(results[0].username)
+        setSenha(results[0].senha)
+        setHost(results[0].host)
+        setPort(results[0].port)
+        setFromBd(true)
     }
     async function getData(){
-        result = await db.getAllAsync(`SELECT * FROM mqtt`)
-        console.log(result)
+        result = await db.getAllAsync(`SELECT * FROM mqtt WHERE id = "${userId}"`)
+        if(result[0].username){
+            setData(result)
+            const mqttClient = new Paho.MQTT.Client(result[0].host, parseInt(result[0].port), result[0].name);
+            mqttClient.onConnectionLost = onConnectionLost;
+            mqttClient.onMessageArrived = onMessageArrived;
+            mqttClient.connect({ userName: result[0].username, password: result[0].senha, onSuccess: onSuccess, useSSL: false });
+            setClient(mqttClient);
+        }
     }
+    useEffect(() => {
+        getData()
+    }, [db]);
+    async function addMQTT(){
+        await db.execAsync(`DELETE FROM mqtt WHERE id = "${userId}"`)
+        await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userName}", 
+        "${senha}", "${host}", "${port}")`)
+    }
+    
     function onSuccess(){
         setConnected('Conectado')
     }
