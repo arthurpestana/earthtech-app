@@ -12,12 +12,11 @@ export default function Connect() {
     const db = useSQLiteContext()
     const Navigation = useNavigation()
     const [nome, setNome] = useState('')
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState("")
     const [senha, setSenha] = useState('')
 
     async function signUp(){
-        await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", 
-        "${email}", "${0}")`)
+        await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
     }
 
     return (

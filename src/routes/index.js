@@ -15,7 +15,7 @@ import { useMQTT } from "../components/Context";
 
 export default function Routes() {
     const Drawer = createDrawerNavigator();
-    const { name, setName, mail, setMail } = useMQTT()
+    const { userName, setName, mail, setMail } = useMQTT()
     return (
         <Drawer.Navigator 
             drawerContent={
@@ -46,7 +46,7 @@ export default function Routes() {
                                     marginHorizontal: 10,
                                     color: "#507957"
                                 }}>
-                                    {name}
+                                    {userName}
                                 </Text>
                             </View>
                             <DrawerItemList {...props}/>

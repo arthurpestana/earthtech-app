@@ -15,10 +15,10 @@ export default function Connect() {
     const { userMail, setMail, userName, setName, loggedIn, setLoggedIn, userId, setId } = useMQTT()
 
     async function loginAccount(){
-        result = db.execAsync(`SELECT * FROM users WHERE password = ${senha} AND email = ${email}`)
-        console.log(result)
+        result = await db.getAllAsync(`SELECT * FROM users`)
+
         if(senha == result[0].password){
-            db.execAsync(`UPDATE users SET logged = ${1} WHERE email = ${result[0].email}`)
+            await db.execAsync(`UPDATE users SET logged = ${1} WHERE email = "${result[0].email}"`)
             setMail(result[0].email)
             setName(result[0].name)
             setId(result[0].id)

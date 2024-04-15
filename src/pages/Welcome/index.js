@@ -15,8 +15,8 @@ export default function Welcome() {
     const [route, setRoute] = useState(null)
 
     async function verifyLogged() {
-        console.log(FileSystem.getInfoAsync('../../assets/earthtech_db.db'))
-        result = db.execAsync(`SELECT * FROM users WHERE logged = ${1}`)
+        result = await db.getAllAsync(`SELECT * FROM users WHERE logged = ${1}`)
+        console.log(result[0])
         if(result){
             setMail(result[0].email)
             setName(result[0].name)
