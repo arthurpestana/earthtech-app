@@ -6,10 +6,15 @@ import * as Animatable from 'react-native-animatable'
 
 
 export default function (props) {
-    const [onFocusedInput, setFocusedInput] = useState(false)
+    const [onFocusedInput, setFocusedInput] = useState(true)
 
     const customOnFocus = () => {
-        setFocusedInput(true)
+        if (props.value == '') {
+            setFocusedInput(false)
+        }
+        else {
+            setFocusedInput(true)
+        }
     }
 
     const customOnBlur = () => {
