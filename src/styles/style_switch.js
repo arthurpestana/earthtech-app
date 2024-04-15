@@ -5,7 +5,6 @@ export default StyleSheet.create({
     switch__container: {
         flex: 1,
         height: "100%",
-        backgroundColor: '#d9ebe2'
     },
 
     container__automation: {
