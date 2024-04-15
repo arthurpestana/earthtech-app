@@ -16,8 +16,8 @@ export default function Connect() {
     const [senha, setSenha] = useState('')
 
     async function signUp(){
-        await db.execAsync(`INSERT INTO users (name, password, email) VALUES ("${nome}", "${senha}", 
-        "${email}")`)
+        await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", 
+        "${email}", "${0}")`)
     }
 
     return (

@@ -11,10 +11,11 @@ import StatusInformation from "../pages/StatusInformation"
 import Profile from '../pages/Profile'
 import Stack from './Stack'
 import { color } from "@rneui/base";
-
-const Drawer = createDrawerNavigator();
+import { useMQTT } from "../components/Context";
 
 export default function Routes() {
+    const Drawer = createDrawerNavigator();
+    const { name, setName, mail, setMail } = useMQTT()
     return (
         <Drawer.Navigator 
             drawerContent={
@@ -45,7 +46,7 @@ export default function Routes() {
                                     marginHorizontal: 10,
                                     color: "#507957"
                                 }}>
-                                    User
+                                    {name}
                                 </Text>
                             </View>
                             <DrawerItemList {...props}/>
