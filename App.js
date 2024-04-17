@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { NavigationContainer }  from '@react-navigation/native'
-import Routes from './src/routes/index'
+import Routes from './src/routes/Routes'
 import { MQTTProvider } from './src/components/Context';
 import { SQLiteProvider } from 'expo-sqlite/next';
 import * as FileSystem from 'expo-file-system'
@@ -13,7 +13,6 @@ const loadDatabase = async () => {
     const dbUri = Asset.fromModule(dbAsset).uri;
     const dbFilePath = `${FileSystem.documentDirectory}SQLite/${dbName}`;
     const fileInfo = await FileSystem.getInfoAsync(dbFilePath);
-    const test = await FileSystem.getInfoAsync(dbFilePath)
     if(!fileInfo.exists) {
       await FileSystem.makeDirectoryAsync(
         `${FileSystem.documentDirectory}SQLite`,
@@ -23,7 +22,6 @@ const loadDatabase = async () => {
     }
   }
   
-
 export default function App() {
     const [dbLoaded, setDbLoaded] = useState(false);
 

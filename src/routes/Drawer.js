@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, View, Image, Text} from 'react-native'
-import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer'
+import { createDrawerNavigator, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
 import 'react-native-gesture-handler'
 import { Feather } from "@expo/vector-icons"
 
@@ -12,12 +12,27 @@ import Profile from '../pages/Profile'
 import Stack from './Stack'
 import { color } from "@rneui/base";
 import { useMQTT } from "../components/Context";
+import { useSQLiteContext } from "expo-sqlite/next";
+import { useNavigationState } from "@react-navigation/native";
+
 
 export default function Routes() {
     const Drawer = createDrawerNavigator();
-    const { userName, setName, mail, setMail } = useMQTT()
+    const db = useSQLiteContext()
+    const { userId, setId, userName, setName, mail, setMail, loggedIn, setLoggedIn, client, setClient, isConnected, setConnected } = useMQTT()
+
+    async function LogoutAccount(){
+        await db.execAsync(`UPDATE users SET logged = ${0} WHERE id = ${userId}`)
+        setName(null)
+        setId(null)
+        setMail(null)
+        setConnected('Desconectado')
+        setClient(null)
+        setLoggedIn(false)
+    }
     return (
-        <Drawer.Navigator 
+        <Drawer.Navigator
+            initialRouteName="Conexão" 
             drawerContent={
                 (props) => {
                     return (
@@ -33,7 +48,7 @@ export default function Routes() {
                                 borderBottomWidth: 1,
                                 marginTop: 20,
                                 marginBottom: 50,
-                                paddingHorizontal: 20
+                                paddingHorizontal: 20,
                             }}>
                                 <Feather name="user" size={30} style={{
                                     padding: 5,
@@ -50,6 +65,13 @@ export default function Routes() {
                                 </Text>
                             </View>
                             <DrawerItemList {...props}/>
+                            <DrawerItem
+                                label="Sair"
+                                onPress={() => LogoutAccount()}
+                                inactiveTintColor="red"
+                                icon= {({color, size}) => <Feather name="log-out" color={color} size={size}/>}
+                                style= {{marginTop: "100%"}}
+                            />
                         </SafeAreaView>
                     )
                 }
@@ -67,7 +89,7 @@ export default function Routes() {
             }}>
             <Drawer.Screen
                 name="Home"
-                component={Stack}
+                component={ConnectBoard}
                 headerShown= {false}
                 options={{
                     drawerIcon: ({color, size}) => <Feather name="home" color={color} size={size}/>,
