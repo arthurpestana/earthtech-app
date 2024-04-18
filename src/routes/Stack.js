@@ -11,15 +11,10 @@ const Stack = createNativeStackNavigator();
 
 export default function Routes() {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen 
                 name='Welcome'
                 component={Welcome}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen 
-                name= 'ConnectBoard'
-                component={ConnectBoard}
                 options={{headerShown: false}}
             />
             <Stack.Screen 

@@ -16,7 +16,23 @@ export default function Connect() {
     const [senha, setSenha] = useState('')
 
     async function signUp(){
-        await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
+        if(email.includes('@') && senha.length >= 8 && nome != ''){
+            await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
+        }
+        else{
+            if(!email.includes('@') && email != ''){
+                console.log('O email deve incluir um endereço, Ex: @gmail.com')
+            }
+            if(!senha.length >= 8){
+                console.log('A senha deve ter 8 ou mais caracteres')
+            }
+            if(!nome != ''){
+                console.log('O nome não pode estar vazio')
+            }
+            if(!email != ''){
+                console.log('O email não pode estar vazio')
+            }
+        }
     }
 
     return (
