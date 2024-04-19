@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { View, Text, TextInput } from "react-native";
 
 import styles from '../styles/style_connect'
@@ -9,12 +9,7 @@ export default function (props) {
     const [onFocusedInput, setFocusedInput] = useState(true)
 
     const customOnFocus = () => {
-        if (props.value == '') {
-            setFocusedInput(false)
-        }
-        else {
-            setFocusedInput(true)
-        }
+        setFocusedInput(true)
     }
 
     const customOnBlur = () => {
@@ -38,7 +33,7 @@ export default function (props) {
                 onChangeText={props.onChangeText}
                 keyboardType={props.numeric?'numeric':'default'}
                 secureTextEntry={props.password?true:false}
-                onFocus={customOnFocus}
+                onPressIn={customOnFocus}
                 onBlur={customOnBlur}
             />
         </Animatable.View>
