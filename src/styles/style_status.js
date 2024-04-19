@@ -4,14 +4,22 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     switch__container: {
         flex: 1,
-        height: "100%",
+        backgroundColor: '#FFF'
+    },
+
+    container__header: {
+        marginVertical: "10%",
+        marginHorizontal: "15%",
+    },
+
+    menu__title: {
+        fontSize: 20
     },
 
     container__automation: {
         flex: 1,
         display: 'flex',
         height: '50vh',
-        marginTop: "25%",
         paddingHorizontal: '5%',
         borderBottomColor: "black",
         borderBottomWidth: 1

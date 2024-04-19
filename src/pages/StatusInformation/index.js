@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import {SafeAreaView, View, Text, ScrollView, Switch} from 'react-native'
+import {SafeAreaView, View, Text, ScrollView, Switch, Image} from 'react-native'
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 
 import * as Animatable from 'react-native-animatable'
-import styles from '../../styles/style_switch'
+import styles from '../../styles/style_status'
 
 import SensorDiv from '../../components/SensorDiv'
 
@@ -26,7 +26,23 @@ export default function StatusInformation() {
     }
 
     return (
-        <SafeAreaView style={styles.switch__container}>
+        <ScrollView style={styles.switch__container}>
+            <View style={styles.container__header}>
+                <View style={styles.header__menu}>
+                    <Text style={styles.menu__title}>Automações</Text>
+                    <View style={styles.menu__profile}>
+                        
+                    </View>
+                </View>
+                <View style={styles.header__logo}>
+                    <Animatable.Image
+                        animation={"fadeInRightBig"}
+                        source={require('../../images/irrigacao.png')}
+                        style={{width: '100%', height: '80%'}}
+                        resizeMode="contain"
+                    />
+                </View>
+            </View>
             <View style={styles.container__automation}>
                 <Text style={styles.titles}>Automações</Text>
                 <View style={styles.automation__items}>
@@ -50,6 +66,6 @@ export default function StatusInformation() {
                     <SensorDiv title="Umidade do Ar: " info="12" typeIcon="a"/>
                 </View>
             </View>
-        </SafeAreaView>
+        </ScrollView>
     )
 }
