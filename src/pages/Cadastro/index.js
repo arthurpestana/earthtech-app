@@ -18,6 +18,7 @@ export default function Connect() {
     async function signUp(){
         if(email.includes('@') && senha.length >= 8 && nome != ''){
             await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
+            console.log(nome, senha, email)
         }
         else{
             if(!email.includes('@') && email != ''){
@@ -33,6 +34,7 @@ export default function Connect() {
                 console.log('O email não pode estar vazio')
             }
         }
+        console.log("singUP")
     }
 
     return (

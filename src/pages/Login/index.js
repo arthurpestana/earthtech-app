@@ -17,17 +17,22 @@ export default function Connect() {
     const { userMail, setMail, userName, setName, loggedIn, setLoggedIn, userId, setId } = useMQTT()
 
     async function loginAccount(){
-        result = await db.getAllAsync(`SELECT * FROM users WHERE email = ${userMail}`)
+        result = await db.getAllAsync(`SELECT * FROM users`)
+        console.log(result)
 
-        if(senha == result[0].password){
-            await db.execAsync(`UPDATE users SET logged = ${1} WHERE email = "${result[0].email}"`)
-            setMail(result[0].email)
-            setName(result[0].name)
-            setId(result[0].id)
-            setLoggedIn(true)
-            Navigation.navigate('Drawer')
+        if (senha!='' && email!='') {
+            for (let element of result) {
+                if (email == element.email && senha == element.password) {
+                    await db.execAsync(`UPDATE users SET logged = ${1} WHERE email = "${element.email}"`)
+                    setMail(element.email)
+                    setName(element.name)
+                    setId(element.id)
+                    setLoggedIn(true)
+                    Navigation.navigate('Drawer')
+                }
+            }
         }
-        else{
+        else {
             console.log('E-mail ou senha incorretos.')
         }
     }
