@@ -3,7 +3,6 @@ import {} from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Welcome from '../pages/Welcome/index'
-import ConnectBoard from '../pages/ConnectBoard/index'
 import Login from '../pages/Login/index'
 import Cadastro from '../pages/Cadastro/index'
 

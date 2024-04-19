@@ -6,7 +6,6 @@ import { Feather } from "@expo/vector-icons"
 
 import Welcome from '../pages/Welcome/index'
 import ConnectBoard from '../pages/ConnectBoard/index'
-import TurnOnOff from "../pages/TurnOnOff";
 import StatusInformation from "../pages/StatusInformation"
 import Profile from '../pages/Profile'
 import Stack from './Stack'
@@ -112,15 +111,6 @@ export default function Routes() {
                 options={{
                     drawerIcon: ({color, size}) => <Feather name="power" color={color} size={size}/>,
                     drawerLabel: "Connection"
-                }}
-            />
-            <Drawer.Screen
-                name="TurnOnOff"
-                component={TurnOnOff}
-                headerShown={false}
-                options={{
-                    drawerIcon: ({color, size}) => <Feather name="toggle-right" color={color} size={size}/>,
-                    drawerLabel: "ON/OFF"
                 }}
             />
             <Drawer.Screen

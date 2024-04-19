@@ -18,7 +18,7 @@ export default function Welcome() {
     async function verifyLogged() {
         result = await db.getAllAsync(`SELECT * FROM users WHERE logged = ${1}`)
         console.log(result[0])
-        if(result[0].name){
+        if(result[0] != undefined){
             setMail(result[0].email)
             setName(result[0].name)
             setId(result[0].id)
