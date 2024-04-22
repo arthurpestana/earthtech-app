@@ -13,3 +13,7 @@ Aumentar e otimizar a eficiência, produtividade e sustentabilidade dos pequenos
 
 - DISPOSITIVOS IOT: ESP e MQTT.
 
+Observação:
+`` Este projeto está em desenvolvimento e sofre alterações frequentes. ``
+
+
