@@ -1,4 +1,5 @@
 # EarthTech: Plataforma Inteligente para Pequenos Cultivos
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 O projeto EarthTech visa desenvolver uma plataforma de IoT para agricultura inteligente, integrando placas de desenvolvimento com aplicativos móveis. A plataforma permitirá aos usuários controlar a umidade do solo, realizar irrigação automatizada, gerenciar a adubação, acessar dados climáticos, monitorar o cultivo e obter orientações de plantio para pequenos produtores ou agricultores familiares. O objetivo é promover a sustentabilidade e eficiência na agricultura, garantindo uma abordagem simples e intuitiva.
 
