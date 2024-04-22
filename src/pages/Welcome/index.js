@@ -29,9 +29,11 @@ export default function Welcome() {
             setRoute(null)
         }
     }
+
     useEffect(() => {
         verifyLogged()
     }, []);
+    
     return (
         <SafeAreaView style={styles.container_app}>
             <View style={styles.app__container_logo}>

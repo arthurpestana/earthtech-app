@@ -8,8 +8,29 @@ export default StyleSheet.create({
     },
 
     container__header: {
-        marginVertical: "10%",
-        marginHorizontal: "15%",
+        backgroundColor: '#FFF',
+        position: 'relative',
+        height: "10%"
+    },
+
+    header__menu: {
+        position: 'absolute',
+        top: 30,
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 170,
+        alignItems: 'flex-start',
+        backgroundColor: '#FFF',
+        paddingHorizontal: 40,
+        paddingVertical: 10,
+    },
+
+    header__logo: {
+        height: 300,
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexDirection: 'column'
     },
 
     menu__title: {
@@ -21,8 +42,6 @@ export default StyleSheet.create({
         display: 'flex',
         height: '50vh',
         paddingHorizontal: '5%',
-        borderBottomColor: "black",
-        borderBottomWidth: 1
     },
 
     automation__items: {
@@ -58,7 +77,7 @@ export default StyleSheet.create({
     },
 
     titles: {
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: 'bold',
         color: "#0a8967",
         marginBottom: '10%'

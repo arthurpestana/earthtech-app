@@ -61,11 +61,11 @@ export default function Connect() {
     useEffect(() => {
         getData()
     }, [db]);
-
+    
     async function addMQTT() {
-        console.log("Dados cadastrada")
-        await db.execAsync(`DELETE FROM mqtt WHERE id = "${userId}"`)
+        await db.execAsync(`DELETE FROM mqtt`)
         await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userName}", "${senha}", "${host}", "${port}")`)
+        console.log("Dados cadastrada")
     }
     
     function onSuccess(){
@@ -81,12 +81,12 @@ export default function Connect() {
     }
     
     function connectBoard(){
+        addMQTT()
         const mqttClient = new Paho.MQTT.Client(host, parseInt(port), nome);
         mqttClient.onConnectionLost = onConnectionLost;
         mqttClient.onMessageArrived = onMessageArrived;
         mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
-        addMQTT()
         if (isConnected) {
             console.log("Conexão realizada")
         }
