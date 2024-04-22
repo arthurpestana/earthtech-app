@@ -4,10 +4,6 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     switch__container: {
         flex: 1,
-<<<<<<< Updated upstream:src/styles/style_switch.js
-        height: "100%",
-        backgroundColor: '#d9ebe2'
-=======
         backgroundColor: '#FFF'
     },
 
@@ -39,7 +35,6 @@ export default StyleSheet.create({
 
     menu__title: {
         fontSize: 20
->>>>>>> Stashed changes:src/styles/style_status.js
     },
 
     container__automation: {

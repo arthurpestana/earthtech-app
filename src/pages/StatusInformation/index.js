@@ -7,7 +7,7 @@ import { Feather } from "@expo/vector-icons"
 import { NavigationContainer } from '@react-navigation/native';
 
 import * as Animatable from 'react-native-animatable'
-import styles from '../../styles/style_switch'
+import styles from '../../styles/style_status'
 
 import SensorDiv from '../../components/SensorDiv'
 import TabRoutes from '../../routes/TabRoutes';
@@ -30,19 +30,6 @@ export default function StatusInformation() {
     }
 
     return (
-<<<<<<< Updated upstream
-        <SafeAreaView style={styles.switch__container}>
-            <View style={styles.container__automation}>
-                <Text style={styles.titles}>Automações</Text>
-                <View style={styles.automation__items}>
-                    <View style={styles.automation__box_switch}>
-                        <Switch 
-                            trackColor={{false: '#E94A35', true: '#37924e'}}
-                            thumbColor={'#FFF'}
-                            onValueChange={altSwitch}
-                            value={isEnabled}
-                            style={styles.box_switch}
-=======
         <View style={{flex: 1}}>
             <View style={styles.container__header}>
                     <View style={styles.header__menu}>
@@ -64,7 +51,6 @@ export default function StatusInformation() {
                             source={require('../../images/irrigacao.png')}
                             style={{width: '100%', height: '100%'}}
                             resizeMode="contain"
->>>>>>> Stashed changes
                         />
                     </View>
                     <Text style={styles.titles}>Automações</Text>
@@ -89,13 +75,8 @@ export default function StatusInformation() {
                         <SensorDiv title="Umidade do Ar: " info="12" typeIcon="a"/>
                     </View>
                 </View>
-<<<<<<< Updated upstream
-            </View>
-        </SafeAreaView>
-=======
             </ScrollView>
             <FabButton style={{bottom: 80, right: 80}}/>
         </View>
->>>>>>> Stashed changes
     )
 }

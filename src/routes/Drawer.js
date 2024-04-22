@@ -115,19 +115,6 @@ export default function Routes() {
                 }}
             />
             <Drawer.Screen
-<<<<<<< Updated upstream
-                name="TurnOnOff"
-                component={TurnOnOff}
-                headerShown={false}
-                options={{
-                    drawerIcon: ({color, size}) => <Feather name="toggle-right" color={color} size={size}/>,
-                    drawerLabel: "ON/OFF"
-                }}
-            />
-            <Drawer.Screen
-=======
-
->>>>>>> Stashed changes
                 name="StatusInformation"
                 component={StatusInformation}
                 headerShown={false}

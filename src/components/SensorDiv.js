@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView, Text, View } from 'react-native'
 
 import * as Animatable from 'react-native-animatable'
-import styles from '../styles/style_switch'
+import styles from '../styles/style_status'
 import { Feather } from "@expo/vector-icons"
 
 export default function (props) {
