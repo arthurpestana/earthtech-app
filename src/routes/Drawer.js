@@ -115,6 +115,7 @@ export default function Routes() {
                 }}
             />
             <Drawer.Screen
+<<<<<<< Updated upstream
                 name="TurnOnOff"
                 component={TurnOnOff}
                 headerShown={false}
@@ -124,6 +125,9 @@ export default function Routes() {
                 }}
             />
             <Drawer.Screen
+=======
+
+>>>>>>> Stashed changes
                 name="StatusInformation"
                 component={StatusInformation}
                 headerShown={false}

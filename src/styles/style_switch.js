@@ -4,8 +4,42 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     switch__container: {
         flex: 1,
+<<<<<<< Updated upstream:src/styles/style_switch.js
         height: "100%",
         backgroundColor: '#d9ebe2'
+=======
+        backgroundColor: '#FFF'
+    },
+
+    container__header: {
+        backgroundColor: '#FFF',
+        position: 'relative',
+        height: "10%"
+    },
+
+    header__menu: {
+        position: 'absolute',
+        top: 30,
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 170,
+        alignItems: 'flex-start',
+        backgroundColor: '#FFF',
+        paddingHorizontal: 40,
+        paddingVertical: 10,
+    },
+
+    header__logo: {
+        height: 300,
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexDirection: 'column'
+    },
+
+    menu__title: {
+        fontSize: 20
+>>>>>>> Stashed changes:src/styles/style_status.js
     },
 
     container__automation: {
@@ -14,8 +48,6 @@ export default StyleSheet.create({
         height: '50vh',
         marginTop: "25%",
         paddingHorizontal: '5%',
-        borderBottomColor: "black",
-        borderBottomWidth: 1
     },
 
     automation__items: {
@@ -51,7 +83,7 @@ export default StyleSheet.create({
     },
 
     titles: {
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: 'bold',
         color: "#0a8967",
         marginBottom: '10%'
