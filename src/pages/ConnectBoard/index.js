@@ -52,18 +52,11 @@ export default function Connect() {
     useEffect(() => {
         getData()
     }, [db]);
-<<<<<<< Updated upstream
-    async function addMQTT(){
-        await db.execAsync(`DELETE FROM mqtt WHERE id = "${userId}"`)
-        await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userName}", 
-        "${senha}", "${host}", "${port}")`)
-=======
-
+    
     async function addMQTT() {
         await db.execAsync(`DELETE FROM mqtt`)
         await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userName}", "${senha}", "${host}", "${port}")`)
         console.log("Dados cadastrada")
->>>>>>> Stashed changes
     }
     
     function onSuccess(){
@@ -82,16 +75,12 @@ export default function Connect() {
         mqttClient.onMessageArrived = onMessageArrived;
         mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
-<<<<<<< Updated upstream
-        addMQTT()
-=======
         if (isConnected) {
             console.log("Conexão realizada")
         }
         else {
             console.log("A conexão não foi realizada. Dados incorretos")
         }
->>>>>>> Stashed changes
     }
     function publishMsg(){
         var message = new Paho.MQTT.Message(userMessage ); //criar variavel userMessage no formulário do publish
