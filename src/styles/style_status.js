@@ -15,14 +15,18 @@ export default StyleSheet.create({
 
     header__menu: {
         position: 'absolute',
-        top: 30,
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 170,
-        alignItems: 'flex-start',
+        top: 35,
         backgroundColor: '#FFF',
-        paddingHorizontal: 40,
-        paddingVertical: 10,
+        paddingHorizontal: 25,
+    },
+
+    menu__dados: {
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: 260
     },
 
     header__logo: {
@@ -34,7 +38,8 @@ export default StyleSheet.create({
     },
 
     menu__title: {
-        fontSize: 20
+        fontSize: 20,
+        color: '#3e5c43'
     },
 
     container__automation: {
@@ -77,43 +82,53 @@ export default StyleSheet.create({
     },
 
     titles: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: "#0a8967",
+        fontSize: 18,
+        color: "#3e5c43",
         marginBottom: '10%'
     },
 
     dashboard__items: {
         display: 'flex',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 25,
         width: "100%",
-        borderRadius: 15,
+        borderRadius: 10,
         backgroundColor: "#11ce8f50",
         marginBottom: 10,
     },
 
-    item__div_title: {
+    dashboard__dados: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        gap: 20
+    },
+
+    item__div_logo: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     },
 
+    item__div_info: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        gap: 2
+    },
+
     dashboard__text: {
         color: "#000",
-        fontSize: 15
+        fontSize: 12
     },
 
     item__title: {
-        fontSize: 16,
-        marginLeft: 12,
+        fontSize: 14,
         fontWeight: 500
-    },
-
-    item__info: {
-        fontSize: 15,
     },
 })

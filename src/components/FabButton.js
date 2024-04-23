@@ -1,25 +1,19 @@
 import React, { Component } from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, Animated} from 'react-native'
 import { AntDesign, Entypo} from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
-export default class FabButton extends Component {
-    animation = new Animated.Value(0)
-
-    toggleMenu = () => {
-
-    }
-
-    render() {
-        return (
-            <View style={[styles.container__button, this.props.style]}>
-                <TouchableOpacity onPress={this.toggleMenu}>
-                    <Animated.View style={[styles.button]}>
-                        <AntDesign name='plus' size={24} color="#FFF"/>
-                    </Animated.View>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+export default function FabButton(props) {
+    const Navigation = useNavigation()
+    return (
+        <View style={[styles.container__button, props.style]}>
+            <TouchableOpacity  onPress={() => Navigation.navigate('AddTopic')}>
+                <Animated.View style={[styles.button]}>
+                    <AntDesign name='plus' size={24} color="#FFF"/>
+                </Animated.View>
+            </TouchableOpacity>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -42,6 +36,6 @@ const styles = StyleSheet.create({
         shadowOffset: {
             height: 10,
         },
-        backgroundColor: '#00213B'
+        backgroundColor: '#3e5c43'
     },
 })

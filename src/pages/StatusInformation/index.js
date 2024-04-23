@@ -1,16 +1,14 @@
 import React, {useState} from 'react'
-import {SafeAreaView, View, Text, ScrollView, Switch, Image} from 'react-native'
+import {SafeAreaView, View, Text, ScrollView, Switch, Image, TouchableOpacity} from 'react-native'
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 import FabButton from '../../components/FabButton';
 import { Feather } from "@expo/vector-icons"
-import { NavigationContainer } from '@react-navigation/native';
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_status'
 
 import SensorDiv from '../../components/SensorDiv'
-import TabRoutes from '../../routes/TabRoutes';
 
 export default function StatusInformation() {
     const { client } = useMQTT();
@@ -33,13 +31,17 @@ export default function StatusInformation() {
         <View style={{flex: 1}}>
             <View style={styles.container__header}>
                     <View style={styles.header__menu}>
-                        <Text style={styles.menu__title}>Automações</Text>
-                        <View style={styles.menu__profile}>
-                            <Feather name="user" size={20} color={"#FFF"} style={{
-                                padding: 5,
-                                backgroundColor: "#00213B",
-                                borderRadius: 20/2,
-                            }}/>
+                        <View style={styles.menu__dados}>
+                            <Text style={styles.menu__title}>Status</Text>
+                            <View style={styles.menu__profile}>
+                                <TouchableOpacity>
+                                    <Feather name="user" size={20} color={"#FFF"} style={{
+                                        padding: 5,
+                                        backgroundColor: "#3e5c43",
+                                        borderRadius: 20/2,
+                                    }}/>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -63,16 +65,16 @@ export default function StatusInformation() {
                                 value={isEnabled}
                                 style={styles.box_switch}
                             />
-                            <Text style={styles.dashboard__text}>Ativar Irrigador</Text>
+                            <Text style={[styles.dashboard__text, styles.item__title]}>Irrigação Automática</Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.container__dashboards}>
-                    <Text style={styles.titles}>Informações do Plantio</Text>
+                    <Text style={styles.titles}>Informações do Cultivo</Text>
                     <View>
-                        <SensorDiv title="Classificação do Solo: " info="Seco" typeIcon="a"/>
-                        <SensorDiv title="Temperatura do Ambiente: " info="12" typeIcon="a"/>
-                        <SensorDiv title="Umidade do Ar: " info="12" typeIcon="a"/>
+                        <SensorDiv title="Classificação do Solo" info="Seco" typeIcon="grid"/>
+                        <SensorDiv title="Temperatura do Ambiente" info="12" typeIcon="grid"/>
+                        <SensorDiv title="Umidade do Ar" info="12" typeIcon="grid"/>
                     </View>
                 </View>
             </ScrollView>

@@ -4,11 +4,17 @@ import { createDrawerNavigator, DrawerItem, DrawerItemList } from '@react-naviga
 import 'react-native-gesture-handler'
 import { Feather } from "@expo/vector-icons"
 
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer }  from '@react-navigation/native'
+
+import AddTopic from '../pages/StatusInformation/AddTopic'
+
+const Stack = createNativeStackNavigator();
+
 import Welcome from '../pages/Welcome/index'
 import ConnectBoard from '../pages/ConnectBoard/index'
-import StatusInformation from "../pages/StatusInformation"
-import Profile from '../pages/Profile'
-import Stack from './Stack'
+import StatusInformation from "../pages/StatusInformation/index"
+import StackNav from './Stack'
 import { color } from "@rneui/base";
 import { useMQTT } from "../components/Context";
 import { useSQLiteContext } from "expo-sqlite/next";
@@ -78,7 +84,6 @@ export default function Routes() {
             screenOptions={{
                 headerTransparent: true,
                 headerTitle: '',
-                headerShown: true,
                 drawerStyle: {
                     width: 250,
                 },
@@ -96,15 +101,6 @@ export default function Routes() {
                 }}
             />
             <Drawer.Screen
-                name="Profile"
-                component={Profile}
-                headerShown= {false}
-                options={{
-                    drawerIcon: ({color, size}) => <Feather name="user" color={color} size={size}/>,
-                    drawerLabel: "Profile"
-                }}
-            />
-            <Drawer.Screen
                 name="Conexão"
                 component={ConnectBoard}
                 headerShown={false}
@@ -114,15 +110,40 @@ export default function Routes() {
                 }}
             />
             <Drawer.Screen
-                name="StatusInformation"
-                component={StatusInformation}
+                name="StatusPage"
+                component={StatusPage}
                 headerShown={false}
                 options={{
+                    headerShown: false,
                     drawerIcon: ({color, size}) => <Feather name="activity" color={color} size={size}/>,
                     drawerLabel: "Status"
                 }}
             />
         </Drawer.Navigator>
+    )
+}
+
+function StatusPage() {
+    return (
+        <Stack.Navigator  initialRouteName="StatusInformation">
+            <Stack.Screen
+                name='StatusInformation'
+                component={StatusInformation}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name= 'AddTopic'
+                component={AddTopic}
+                options={{
+                    headerShown: false,
+                    title: "",
+                    headerStyle: {
+                        backgroundColor: '#fff',
+                    },
+                    headerTintColor: '#000',
+                }}
+            />
+        </Stack.Navigator>
     )
 }
 
