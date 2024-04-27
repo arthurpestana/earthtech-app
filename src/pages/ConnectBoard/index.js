@@ -43,8 +43,11 @@ export default function Connect() {
     async function getData(){
         result = await db.getAllAsync(`SELECT * FROM mqtt`)
         console.log(result)
-        if (result.length != 0) {
+        if (result.length != 0 || result[0].port!="" || result[0].userName!="") {
             for (element of result) {
+                if (element.port=='' || element.host=='') {
+                    return console.log("Sem conexões registradas")
+                }
                 setData(element)
                 const mqttClient = new Paho.MQTT.Client(element.host, parseInt(element.port), element.name);
                 mqttClient.onConnectionLost = onConnectionLost;
@@ -54,7 +57,7 @@ export default function Connect() {
             }
         }
         else {
-            console.log("Sem conexões registradas")
+            return console.log("Sem conexões registradas")
         }
     }
 
@@ -87,7 +90,7 @@ export default function Connect() {
         mqttClient.onMessageArrived = onMessageArrived;
         mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
-        if (isConnected) {
+        if (isConnected==true) {
             console.log("Conexão realizada")
         }
         else {
@@ -106,8 +109,8 @@ export default function Connect() {
             <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
                 <Text style={styles.header__title}>Bem-vindo(a)</Text>
                 <View style={styles.connection__box}>
-                    <Text style={isConnected?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
-                        {isConnected?"Conectado":"Desconectado"}
+                    <Text style={isConnected==true?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
+                        {isConnected==true?"Conectado":"Desconectado"}
                     </Text>
                 </View> 
             </Animatable.View>

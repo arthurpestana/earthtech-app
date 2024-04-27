@@ -17,13 +17,14 @@ export default function StatusInformation() {
 
     function publishMsg(){
         var message = new Paho.MQTT.Message(messagePayload); //criar variavel userMessage no formulário do publish
-        message.destinationName = 'brunolustosads@gmail.com/switch'; //criar variavel messageDestination no formulário do publish
+        message.destinationName = 'brunolustosads@gmail.com/switch1'; //criar variavel messageDestination no formulário do publish
         client.send(message)
     }
 
     const altSwitch = () => {
+        console.log(client)
         setIsEnabled(previousState => !previousState)
-        isEnabled==false?setMessagePayload('0'):setMessagePayload('1')
+        isEnabled==false?setMessagePayload('1'):setMessagePayload('0')
         publishMsg()
     }
 
