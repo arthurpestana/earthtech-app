@@ -106,7 +106,7 @@ export default function Connect() {
             <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
                 <Text style={styles.header__title}>Bem-vindo(a)</Text>
                 <View style={styles.connection__box}>
-                    <Text style={isConnected==true?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
+                    <Text style={isConnected?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
                         {isConnected?"Conectado":"Desconectado"}
                     </Text>
                 </View> 

@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, View, Image, Text} from 'react-native'
 import { createDrawerNavigator, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler'
 import { Feather } from "@expo/vector-icons"
 
@@ -8,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer }  from '@react-navigation/native'
 
 import AddTopic from '../pages/StatusInformation/AddTopic'
+import TabRoutes from './TabRoutes'
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,7 @@ import { useNavigationState } from "@react-navigation/native";
 
 
 export default function Routes() {
+    const Tab = createBottomTabNavigator()
     const Drawer = createDrawerNavigator();
     const db = useSQLiteContext()
     const { userId, setId, userName, setName, mail, setMail, loggedIn, setLoggedIn, client, setClient, isConnected, setConnected } = useMQTT()
@@ -127,8 +130,8 @@ function StatusPage() {
     return (
         <Stack.Navigator  initialRouteName="StatusInformation">
             <Stack.Screen
-                name='StatusInformation'
-                component={StatusInformation}
+                name='TabRoutes'
+                component={TabRoutes}
                 options={{headerShown: false}}
             />
             <Stack.Screen
