@@ -73,10 +73,12 @@ export default function Connect() {
     
     function onSuccess(){
         setConnected(true)
+        console.log("Conexão realizada")
     }
 
     function onConnectionLost(){
         setConnected(false)
+        console.log("A conexão não foi realizada. Dados incorretos")
     }
 
     function onMessageArrived(){
@@ -90,12 +92,6 @@ export default function Connect() {
         mqttClient.onMessageArrived = onMessageArrived;
         mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
-        if (isConnected==true) {
-            console.log("Conexão realizada")
-        }
-        else {
-            console.log("A conexão não foi realizada. Dados incorretos")
-        }
     }
 
     function publishMsg(){
