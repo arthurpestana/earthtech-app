@@ -16,6 +16,7 @@ const Stack = createNativeStackNavigator();
 import Welcome from '../pages/Welcome/index'
 import ConnectBoard from '../pages/ConnectBoard/index'
 import StatusInformation from "../pages/StatusInformation/index"
+import Home from '../pages/Home'
 import StackNav from './Stack'
 import { color } from "@rneui/base";
 import { useMQTT } from "../components/Context";
@@ -40,7 +41,7 @@ export default function Routes() {
     }
     return (
         <Drawer.Navigator
-            initialRouteName="Conexão" 
+            initialRouteName="Home" 
             drawerContent={
                 (props) => {
                     return (
@@ -96,7 +97,7 @@ export default function Routes() {
             }}>
             <Drawer.Screen
                 name="Home"
-                component={ConnectBoard}
+                component={Home}
                 headerShown= {false}
                 options={{
                     drawerIcon: ({color, size}) => <Feather name="home" color={color} size={size}/>,
