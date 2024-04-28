@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native'
 
 import { useSQLiteContext } from 'expo-sqlite/next'
 
 import * as Animatable from 'react-native-animatable'
-import styles from '../../styles/style_connect'
-import InputText from '../../components/InputText';
+import styles from '../../styles/style_login'
+import InputText from '../../components/LoginText';
 import { useNavigation } from '@react-navigation/native'
 
 export default function Connect() {
@@ -36,30 +36,50 @@ export default function Connect() {
     }
 
     return (
-        <SafeAreaView style={styles.container_connect}>
-            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
-                <Text style={styles.header__title}>Bem-vindo(a)</Text>
-                <View style={styles.connection__box}>
-                </View> 
+        <SafeAreaView style={styles.container_login}>
+            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.login__header}>  
+                <View style={styles.upper__img}>
+                    <Animatable.Image
+                        source={require('../../images/login-cadastro-upper.png')}
+                        style={{width: "90%"}}
+                        resizeMode="contain"
+                        tintColor={'#234682'}
+                    />
+                </View>
+                <View style={styles.app__container_logo}>
+                    <Animatable.Image
+                        animation={"flipInY"}
+                        source={require('../../images/logo.png')}
+                        style={{width: '120%'}}
+                        resizeMode="contain"
+                    />
+                </View>
+                <View style={styles.header__title_container}>
+                    <Text style={styles.header__title}>Bem-vindo(a)</Text>
+                </View>           
+                    
             </Animatable.View>
-            <ScrollView style={styles.container__main}>
+            <ScrollView style={styles.container__main} keyboardShouldPersistTaps="handled">
                 <Animatable.View animation={'fadeInUp'}>
-                    <InputText delay={500} placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
-                    <InputText delay={700} placeholder="Email" value={email} onChangeText={setEmail}></InputText>
-                    <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
-                    <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
+                    <InputText delay={500} placeholder="Nome" value={email} onChangeText={setNome} iconName="user"></InputText>
+                    <InputText delay={500} placeholder="Email" value={email} onChangeText={setEmail} iconName="mail"></InputText>
+                    <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1} iconName="lock-closed"></InputText>
+                    <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
                         <TouchableOpacity style={styles.main__button} onPress={signUp}>
-                            <Text style={styles.button_text}>Cadastrar</Text>
+                            <Text style={styles.button_text}>Login</Text>                           
                         </TouchableOpacity>
-                        <Text style={styles.main__text}>
-                            Já tem uma conta?{' '}  
-                            <Text style={[styles.main__text, styles.hyperlink__style]} onPress={() => Navigation.navigate('Login')}>
-                                Fazer login
-                            </Text>
-                        </Text>         
+                        <Text style={styles.account__text} onPress={() => Navigation.navigate('Login')}>
+                            Não tem uma conta?  
+                        </Text>                        
                     </Animatable.View>
-                </Animatable.View>
+                </Animatable.View>               
             </ScrollView>
+            <Image
+                source={require('../../images/login-cadastro-lower.png')}
+                style={styles.image_lower}
+                resizeMode="contain"
+                tintColor={'#234682'}
+            />
         </SafeAreaView>
     )
 }

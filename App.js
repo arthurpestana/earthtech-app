@@ -24,7 +24,7 @@ const loadDatabase = async () => {
   
 export default function App() {
     const [dbLoaded, setDbLoaded] = useState(false);
-
+    
     React.useEffect(() => {
         loadDatabase()
           .then(() => setDbLoaded(true))

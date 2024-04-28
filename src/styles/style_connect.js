@@ -16,7 +16,8 @@ export default StyleSheet.create ({
     header__title:{
         color:"#FFF",
         fontSize: 32,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignSelf: "flex-start",
     },
 
     container__main:{

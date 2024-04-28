@@ -30,25 +30,37 @@ export default function Connect() {
         sync : {
         }
     });
+
     async function setData(results){
-        setNome(results[0].name)
-        setUsername(results[0].username)
-        setSenha(results[0].senha)
-        setHost(results[0].host)
-        setPort(results[0].port)
+        setNome(results.name)
+        setUsername(results.username)
+        setSenha(results.senha)
+        setHost(results.host)
+        setPort(results.port)
         setFromBd(true)
     }
+    
     async function getData(){
-        result = await db.getAllAsync(`SELECT * FROM mqtt WHERE id = "${userId}"`)
-        if(result[0].username){
-            setData(result)
-            const mqttClient = new Paho.MQTT.Client(result[0].host, parseInt(result[0].port), result[0].name);
-            mqttClient.onConnectionLost = onConnectionLost;
-            mqttClient.onMessageArrived = onMessageArrived;
-            mqttClient.connect({ userName: result[0].username, password: result[0].senha, onSuccess: onSuccess, useSSL: false });
-            setClient(mqttClient);
+        result = await db.getAllAsync(`SELECT * FROM mqtt`)
+        console.log(result)
+        if (result.length != 0 || result[0].port!="" || result[0].userName!="") {
+            for (element of result) {
+                if (element.port=='' || element.host=='') {
+                    return console.log("Sem conexões registradas")
+                }
+                setData(element)
+                const mqttClient = new Paho.MQTT.Client(element.host, parseInt(element.port), element.name);
+                mqttClient.onConnectionLost = onConnectionLost;
+                mqttClient.onMessageArrived = onMessageArrived;
+                mqttClient.connect({ userName: element.username, password: element.senha, onSuccess: onSuccess, useSSL: false });
+                setClient(mqttClient);
+            }
+        }
+        else {
+            return console.log("Sem conexões registradas")
         }
     }
+
     useEffect(() => {
         getData()
     }, [db]);
@@ -60,14 +72,19 @@ export default function Connect() {
     }
     
     function onSuccess(){
-        setConnected('Conectado')
+        setConnected(true)
+        console.log("Conexão realizada")
     }
+
     function onConnectionLost(){
-        setConnected('Desconectado')
+        setConnected(false)
+        console.log("A conexão não foi realizada. Dados incorretos")
     }
+
     function onMessageArrived(){
         console.warn('Message arrived')
     }
+    
     function connectBoard(){
         addMQTT()
         const mqttClient = new Paho.MQTT.Client(host, parseInt(port), nome);
@@ -75,25 +92,21 @@ export default function Connect() {
         mqttClient.onMessageArrived = onMessageArrived;
         mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
-        if (isConnected) {
-            console.log("Conexão realizada")
-        }
-        else {
-            console.log("A conexão não foi realizada. Dados incorretos")
-        }
     }
+
     function publishMsg(){
         var message = new Paho.MQTT.Message(userMessage ); //criar variavel userMessage no formulário do publish
         message.destinationName = messageDestination; //criar variavel messageDestination no formulário do publish
         client.send(message);
     }
+
     return (
         <SafeAreaView style={styles.container_connect}>
             <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
                 <Text style={styles.header__title}>Bem-vindo(a)</Text>
                 <View style={styles.connection__box}>
-                    <Text style={isConnected=='Conectado'?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
-                        {isConnected}
+                    <Text style={isConnected==true?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
+                        {isConnected==true?"Conectado":"Desconectado"}
                     </Text>
                 </View> 
             </Animatable.View>
