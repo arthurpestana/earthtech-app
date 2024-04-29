@@ -32,6 +32,7 @@ export default function (props) {
                 value={props.value}
                 onChangeText={props.onChangeText}
                 keyboardType={props.numeric?'numeric':'default'}
+                maxLength={props.maxLength?4:30}
                 secureTextEntry={props.password?true:false}
                 onPressIn={customOnFocus}
                 onBlur={customOnBlur}

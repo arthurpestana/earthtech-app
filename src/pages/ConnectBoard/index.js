@@ -116,7 +116,7 @@ export default function Connect() {
                     <InputText delay={600} placeholder="Username" value={userName} onChangeText={setUsername}></InputText>
                     <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
                     <InputText delay={800} placeholder="Host" value={host} onChangeText={setHost}></InputText>
-                    <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1}></InputText>
+                    <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1} maxLength></InputText>
                     <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
                         <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
                             <Text style={styles.button_text}>Conectar</Text>
