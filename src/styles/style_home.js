@@ -26,29 +26,32 @@ export default StyleSheet.create ({
     container__weather:{
         width: "98%",
         padding: "6%",
-        backgroundColor: "#FFF",
+        backgroundColor: "#ffffff15",
         borderRadius: 20,
         shadowColor: "grey",
     },
     container__title: {
-        marginLeft: '5%',
+        marginLeft: '7%',
         fontSize: 36,
         fontWeight: '400',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: '#FFF'
     },
     weather__celsius: {
         marginLeft: '1%',
         marginBottom: '5%',
         fontSize: 18,
         fontWeight: '500',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: '#FFF'
     },
     weather__details: {
         marginLeft: '5%'
     },
     details_text: {
         fontSize: 16,
-        color: "#9e9e9e"
+        color: "#FFF"
+        
     },  
     next__container: {
         flexDirection: 'row',
@@ -61,8 +64,9 @@ export default StyleSheet.create ({
         justifyContent: 'center'
     },
     next_text: {
-        fontSize: 20,
-        fontWeight: '500'
+        fontSize: 21,
+        fontWeight: '500',
+        color: '#FFF'
     },
     next_subarea: {
         flexDirection: 'row'
@@ -70,9 +74,10 @@ export default StyleSheet.create ({
     next_subtext: {
         margin: 2,
         fontSize: 15,
-        fontWeight: '500'
+        fontWeight: '500',
+        color: '#FFF'
     },
     next_subtext_color: {
-        color: '#696969'
+        color: '#ffffff99'
     }
 })

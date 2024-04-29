@@ -1,8 +1,15 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Image } from "react-native";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import styles from '../styles/style_home'
 import { Ionicons } from "@expo/vector-icons"
+import { useEffect } from "react";
+
+import SunnyImg from '../images/sun.png'
+import Cloudy from '../images/cloud.png'
+import Partly from '../images/partlycloudy.png'
+import Mist from '../images/mist.png'
+import HeavyRain from '../images/heavyrain.png'
 
 export default function (props) {
     function transformDate(date){
@@ -12,10 +19,11 @@ export default function (props) {
         let dayOfWeek = format(parsedDate, 'EEEEEE', { locale: ptBR });
         return dayOfWeek
     }
+
     return (
         <View style={styles.next__weather}>
             <Text style={styles.next_text}>{transformDate(props.date)}.</Text>
-            <Ionicons name='partly-sunny' size={35} color={'#696969'}></Ionicons>
+            <Image source={props.clouds} style={{width: 45, height: 45}}/>
             <View style={styles.next_subarea}>
                 <Text style={styles.next_subtext}>{props.maxTemp.split(".")[0]}º</Text>
                 <Text style={[styles.next_subtext, styles.next_subtext_color]}>{props.minTemp.split(".")[0]}º</Text>
