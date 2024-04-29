@@ -11,7 +11,18 @@ const Tab = createBottomTabNavigator()
 
 export default function TabRoutes() {
     return (
-        <Tab.Navigator initialRouteName="StatusInformation"  screenOptions={{ headerShown: false }}>
+        <Tab.Navigator 
+            initialRouteName="StatusInformation"  
+            screenOptions={{ 
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarStyle: {
+                    borderTopWidth: 0,
+                    height: 60
+                },
+                tabBarActiveTintColor: '#3e5c43'
+            }}
+        >
             <Tab.Screen
                 name='Home'
                 component={Drawer}
