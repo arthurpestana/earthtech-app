@@ -3,10 +3,10 @@ import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, Imag
 import { useSQLiteContext } from 'expo-sqlite/next'
 import { useMQTT } from '../../components/Context';
 import * as Animatable from 'react-native-animatable'
-import styles from '../../styles/style_login'
-import InputText from '../../components/LoginText';
+import styles from '../../styles/style_login-cadastro'
+import LoginCadastroInput from '../../components/LoginCadastroInput';
 import { useNavigation } from '@react-navigation/native'
-import { Ionicons } from "@expo/vector-icons"
+
 
 
 export default function Connect() {
@@ -28,7 +28,7 @@ export default function Connect() {
                     setName(element.name)
                     setId(element.id)
                     setLoggedIn(true)
-                    Navigation.navigate('Drawer')
+                    Navigation.navigate('TabRoutes')
                 }
             }
         }
@@ -39,48 +39,36 @@ export default function Connect() {
 
     return (
         <SafeAreaView style={styles.container_login}>
-            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.login__header}>  
-                <View style={styles.upper__img}>
-                    <Animatable.Image
-                        source={require('../../images/login-cadastro-upper.png')}
-                        style={{width: "90%"}}
-                        resizeMode="contain"
-                        tintColor={'#234682'}
-                    />
-                </View>
-                <View style={styles.app__container_logo}>
-                    <Animatable.Image
-                        animation={"flipInY"}
-                        source={require('../../images/logo.png')}
-                        style={{width: '120%'}}
-                        resizeMode="contain"
-                    />
-                </View>
-                <View style={styles.header__title_container}>
-                    <Text style={styles.header__title}>Bem-vindo(a)</Text>
-                </View>           
-                    
+            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.header__logo}>  
+                <Animatable.Image 
+                    animation={"flipInY"}
+                    source={require('../../images/pngwing.png')}
+                    style={{width: '60%'}}
+                    resizeMode="contain"
+                    tintColor={'#496b2e'}
+                />
             </Animatable.View>
-            <ScrollView style={styles.container__main} keyboardShouldPersistTaps="handled">
-                <Animatable.View animation={'fadeInUp'}>
-                    <InputText delay={500} placeholder="Email" value={email} onChangeText={setEmail} iconName="mail"></InputText>
-                    <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1} iconName="lock-closed"></InputText>
-                    <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
-                        <TouchableOpacity style={styles.main__button} onPress={loginAccount}>
-                            <Text style={styles.button_text}>Login</Text>                           
+            <View style={styles.container__main} keyboardShouldPersistTaps="handled">
+                <View style={styles.main__info}>
+                    <Text style={styles.info__title}>Login</Text>
+                    <Text style={styles.info__text}>Por favor, faça o login para continuar.</Text>
+                </View>
+                <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                    <LoginCadastroInput delay={500} placeholder="EMAIL" value={email} onChangeText={setEmail} iconName="mail"/>
+                    <LoginCadastroInput delay={700} placeholder="SENHA" value={senha} onChangeText={setSenha} password={1} iconName="lock"/>
+                </Animatable.View>
+                <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
+                    <TouchableOpacity style={styles.login__button} onPress={loginAccount}>
+                        <Text style={styles.button_text}>Login</Text>                           
+                    </TouchableOpacity>
+                    <View style={styles.login__account}>
+                        <Text style={styles.account__text}>Não tem uma conta?</Text>
+                        <TouchableOpacity onPress={() => Navigation.navigate('Cadastro')}>
+                            <Text style={styles.account__signup}>Cadastrar</Text>
                         </TouchableOpacity>
-                        <Text style={styles.account__text} onPress={() => Navigation.navigate('Cadastro')}>
-                            Não tem uma conta?  
-                        </Text>                        
-                    </Animatable.View>
-                </Animatable.View>               
-            </ScrollView>
-            <Image
-                source={require('../../images/login-cadastro-lower.png')}
-                style={styles.image_lower}
-                resizeMode="contain"
-                tintColor={'#234682'}
-            />
+                    </View>                        
+                </Animatable.View>
+            </View>
         </SafeAreaView>
     )
 }

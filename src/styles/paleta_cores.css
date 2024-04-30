@@ -1,0 +1,18 @@
+:root {
+    --first-color: hsl(93, 54%, 54%);
+    --first-color-alt: hsl(93, 54%, 48%);
+    --black-color: hsl(228, 6%, 4%);
+    --white-color: hsl(228, 8%, 98%);
+    --body-color: hsl(228, 6%, 8%);
+    --container-color: hsl(228, 6%, 12%);
+    --text-color: hsl(228, 8%, 70%);
+    --title-color: hsl(228, 8%, 98%);
+    --gradient-card: hsla(93, 8%, 8%), hsl(93, 40%, 30%);
+
+
+    --body-font: "Montserrat", sans-serif;
+
+    --font-regular: 'Montserrat_400Regular';
+    --font-semi-bold: 'Montserrat_600SemiBold';
+    --font-bold: 'Montserrat_700Bold';
+}

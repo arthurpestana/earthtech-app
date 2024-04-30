@@ -28,58 +28,7 @@ export default StyleSheet.create ({
         paddingEnd: '8%',
         paddingTop: '5%',
     },
-
-    main__form: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%'
-    },
-
-    form_box__text: {
-        marginBottom: 12,
-    },
-
-    form_box__textFocused: {
-        marginBottom: 40,
-    },
-
-    form__text: {
-        position: 'absolute',
-        fontSize: 16,
-        color: "#0a8967",
-        marginTop: 20,
-        fontWeight: 'bold'
-    },
-
-    main__text: {
-        color: '#a1a1a1',
-        fontSize: 14,
-        alignSelf: 'flex-end',
-        marginTop: 5,
-    },
-
-    hyperlink__style: {
-        color: 'blue',
-        textDecorationLine: 'underline'
-    }, 
-
-    blur_text: {
-        backgroundColor: '#000'
-    },  
-
-    focus_text: {
-        backgroundColor: "#555"
-    },
-
-    form__input: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#0a8967',
-        height: 40,
-        marginBottom: 10,
-        fontSize: 14,
-        color: '#a1a1a1'
-    },
-
+    
     main__button: {
         backgroundColor: '#0a8967',
         width: '100%',

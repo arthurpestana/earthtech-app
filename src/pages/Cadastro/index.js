@@ -4,9 +4,10 @@ import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } fro
 import { useSQLiteContext } from 'expo-sqlite/next'
 
 import * as Animatable from 'react-native-animatable'
-import styles from '../../styles/style_connect'
-import InputText from '../../components/InputText';
+import styles from '../../styles/style_login-cadastro'
+import LoginCadastroInput from '../../components/LoginCadastroInput';
 import { useNavigation } from '@react-navigation/native'
+import { Feather } from "@expo/vector-icons"
 
 export default function Connect() {
     const db = useSQLiteContext()
@@ -38,30 +39,34 @@ export default function Connect() {
     }
 
     return (
-        <SafeAreaView style={styles.container_connect}>
-            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
-                <Text style={styles.header__title}>Bem-vindo(a)</Text>
-                <View style={styles.connection__box}>
-                </View> 
-            </Animatable.View>
-            <ScrollView style={styles.container__main}>
-                <Animatable.View animation={'fadeInUp'}>
-                    <InputText delay={500} placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
-                    <InputText delay={700} placeholder="Email" value={email} onChangeText={setEmail}></InputText>
-                    <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
-                    <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
-                        <TouchableOpacity style={styles.main__button} onPress={signUp}>
-                            <Text style={styles.button_text}>Cadastrar</Text>
-                        </TouchableOpacity>
-                        <Text style={styles.main__text}>
-                            Já tem uma conta?{' '}  
-                            <Text style={[styles.main__text, styles.hyperlink__style]} onPress={() => Navigation.navigate('Login')}>
-                                Fazer login
-                            </Text>
-                        </Text>         
-                    </Animatable.View>
+        <SafeAreaView style={styles.container__cadastro}>
+            <View style={styles.return__container}>
+                <TouchableOpacity style={styles.return__button} onPress={() => Navigation.navigate('Login')}>
+                    <Feather name='arrow-left' size={25} color={"hsl(93, 40%, 30%)"}/>
+                </TouchableOpacity>
+            </View>
+            <View style={[styles.container__main, styles.container__register]} keyboardShouldPersistTaps="handled">
+                <View style={styles.main__info}>
+                    <Text style={styles.info__title}>Cadastro</Text>
+                    <Text style={styles.info__text}>Por favor, preencha todos os espaços abaixo.</Text>
+                </View>
+                <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                    <LoginCadastroInput delay={500} placeholder="NOME" value={nome} onChangeText={setNome} iconName="user"/>
+                    <LoginCadastroInput delay={500} placeholder="EMAIL" value={email} onChangeText={setEmail} iconName="mail"/>
+                    <LoginCadastroInput delay={700} placeholder="SENHA" value={senha} onChangeText={setSenha} password={1} iconName="lock"/>
                 </Animatable.View>
-            </ScrollView>
+                <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
+                    <TouchableOpacity style={styles.login__button} onPress={signUp}>
+                        <Text style={styles.button_text}>Cadastrar</Text>                           
+                    </TouchableOpacity>
+                    <View style={styles.login__account}>
+                        <Text style={styles.account__text}>Já possui uma conta?</Text>
+                        <TouchableOpacity onPress={() => Navigation.navigate('Login')}>
+                            <Text style={styles.account__signup}>Logar</Text>
+                        </TouchableOpacity>
+                    </View>                        
+                </Animatable.View>
+            </View>
         </SafeAreaView>
     )
 }

@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create ({
     container_app: {
         flex: 1,
-        backgroundColor: '#79927d',
+        backgroundColor: 'hsl(228, 6%, 8%)',
     },
 
     app__container_logo: {
@@ -12,12 +12,11 @@ export default StyleSheet.create ({
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
-        backgroundColor: '#79927d',
     },
 
     app__main: {
         flex: 1,
-        backgroundColor: '#FFF',
+        alignItems: 'center',
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         paddingStart: '5%',
@@ -25,23 +24,25 @@ export default StyleSheet.create ({
     },
 
     main__title: {
-        color: '#000',
+        color: 'hsl(228, 8%, 98%)',
         fontSize: 18,
-        fontWeight: 'bold',
         marginTop: 28,
         marginBottom: 12,
+        fontFamily: 'Montserrat_700Bold',
+        textAlign: 'center'
     },
 
     main__text: {
-        color: '#a1a1a1',
+        color: 'hsl(228, 8%, 70%)',
+        fontFamily: 'Montserrat_400Regular'
     },
 
     main__button: {
-        backgroundColor: '#79927d',
+        backgroundColor: 'hsl(93, 40%, 30%)',
         width: '60%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50,
+        borderRadius: 15,
         padding: 10,
         position: 'absolute',
         bottom: '25%',
@@ -49,8 +50,8 @@ export default StyleSheet.create ({
     },
 
     button_text: {
-        color: '#FFF',
+        color: 'hsl(228, 8%, 98%)',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Montserrat_700Bold'
     },
 })

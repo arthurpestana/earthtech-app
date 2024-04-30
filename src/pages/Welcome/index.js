@@ -39,15 +39,16 @@ export default function Welcome() {
             <View style={styles.app__container_logo}>
                 <Animatable.Image
                     animation={"flipInY"}
-                    source={require('../../images/logo.png')}
-                    style={{width: '150%'}}
+                    source={require('../../images/pngwing.png')}
+                    style={{width: '70%'}}
                     resizeMode="contain"
+                    tintColor={'#496b2e'}
                 />
             </View>
             <Animatable.View delay={600} animation={"fadeInUp"} style={styles.app__main}>
                 <Text style={styles.main__title}>Automatize, monitore e gerencie o seu cultivo de qualquer lugar!</Text>
                 <Text style={styles.main__text}>Faça a conexão do sistema com o aplicativo.</Text>
-                <TouchableOpacity style={styles.main__button} onPress={() => Navigation.navigate(route==null?'Login':'Drawer')}>
+                <TouchableOpacity style={styles.main__button} onPress={() => Navigation.navigate(route==null?'Login':'TabRoutes')}>
                     <Text style={styles.button_text}>Acessar</Text>
                 </TouchableOpacity>
             </Animatable.View>
