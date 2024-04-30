@@ -59,7 +59,11 @@ export default function () {
         const index = Math.floor(e.absoluteX / stepX)
         clearTimeout(timeoutId)
         timeoutId = setTimeout(() => {
-            runOnJS(setSelectedDate)(index>=0&&index<=data.length-1?data[index].Data:index<0?data[0].Data:data[data.length-1].Data);
+            runOnJS(setSelectedDate)(index>=0&&index<=data.length-1
+                ?data[index].Data.split('-')[0]+'/'+data[index].Data.split('-')[1]
+                :index<0
+                    ?data[0].Data.split('-')[0]+'/'+data[0].Data.split('-')[1]
+                    :data[data.length-1].Data.split('-')[0]+'/'+data[data.length-1].Data.split('-')[1]);
             runOnJS(setSelectedIndex)(index>=0&&index<=data.length-1?data[index].Precipitacao:index<0?data[0].data:data[data.length-1].Precipitacao)
         }, 50);
         const clampValue = clamp(
