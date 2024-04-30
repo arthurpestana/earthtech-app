@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {Text, useFont} from '@shopify/react-native-skia';
+import { fonts } from '@rneui/base';
 
 export default function(props) {
-    const font = useFont('Montserrat_700Bold', 10)
+    const font = useFont(require('@expo-google-fonts/montserrat/Montserrat_400Regular.ttf'), 11)
     const [fontLoaded, setFontLoaded] = React.useState(false)
     const yPos = props.y + 10
 
