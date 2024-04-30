@@ -19,8 +19,11 @@ import StatusInformation from "../pages/StatusInformation/index"
 import Home from '../pages/Home'
 import StackNav from './Stack'
 import { color } from "@rneui/base";
+
+
 import { useMQTT } from "../components/Context";
 import { useSQLiteContext } from "expo-sqlite/next";
+
 import { useNavigationState } from "@react-navigation/native";
 
 

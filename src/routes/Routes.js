@@ -3,6 +3,7 @@ import {} from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Drawer from './Drawer.js'
+import TabRoutes from './TabRoutes.js'
 import StackScrn from './Stack.js'
 
 const Stack = createNativeStackNavigator();
@@ -11,8 +12,8 @@ export default function Routes() {
     return (
         <Stack.Navigator initialRouteName="Stack">
             <Stack.Screen 
-                name='Drawer'
-                component={Drawer}
+                name='TabRoutes'
+                component={TabRoutes}
                 options={{headerShown: false}}
             />
             <Stack.Screen 

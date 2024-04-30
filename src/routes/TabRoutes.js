@@ -1,45 +1,100 @@
+import React from 'react'
+import {View, TouchableOpacity, Text } from 'react-native'
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
 import { Feather } from '@expo/vector-icons'
 
-import StatusInformation from "../pages/StatusInformation/index"
-import Drawer from './Drawer'
-import ConnectBoard from '../pages/ConnectBoard/index'
-import Welcome from '../pages/Welcome/index'
+import ConnectBoard from '../pages/ConnectBoard'
+import Profile from '../pages/Profile'
+import StatusInformation from '../pages/StatusInformation/index';
+import AddTopic from '../pages/StatusInformation/AddTopic';
+import Home from '../pages/Home'
+import Configuration from '../pages/Configuration'
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function TabRoutes() {
     return (
-        <Tab.Navigator 
-            initialRouteName="StatusInformation"  
-            screenOptions={{ 
-                headerShown: false,
-                tabBarShowLabel: false,
+        <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={{
                 tabBarStyle: {
-                    borderTopWidth: 0,
-                    height: 60
+                    backgroundColor: 'hsl(228, 6%, 12%)',
+                    borderTopColor: 'transparent',
+                    height: 55,
+                    position: 'absolute',
+                    bottom: 0,
                 },
-                tabBarActiveTintColor: '#3e5c43'
+                tabBarActiveTintColor: 'hsl(93, 40%, 30%)',
+                tabBarInactiveTintColor: 'hsl(228, 8%, 98%)',
+                headerShown: false
             }}
         >
-            <Tab.Screen
-                name='Home'
-                component={Drawer}
-                options={{
-                    tabBarIcon: ({color, size}) => <Feather name="home" color={color} size={size}/>,
-                    tabBarLabel: "Home",
-                    tabBarStyle: { display: 'none' }
-                }}
-            />
-            <Tab.Screen
+            <Tab.Group>
+                <Tab.Screen
+                    name='Home'
+                    component={Home}
+                    options={{
+                        tabBarShowLabel: false,
+                        tabBarLabel: '',
+                        tabBarIcon: ({size, color}) => (<Feather name='home' color={color} size={size}/>)
+                    }}
+                />
+                <Tab.Screen
+                    name='StatusPageStack'
+                    component={StatusPageStack}
+                    options={{
+                        tabBarShowLabel: false,
+                        tabBarLabel: '',
+                        tabBarIcon: ({size, color}) => (<Feather name='plus' color={color} size={size}/>)
+                    }}
+                />
+                <Tab.Screen
+                    name='Conexão'
+                    component={ConnectBoard}
+                    options={{
+                        tabBarShowLabel: false,
+                        tabBarLabel: '',
+                        tabBarIcon: ({size, color}) => (<Feather name='edit' color={color} size={size}/>)
+                    }}
+                />
+            </Tab.Group>
+        </Tab.Navigator>
+    )
+}
+
+function StatusPageStack() {
+    return (
+        <Stack.Navigator  initialRouteName="StatusInformation">
+            <Stack.Screen
                 name='StatusInformation'
                 component={StatusInformation}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name= 'AddTopic'
+                component={AddTopic}
                 options={{
-                    tabBarIcon: ({color, size}) => <Feather name="activity" color={color} size={size}/>,
-                    tabBarLabel: "Status"
+                    headerShown: false,
+                    title: "",
+                    headerStyle: {
+                        backgroundColor: '#fff',
+                    },
+                    headerTintColor: '#000',
                 }}
             />
-        </Tab.Navigator>
+        </Stack.Navigator>
+    )
+}
+
+const AddStatusButton = () => {
+    return (
+        <View style={{position: "absolute", bottom: 20, padding: 20, backgroundColor: '#272', borderRadius: 100}}>
+            <Feather name='plus' color={"#FFF"} size={30}/>
+        </View>
     )
 }
