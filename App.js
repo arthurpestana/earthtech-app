@@ -7,6 +7,9 @@ import { SQLiteProvider } from 'expo-sqlite/next';
 import * as FileSystem from 'expo-file-system'
 import { Asset } from 'expo-asset';
 
+import {useFonts, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_700Bold } from "@expo-google-fonts/montserrat"
+import { Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins'
+
 const loadDatabase = async () => {
     const dbName = "earthtech_db.db";
     const dbAsset = require("./assets/earthtech_db.db");
@@ -24,12 +27,25 @@ const loadDatabase = async () => {
   
 export default function App() {
     const [dbLoaded, setDbLoaded] = useState(false);
-
+  
     React.useEffect(() => {
         loadDatabase()
           .then(() => setDbLoaded(true))
           .catch((e) => console.error(e));
       }, []);
+
+    const [fontsLoaded, fontError] = useFonts({
+      Montserrat_400Regular, 
+      Montserrat_600SemiBold, 
+      Montserrat_700Bold,
+      Poppins_400Regular, 
+      Poppins_600SemiBold, 
+      Poppins_700Bold,
+    });
+  
+    if (!fontsLoaded && !fontError) {
+      return null;
+    }
 
     return (
         <NavigationContainer>
