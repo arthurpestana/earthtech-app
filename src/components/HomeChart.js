@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import styles from '../styles/style_home'
 import * as Animatable from 'react-native-animatable'
-import {Canvas, Path, Skia, useFont} from '@shopify/react-native-skia';
+import {Canvas, Path, Skia} from '@shopify/react-native-skia';
 import {curveBasis, line, scaleLinear, scalePoint} from 'd3';
 import DataPalmas from '../../assets/csvjson.json'
 import Gradient from './Gradient'
@@ -12,7 +12,6 @@ import Cursor from './Cursor'
 import {
     Gesture,
     GestureDetector,
-    PanGestureHandlerEventPayload,
   } from 'react-native-gesture-handler';
 import {getYForX, parse} from 'react-native-redash';
 
@@ -69,7 +68,7 @@ const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
                     ?data[0].Data.split('-')[0]+'/'+data[0].Data.split('-')[1]
                     :data[data.length-1].Data.split('-')[0]+'/'+data[data.length-1].Data.split('-')[1]);
             runOnJS(setSelectedIndex)(index>=0&&index<=data.length-1?data[index].Precipitacao:index<0?data[0].data:data[data.length-1].Precipitacao)
-        }, 50);
+        }, 25);
         const clampValue = clamp(
             Math.floor(e.absoluteX / stepX) * stepX + chartMargin,
             chartMargin,
@@ -105,7 +104,7 @@ const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
                 setFloatingContainerHeight(height);
         }}>
             <Text style={{fontSize: 16, fontFamily: 'Montserrat_400Regular', color: '#FFF'}}>Data: {selectedDate}</Text>
-            <Text style={{fontSize: 16, fontFamily: 'Montserrat_400Regular', color: '#FFF', }}>Precipitação: {selectedIndex}</Text>
+            <Text style={{fontSize: 16, fontFamily: 'Montserrat_400Regular', color: '#FFF', }}>Precipitação (mm): {selectedIndex}</Text>
         </View>}
 
         <GestureDetector gesture={pan}>
