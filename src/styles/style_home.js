@@ -18,10 +18,11 @@ export default StyleSheet.create ({
     header__title:{
         color:"#FFF",
         fontSize: 32,
-        fontWeight: 'bold',
+        fontFamily: 'Montserrat_700Bold',
     },
     header__text: {
         color: '#FFF',
+        fontFamily: 'Montserrat_400Regular',
     },
     container__weather:{
         width: "98%",
@@ -32,7 +33,7 @@ export default StyleSheet.create ({
     container__title: {
         marginLeft: '7%',
         fontSize: 36,
-        fontWeight: '400',
+        fontFamily: 'Montserrat_700Bold',
         alignSelf: 'center',
         color: '#FFF'
     },
@@ -40,7 +41,7 @@ export default StyleSheet.create ({
         marginLeft: '1%',
         marginBottom: '5%',
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: 'Montserrat_700Bold',
         alignSelf: 'center',
         color: '#FFF'
     },
@@ -49,8 +50,8 @@ export default StyleSheet.create ({
     },
     details_text: {
         fontSize: 16,
-        color: "#FFF"
-        
+        color: "#FFF",
+        fontFamily: 'Montserrat_400Regular'
     },  
     next__container: {
         flexDirection: 'row',
@@ -64,7 +65,7 @@ export default StyleSheet.create ({
     },
     next_text: {
         fontSize: 21,
-        fontWeight: '500',
+        fontFamily: 'Montserrat_400Regular',
         color: '#FFF'
     },
     next_subarea: {
@@ -73,11 +74,12 @@ export default StyleSheet.create ({
     next_subtext: {
         margin: 2,
         fontSize: 15,
-        fontWeight: '500',
+        fontFamily: 'Montserrat_700Bold',
         color: '#FFF'
     },
     next_subtext_color: {
-        color: '#ffffff99'
+        color: '#ffffff99',
+        fontFamily: 'Montserrat_700Bold',
     },
     container__graphic: {
         width: "98%",
@@ -88,5 +90,12 @@ export default StyleSheet.create ({
         height: 'auto',
         backgroundColor: "#ffffff15",
         borderRadius: 20,
+    },
+    floating__container: {
+        position: 'absolute',
+        backgroundColor: '#093039',
+        borderRadius: 8,
+        padding: 16,
+        zIndex: 999,
     }
 })

@@ -130,7 +130,7 @@ export default function Connect() {
                     </View>
                     <View style={styles.next__container}>
                         {isLoading 
-                        ? <Text style={{color: '#FFF'}}>Aguardando dados...</Text> : error ? (
+                        ? <Text style={{color: '#FFF', fontFamily: 'Montserrat_700Bold',}}>Aguardando dados...</Text> : error ? (
                             <Text style={{color: '#FFF'}}>Ocorreu um erro: {error.message}</Text>
                         ): (
                             <FlatList

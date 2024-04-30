@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import styles from '../styles/style_home'
 import * as Animatable from 'react-native-animatable'
-import {Canvas, Path, Skia} from '@shopify/react-native-skia';
+import {Canvas, Path, Skia, useFont} from '@shopify/react-native-skia';
 import {curveBasis, line, scaleLinear, scalePoint} from 'd3';
 import DataPalmas from '../../assets/csvjson.json'
 import Gradient from './Gradient'
@@ -16,10 +16,14 @@ import {
   } from 'react-native-gesture-handler';
 import {getYForX, parse} from 'react-native-redash';
 
+
+
 export default function () {
     const [showCursor, setShowCursor] = React.useState(false)
     const [selectedDate, setSelectedDate] = React.useState(null)
     const [selectedIndex, setSelectedIndex] = React.useState(null)
+    const [floatingContainerWidth, setFloatingContainerWidth] = React.useState(0)
+const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
     const animationLine = useSharedValue(0)
     const animationGradient = useSharedValue({x: 0, y: 0})
     const cx = useSharedValue(0)
@@ -75,19 +79,34 @@ export default function () {
         cy.value = getYForX(path, Math.floor(clampValue))
     }
     const pan = Gesture.Pan()
+        .runOnJS(true)
         .onTouchesDown(() => {
-            runOnJS(setShowCursor)(true)
+            setShowCursor(true)
         })
         .onTouchesUp(() => {
-            runOnJS(setShowCursor)(false)
+            setShowCursor(false)
         })
         .onBegin(handleGestureEvent)
         .onChange(handleGestureEvent)
 
+    function isCursorTooFarRight() {
+        return Dimensions.get('window').width - cx.value < floatingContainerWidth;
+    }
     return (
     <Animatable.View style={styles.container__graphic} animation={"fadeInLeft"}>
-        <Text style={{fontSize: 18, fontWeight: '500', color: '#FFF'}}>{selectedDate}</Text>
-        <Text style={{fontSize: 18, fontWeight: '500', color: '#FFF', }}>{selectedIndex}</Text>
+        {selectedDate && 
+        <View style={[styles.floating__container, 
+            {left: isCursorTooFarRight() ? cx.value - floatingContainerWidth - 10 : cx.value + 10, 
+            top: cy.value-floatingContainerHeight+ 10}]}
+            onLayout={(event) => {
+                const { width, height } = event.nativeEvent.layout;
+                setFloatingContainerWidth(width);
+                setFloatingContainerHeight(height);
+        }}>
+            <Text style={{fontSize: 16, fontFamily: 'Montserrat_400Regular', color: '#FFF'}}>Data: {selectedDate}</Text>
+            <Text style={{fontSize: 16, fontFamily: 'Montserrat_400Regular', color: '#FFF', }}>Precipitação: {selectedIndex}</Text>
+        </View>}
+
         <GestureDetector gesture={pan}>
             <Canvas
             style={{
