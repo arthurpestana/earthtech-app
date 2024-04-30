@@ -94,10 +94,11 @@ const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
     }
     return (
     <Animatable.View style={styles.container__graphic} animation={"fadeInLeft"}>
-        {selectedDate && 
+        {showCursor && 
         <View style={[styles.floating__container, 
             {left: isCursorTooFarRight() ? cx.value - floatingContainerWidth - 10 : cx.value + 10, 
-            top: cy.value-floatingContainerHeight+ 10}]}
+            top: cy.value-floatingContainerHeight+ 10,
+            }]}
             onLayout={(event) => {
                 const { width, height } = event.nativeEvent.layout;
                 setFloatingContainerWidth(width);
