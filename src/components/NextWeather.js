@@ -2,14 +2,6 @@ import { View, Text, TextInput, Image } from "react-native";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import styles from '../styles/style_home'
-import { Ionicons } from "@expo/vector-icons"
-import { useEffect } from "react";
-
-import SunnyImg from '../images/sun.png'
-import Cloudy from '../images/cloud.png'
-import Partly from '../images/partlycloudy.png'
-import Mist from '../images/mist.png'
-import HeavyRain from '../images/heavyrain.png'
 
 export default function (props) {
     function transformDate(date){

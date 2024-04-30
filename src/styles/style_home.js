@@ -28,7 +28,6 @@ export default StyleSheet.create ({
         padding: "6%",
         backgroundColor: "#ffffff15",
         borderRadius: 20,
-        shadowColor: "grey",
     },
     container__title: {
         marginLeft: '7%',
@@ -79,5 +78,15 @@ export default StyleSheet.create ({
     },
     next_subtext_color: {
         color: '#ffffff99'
+    },
+    container__graphic: {
+        width: "98%",
+        padding: "6%",
+        marginTop: "2%",
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 'auto',
+        backgroundColor: "#ffffff15",
+        borderRadius: 20,
     }
 })
