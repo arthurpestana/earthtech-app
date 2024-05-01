@@ -4,7 +4,8 @@ import styles from '../styles/style_home'
 import * as Animatable from 'react-native-animatable'
 import {Canvas, Path, Skia} from '@shopify/react-native-skia';
 import {curveBasis, line, scaleLinear, scalePoint} from 'd3';
-import DataPalmas from '../../assets/csvjson.json'
+import JSONs from './Cities'
+import Palmas from '../../assets/json/Palmas.json'
 import Gradient from './Gradient'
 import XAxisText from './XAxisText';
 import { clamp, runOnJS, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
@@ -14,6 +15,7 @@ import {
     GestureDetector,
   } from 'react-native-gesture-handler';
 import {getYForX, parse} from 'react-native-redash';
+import CitiesDropdown from './CitiesDropdown';
 
 
 
@@ -21,8 +23,9 @@ export default function () {
     const [showCursor, setShowCursor] = React.useState(false)
     const [selectedDate, setSelectedDate] = React.useState(null)
     const [selectedIndex, setSelectedIndex] = React.useState(null)
+    const [data, setData] = React.useState(Palmas)
     const [floatingContainerWidth, setFloatingContainerWidth] = React.useState(0)
-const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
+    const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
     const animationLine = useSharedValue(0)
     const animationGradient = useSharedValue({x: 0, y: 0})
     const cx = useSharedValue(0)
@@ -36,7 +39,6 @@ const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
     const chartHeight = 150
     const chartWidth = Dimensions.get('window').width
     const chartMargin = 20
-    const data = DataPalmas
 
     const xDomain = data.map((dataPoint) => dataPoint.Data)
     const xRange = [chartMargin, chartWidth - chartMargin]
@@ -68,7 +70,7 @@ const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
                     ?data[0].Data.split('-')[0]+'/'+data[0].Data.split('-')[1]
                     :data[data.length-1].Data.split('-')[0]+'/'+data[data.length-1].Data.split('-')[1]);
             runOnJS(setSelectedIndex)(index>=0&&index<=data.length-1?data[index].Precipitacao:index<0?data[0].data:data[data.length-1].Precipitacao)
-        }, 25);
+        }, 50);
         const clampValue = clamp(
             Math.floor(e.absoluteX / stepX) * stepX + chartMargin,
             chartMargin,
@@ -91,11 +93,17 @@ const [floatingContainerHeight, setFloatingContainerHeight] = React.useState(0)
     function isCursorTooFarRight() {
         return Dimensions.get('window').width - cx.value < floatingContainerWidth;
     }
+    function isCursorCenter(){
+        return cx.value > Dimensions.get('window').width/4 && cx.value < (Dimensions.get('window').width/4)*3
+    }
     return (
     <Animatable.View style={styles.container__graphic} animation={"fadeInLeft"}>
+        <CitiesDropdown 
+            setData = {setData}
+        />
         {showCursor && 
         <View style={[styles.floating__container, 
-            {left: isCursorTooFarRight() ? cx.value - floatingContainerWidth - 10 : cx.value + 10, 
+            {left: isCursorTooFarRight() && !isCursorCenter() ? cx.value - floatingContainerWidth - 10 : isCursorCenter()?cx.value - floatingContainerWidth/2:cx.value + 10, 
             top: cy.value-floatingContainerHeight+ 10,
             }]}
             onLayout={(event) => {

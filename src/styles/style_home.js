@@ -1,4 +1,3 @@
-import React from "react"
 import { StyleSheet, Dimensions } from 'react-native'
 
 export default StyleSheet.create ({
@@ -97,5 +96,39 @@ export default StyleSheet.create ({
         borderRadius: 8,
         padding: 16,
         zIndex: 999,
+    },
+    dropdown__container: {
+        height: 50,
+        flexDirection: 'row',
+        width: "60%",
+        marginBottom: 10,
+        paddingHorizontal: 15,
+        borderRadius: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#09303950',
+    },
+    textDropdown: {
+        fontFamily: 'Montserrat_700Bold',
+        color: 'white'
+    },
+    dropdown__area: {
+        width: "60%",
+        height: 200,
+        marginTop: 60,
+        position: 'absolute', 
+        backgroundColor: '#093039',
+        elevation: 5,
+        borderRadius: 8,
+        zIndex: 1000
+    },
+    dropdownItem: {
+        justifyContent: 'center',
+        marginVertical: 3,
+        alignItems: 'center',
+        width: '80%',
+        height: 50,
+        borderBottomWidth: 2,
+        borderBottomColor: '#ffffff60',
     }
 })
