@@ -1,10 +1,14 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { View, Text, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
 export default function (props) {
     const [onFocusedInput, setFocusedInput] = useState(false)
+
+    useEffect((props) => {
+        customOnBlur()
+    }, [])
 
     const customOnFocus = () => {
         setFocusedInput(true)

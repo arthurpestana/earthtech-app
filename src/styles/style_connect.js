@@ -2,50 +2,40 @@ import React from "react"
 import { StyleSheet, Dimensions } from 'react-native'
 
 export default StyleSheet.create ({
-    container_connect: {
+    container__connect: {
         flex: 1,
-        backgroundColor: '#79927d', 
-    },
-
-    container__header:{
-        marginTop: "25%",
-        marginBottom: '15%',
-        paddingStart: '5%'
-    },
-
-    header__title:{
-        color:"#FFF",
-        fontSize: 32,
-        fontWeight: 'bold'
+        width: "100%",
+        height: "100%",
+        backgroundColor: "hsl(228, 6%, 8%)",
     },
 
     container__main:{
-        flex: 1,
-        backgroundColor: '#FFF',
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
+        display: 'flex',
+        flexDirection: 'column',
         paddingStart: '8%',
         paddingEnd: '8%',
-        paddingTop: '5%',
+        marginTop: '20%'
+    },
+
+    main__info: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 15,
+        marginBottom: 20,
+    },
+
+    info__title: {
+        fontSize: 24,
+        color: 'hsl(228, 8%, 98%)',
+        fontFamily: 'Montserrat_700Bold',
+    },
+
+    info__text: {
+        fontSize: 14,
+        color: 'hsl(228, 8%, 70%)',
+        fontFamily: 'Montserrat_400Regular',
     },
     
-    main__button: {
-        backgroundColor: '#0a8967',
-        width: '100%',
-        borderRadius: 10,
-        paddingVertical: 10,
-        marginTop: 20,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    button_text: {
-        color: '#FFF',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-
     connection__box: {
         display: 'flex',
         justifyContent: 'center',
@@ -54,20 +44,48 @@ export default StyleSheet.create ({
     },  
 
     connection_status:{
-        color: '#a1a1a1',
+        color: 'hsl(228, 8%, 98%)',
         fontSize: 12,
         fontWeight: '400',
-        backgroundColor: '#ccc',
+        backgroundColor: 'hsl(228, 6%, 12%)',
         padding: 5,
         borderRadius: 10,
         fontWeight: 'bold'
     },
 
     connectionOff: {
-        color: 'rgba(220, 20, 60, 0.600)'
+        color: 'hsl(228, 8%, 70%)'
     },
 
     connectionOn: {
-        color: 'rgba(0, 128, 0, 0.600)'
+        color: 'hsl(93, 40%, 30%)'
     },
+
+    main__forms: {
+        marginTop: 15,
+    },
+
+    main__connect: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        marginTop: 15,
+    },
+
+    connect__button: {
+        width: '60%',
+        padding: 15,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'hsl(93, 40%, 30%)',
+    }, 
+    
+    button_text: {
+        color: 'hsl(228, 8%, 98%)',
+        fontSize: 16,
+        fontFamily: 'Montserrat_700Bold',
+    },
+
 })

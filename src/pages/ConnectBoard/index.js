@@ -4,11 +4,12 @@ import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useMQTT } from '../../components/Context';
-import { useSQLiteContext } from 'expo-sqlite/next'
+import { useSQLiteContext } from 'expo-sqlite/next';
+import { Feather } from "@expo/vector-icons"
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
-import InputText from '../../components/InputText';
+import InputText from '../../components/LoginCadastroInput';
 
 export default function Connect() {
     const db = useSQLiteContext()
@@ -20,6 +21,7 @@ export default function Connect() {
     const [port, setPort] = useState('')
     const [fromBd, setFromBd] = useState(false)
     const [controle, setControle] = useState('1')
+    let dados_banco = false
 
     init({
         size: 10000,
@@ -54,6 +56,7 @@ export default function Connect() {
                 mqttClient.onMessageArrived = onMessageArrived;
                 mqttClient.connect({ userName: element.username, password: element.senha, onSuccess: onSuccess, useSSL: false });
                 setClient(mqttClient);
+                dados_banco = true
             }
         }
         else {
@@ -101,30 +104,32 @@ export default function Connect() {
     }
 
     return (
-        <SafeAreaView style={styles.container_connect}>
-            <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
-                <Text style={styles.header__title}>Bem-vindo(a)</Text>
-                <View style={styles.connection__box}>
-                    <Text style={isConnected==true?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
-                        {isConnected==true?"Conectado":"Desconectado"}
-                    </Text>
-                </View> 
-            </Animatable.View>
-            <ScrollView style={styles.container__main}>
-                <Animatable.View animation={'fadeInUp'}>
-                    <InputText delay={500} placeholder="Nome" value={nome} onChangeText={setNome}></InputText>
-                    <InputText delay={600} placeholder="Username" value={userName} onChangeText={setUsername}></InputText>
-                    <InputText delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}></InputText>
-                    <InputText delay={800} placeholder="Host" value={host} onChangeText={setHost}></InputText>
-                    <InputText delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1} maxLength></InputText>
-                    <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connection}>
-                        <TouchableOpacity style={styles.main__button} onPress={connectBoard}>
-                            <Text style={styles.button_text}>Conectar</Text>
-                        </TouchableOpacity>
-                                 
+        <SafeAreaView style={styles.container__connect}>
+            <View style={styles.container__main} keyboardShouldPersistTaps="handled">
+                <View style={styles.main__info}>
+                    <Text style={styles.info__title}>Realizar Conexão</Text>
+                    <Text style={styles.info__text}>Conecte-se ao Broker MQTT para realizar as automações do seu cultivo.</Text>
+                    <View style={styles.connection__box}>
+                        <Text style={isConnected==true?[styles.connection_status, styles.connectionOn]:[styles.connection_status, styles.connectionOff]}>
+                            {isConnected==true?"Conectado":"Desconectado"}
+                        </Text>
+                    </View>
+                </View>
+                <ScrollView>
+                    <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                        <InputText bancoDados={dados_banco} iconName="user" delay={500} placeholder="Nome" value={nome} onChangeText={setNome}/>
+                        <InputText bancoDados={dados_banco} iconName="at-sign" delay={600} placeholder="Username" value={userName} onChangeText={setUsername}/>
+                        <InputText bancoDados={dados_banco} iconName="lock" delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}/>
+                        <InputText bancoDados={dados_banco} iconName="link" delay={800} placeholder="Host" value={host} onChangeText={setHost}/>
+                        <InputText bancoDados={dados_banco} iconName="hash" delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1} maxLength/>
                     </Animatable.View>
+                </ScrollView>
+                <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connect}>
+                    <TouchableOpacity style={styles.connect__button} onPress={connectBoard}>
+                        <Text style={styles.button_text}>Conectar</Text>                           
+                    </TouchableOpacity>                       
                 </Animatable.View>
-            </ScrollView>
+            </View>
         </SafeAreaView>
     )
 }
