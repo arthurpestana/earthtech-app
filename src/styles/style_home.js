@@ -8,8 +8,8 @@ export default StyleSheet.create ({
     },
 
     container__header:{
-        marginTop: "25%",
-        marginBottom: '15%',
+        marginTop: "22%",
+        marginBottom: '13%',
         paddingStart: '5%',
         alignSelf: "flex-start"
     },
