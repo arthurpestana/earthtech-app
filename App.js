@@ -7,7 +7,7 @@ import { SQLiteProvider } from 'expo-sqlite/next';
 import * as FileSystem from 'expo-file-system'
 import { Asset } from 'expo-asset';
 
-import {useFonts, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_700Bold } from "@expo-google-fonts/montserrat"
+import {useFonts, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_700Bold} from "@expo-google-fonts/montserrat"
 import { Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins'
 
 const loadDatabase = async () => {
