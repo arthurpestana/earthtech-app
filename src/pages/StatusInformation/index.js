@@ -9,6 +9,7 @@ import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_status'
 
 import SensorDiv from '../../components/SensorDiv'
+import HeaderMenu from '../../components/HeaderMenu';
 
 export default function StatusInformation() {
     const { client } = useMQTT();
@@ -29,57 +30,18 @@ export default function StatusInformation() {
     }
 
     return (
-        <View style={{flex: 1}}>
-            <View style={styles.container__header}>
-                    <View style={styles.header__menu}>
-                        <View style={styles.menu__dados}>
-                            <Text style={styles.menu__title}>Status</Text>
-                            <View style={styles.menu__profile}>
-                                <TouchableOpacity>
-                                    <Feather name="user" size={20} color={"#FFF"} style={{
-                                        padding: 5,
-                                        backgroundColor: "#3e5c43",
-                                        borderRadius: 20/2,
-                                    }}/>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </View>
+        <View style={styles.status__page}>
+            <HeaderMenu/>
             <ScrollView style={styles.switch__container}>
-                <View style={styles.container__automation}>
-                    <View style={styles.header__logo}>
-                        <Animatable.Image
-                            animation={"fadeInRightBig"}
-                            source={require('../../images/irrigacao.png')}
-                            style={{width: '100%', height: '100%'}}
-                            resizeMode="contain"
-                        />
-                    </View>
-                    <Text style={styles.titles}>Automações</Text>
-                    <View style={styles.automation__items}>
-                        <View style={styles.automation__box_switch}>
-                            <Switch
-                                trackColor={{false: '#E94A35', true: '#37924e'}}
-                                thumbColor={'#FFF'}
-                                onValueChange={altSwitch}
-                                value={isEnabled}
-                                style={styles.box_switch}
-                            />
-                            <Text style={[styles.dashboard__text, styles.item__title]}>Irrigação Automática</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.container__dashboards}>
-                    <Text style={styles.titles}>Informações do Cultivo</Text>
-                    <View>
-                        <SensorDiv title="Classificação do Solo" info="Seco" typeIcon="grid"/>
-                        <SensorDiv title="Temperatura do Ambiente" info="12" typeIcon="grid"/>
-                        <SensorDiv title="Umidade do Ar" info="12" typeIcon="grid"/>
-                    </View>
+                <View style={styles.switch__items}>
+                    <SensorDiv typeIcon='1' title='Teste'/>
+                    <SensorDiv typeIcon='1' title='Teste'/>
+                    <SensorDiv typeIcon='1' title='Teste'/>
+                    <SensorDiv typeIcon='1' title='Teste'/>
+                    <SensorDiv typeIcon='1' title='Teste'/>
                 </View>
             </ScrollView>
-            <FabButton style={{bottom: 80, right: 80}}/>
+            <FabButton style={{bottom: 130, left: "80%"}}/>
         </View>
     )
 }

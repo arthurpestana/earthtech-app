@@ -9,7 +9,7 @@ export default function FabButton(props) {
         <View style={[styles.container__button, props.style]}>
             <TouchableOpacity  onPress={() => Navigation.navigate('AddTopic')}>
                 <Animated.View style={[styles.button]}>
-                    <AntDesign name='plus' size={24} color="#FFF"/>
+                    <AntDesign name='plus' size={24} color="hsl(228, 8%, 98%)"/>
                 </Animated.View>
             </TouchableOpacity>
         </View>
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
         shadowOffset: {
             height: 10,
         },
-        backgroundColor: '#3e5c43'
+        backgroundColor: 'hsl(228, 6%, 12%)'
     },
 })

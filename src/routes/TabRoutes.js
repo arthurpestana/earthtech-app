@@ -13,26 +13,30 @@ import StatusInformation from '../pages/StatusInformation/index';
 import AddTopic from '../pages/StatusInformation/AddTopic';
 import Home from '../pages/Home'
 import Configuration from '../pages/Configuration'
+import Cadastro from '../pages/Cadastro'
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
 export default function TabRoutes() {
+
     return (
         <Tab.Navigator
             initialRouteName="Home"
-            screenOptions={{
+            screenOptions={({route}) => ({
                 tabBarStyle: {
                     backgroundColor: 'hsl(228, 6%, 12%)',
-                    borderTopColor: 'transparent',
+                    borderColor: 'transparent',
                     height: 55,
                     position: 'absolute',
                     bottom: 0,
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
                 },
+                tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: 'hsl(93, 40%, 30%)',
                 tabBarInactiveTintColor: 'hsl(228, 8%, 98%)',
                 headerShown: false
-            }}
+            })}
         >
             <Tab.Group>
                 <Tab.Screen
@@ -41,7 +45,7 @@ export default function TabRoutes() {
                     options={{
                         tabBarShowLabel: false,
                         tabBarLabel: '',
-                        tabBarIcon: ({size, color}) => (<Feather name='home' color={color} size={size}/>)
+                        tabBarIcon: ({size, color}) => (<Feather name='home' color={color} size={20}/>)
                     }}
                 />
                 <Tab.Screen
@@ -50,7 +54,7 @@ export default function TabRoutes() {
                     options={{
                         tabBarShowLabel: false,
                         tabBarLabel: '',
-                        tabBarIcon: ({size, color}) => (<Feather name='plus' color={color} size={size}/>)
+                        tabBarIcon: ({size, color}) => (<Feather name='activity' color={color} size={20}/>)
                     }}
                 />
                 <Tab.Screen
@@ -59,7 +63,7 @@ export default function TabRoutes() {
                     options={{
                         tabBarShowLabel: false,
                         tabBarLabel: '',
-                        tabBarIcon: ({size, color}) => (<Feather name='edit' color={color} size={size}/>)
+                        tabBarIcon: ({size, color}) => (<Feather name='edit' color={color} size={20}/>)
                     }}
                 />
             </Tab.Group>
@@ -88,13 +92,5 @@ function StatusPageStack() {
                 }}
             />
         </Stack.Navigator>
-    )
-}
-
-const AddStatusButton = () => {
-    return (
-        <View style={{position: "absolute", bottom: 20, padding: 20, backgroundColor: '#272', borderRadius: 100}}>
-            <Feather name='plus' color={"#FFF"} size={30}/>
-        </View>
     )
 }

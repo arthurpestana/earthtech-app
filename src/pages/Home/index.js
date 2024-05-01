@@ -10,7 +10,7 @@ import axios from 'axios'
 import NextWeather from '../../components/NextWeather'
 import HomeChart from '../../components/HomeChart'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-
+ 
 export default function Connect() {
     const db = useSQLiteContext()
     const [location, setLocation] = useState('');
