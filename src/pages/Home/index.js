@@ -129,6 +129,9 @@ export default function Home() {
                         case "Heavy rain":
                             weatherImage = require("../../images/heavyrain.png");
                             break;
+                        case "Rain":
+                            weatherImage = require("../../images/moderaterain.png");
+                            break;
                         default:
                             weatherImage = require("../../images/mist.png");
                             break;

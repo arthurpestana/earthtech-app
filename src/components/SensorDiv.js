@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { SafeAreaView, Text, View, TouchableOpacity, Animated, StyleSheet, Switch} from 'react-native'
-import { AntDesign, Entypo} from '@expo/vector-icons'
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import * as Animatable from 'react-native-animatable'
+import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Feather } from "@expo/vector-icons"
+import { Canvas, Rect } from "@shopify/react-native-skia"
 
 export default function (props) {
     const [isEnabled, setIsEnabled] = useState(false)
@@ -13,7 +12,6 @@ export default function (props) {
         props.subscribe()
     })
 
-    circularProgressRef
     return (
         <SafeAreaView style={props.double?styles.dashboard__double:styles.dashboard__items}>
             {props.switch?<View style={styles.dashboard__switch}>
@@ -35,10 +33,10 @@ export default function (props) {
                     fill={50}
                     arcSweepAngle={225}
                     rotation={248}
-                    tintColor="#00e0ff"
+                    tintColor="#ff0000"
+                    tintColorSecondary="#00ff00"
                     backgroundColor="#ffffff30"
                     backgroundWidth={5}
-                    ref={circularProgressRef}
                     lineCap='round'
                     style= {{marginTop: 40, marginRight: 25}}>
                     {
@@ -52,7 +50,28 @@ export default function (props) {
                 </View>
                 <View style={styles.item__div_info}>
                     <Text style={styles.item__title}>{props.title}</Text>
-                    <Text style={[styles.item__text]}>Teste • Teste</Text>
+                    {!props.risk?<Text style={[styles.item__text]}>Teste • Teste</Text>:
+                    <View style={{}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Canvas style={{width: 10, height: 10, flexDirection: 'row'}}>
+                                <Rect width={256} height={256} color="#00ff00" />
+                            </Canvas>
+                            <Text style={[styles.item__text, {marginLeft: 5}]}>Verde</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                            <Canvas style={{width: 10, height: 10}}>
+                                <Rect width={256} height={256} color="orange" />
+                            </Canvas>
+                            <Text style={[styles.item__text, {marginLeft: 5}]}>Laranja</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                            <Canvas style={{width: 10, height: 10}}>
+                                <Rect width={256} height={256} color="#ff0000" />
+                            </Canvas>
+                            <Text style={[styles.item__text, {marginLeft: 5}]}>Vermelho</Text>
+                        </View>
+                    </View>
+                    }
                 </View>
             </View>
         </SafeAreaView>
