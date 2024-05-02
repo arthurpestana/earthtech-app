@@ -21,7 +21,7 @@ export default function Welcome() {
             setName(result[0].name)
             setId(result[0].id)
             setLoggedIn(true)
-            setRoute('Drawer')
+            setRoute('TabRoutes')
         }
         else {
             setRoute(null)

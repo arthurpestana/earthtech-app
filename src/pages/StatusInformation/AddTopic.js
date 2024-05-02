@@ -3,18 +3,20 @@ import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, Styl
 import { Feather } from "@expo/vector-icons"
 import { AntDesign, Entypo} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import StatusInformation from './index';
-import { RotateInDownLeft } from 'react-native-reanimated';
 import MethodDropdown from '../../components/MethodDropdown';
 import InputText from '../../components/InputText';
 import styles from '../../styles/style__addtopic'
 import * as Animatable from 'react-native-animatable'
+import { useSQLiteContext } from 'expo-sqlite/next';
 
 
 export default function AddTopic() {
+    const db = useSQLiteContext()
 
     const [title, setTitle] = useState('')
     const [topic, setTopic] = useState("")
+    const [type_method, setTypeMethod] = useState(0)
+
     const Navigation = useNavigation()
     const [onFocusedInput, setFocusedInput] = useState(false)
 
@@ -29,6 +31,20 @@ export default function AddTopic() {
         else {
             setFocusedInput(false)
         }
+    }
+
+    async function addDashboardDB() {
+        //await db.execAsync(`DELETE FROM dashboard`)
+        await db.execAsync(`INSERT INTO dashboard (title, type, risk, topic) VALUES ("${title}", "${type_method}", "${0}", "${topic}")`)
+        console.log("Dashboard cadastrada")
+    }
+        
+    function saveDashboardConfig(){
+        if (title=="" || topic=="") {
+            return console.log("Preencha todos os campos!")
+        }
+        addDashboardDB()
+        Navigation.navigate('StatusInformation')
     }
 
     return (
@@ -64,7 +80,7 @@ export default function AddTopic() {
                 <View style={styles.main__panel}>
                     <Text style={styles.panel__subtitle}>Método</Text>
                     <Text style={[styles.panel__text, {marginBottom: 20}]}>Escolha a função que você deseja adicionar.</Text> 
-                    <MethodDropdown />
+                    <MethodDropdown typeMethod={setTypeMethod}/>
                 </View>
                 <View style={styles.main__panel}>
                     <Text style={styles.panel__subtitle}>Topic</Text>
@@ -74,7 +90,7 @@ export default function AddTopic() {
             </View>
             <View style={styles.container__footer}>
                 <View style={[styles.container__button]}>
-                    <TouchableOpacity style={styles.button_save}  onPress={() => Navigation.navigate('StatusInformation')}>
+                    <TouchableOpacity style={styles.button_save}  onPress={saveDashboardConfig}>
                         <Text style={styles.button_text}>Salvar</Text>
                     </TouchableOpacity>
                 </View>

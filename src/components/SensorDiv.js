@@ -51,7 +51,7 @@ export default function (props) {
                 </View>
                 <View style={styles.item__div_info}>
                     <Text style={styles.item__title}>{props.title}</Text>
-                    {!props.risk?<Text style={[styles.item__text]}>Teste • Teste</Text>:
+                    {!props.risk?<Text style={[styles.item__text]}>{props.subscribeInfo}</Text>:
                     <View style={{}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Canvas style={{width: 10, height: 10, flexDirection: 'row'}}>

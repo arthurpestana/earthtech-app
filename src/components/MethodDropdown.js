@@ -4,7 +4,7 @@ import {SafeAreaView, View, TouchableOpacity, Text, StyleSheet, FlatList,} from 
 import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
-export default function MethodDropdown() {
+export default function MethodDropdown(props) {
     const methods_list = ['Risco', 'Umidade', 'Irrigação Automática', 'Ligar Irrigador', 'Temperatura do Ambiente']
     const [clicked, setIsClicked] = useState(false);
     const [selectedOption, setSelectedOption] = useState(methods_list[0])
@@ -13,13 +13,15 @@ export default function MethodDropdown() {
         clicked==true?setIsClicked(false):setIsClicked(true)
     }
 
-    function setOption(option){
+    function setOption(option, index){
         setSelectedOption(option)
         setIsClicked(false)
+        console.log(index)
+        props.typeMethod(index)
     }
 
     return (
-        <SafeAreaView>
+        <Animatable.View delay={500} animation={'fadeInLeft'}>
             <TouchableOpacity style={styles.dropdown__container} onPress={isClicked}>
                 <Text style={styles.textDropdown}>{selectedOption}</Text>
                 <Feather name="chevron-down" size={30} color={"hsl(228, 8%, 98%)"}/>
@@ -31,14 +33,14 @@ export default function MethodDropdown() {
                     data={methods_list}
                     renderItem={({item, index}) => {
                         return (
-                            <TouchableOpacity onPress={() => {setOption(item)}} style={styles.dropdownItem}>
+                            <TouchableOpacity onPress={() => {setOption(item, index)}} style={styles.dropdownItem}>
                                 <Text style={[styles.textDropdown_area]}>{item}</Text>
                             </TouchableOpacity>
                         )
                     }}
                 />
             </Animatable.View>:false}
-        </SafeAreaView>
+        </Animatable.View>
     )
 }
 
