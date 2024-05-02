@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState } from 'react'
 import { View, Text, TextInput, StyleSheet} from "react-native";
 import * as Animatable from 'react-native-animatable'
 
@@ -88,6 +88,6 @@ const styles = StyleSheet.create ({
         height: 40,
         marginBottom: 10,
         fontSize: 14,
-        color: '#a1a1a1'
+        color: '#a1a1a1',
     },
 })

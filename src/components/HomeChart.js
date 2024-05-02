@@ -97,14 +97,14 @@ export default function () {
         return cx.value > Dimensions.get('window').width/4 && cx.value < (Dimensions.get('window').width/4)*3
     }
     return (
-    <Animatable.View style={styles.container__graphic} animation={"fadeInLeft"}>
+    <View>
         <CitiesDropdown 
             setData = {setData}
         />
         {showCursor && 
         <View style={[styles.floating__container, 
             {left: isCursorTooFarRight() && !isCursorCenter() ? cx.value - floatingContainerWidth - 10 : isCursorCenter()?cx.value - floatingContainerWidth/2:cx.value + 10, 
-            top: cy.value-floatingContainerHeight+ 10,
+            top: cy.value - 30,
             }]}
             onLayout={(event) => {
                 const { width, height } = event.nativeEvent.layout;
@@ -153,6 +153,6 @@ export default function () {
                 
             </Canvas>
         </GestureDetector>
-    </Animatable.View>
+    </View>
     );
 }

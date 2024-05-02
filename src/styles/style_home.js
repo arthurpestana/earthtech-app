@@ -1,10 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create ({
     container_home: {
         alignItems: "center",
         flex: 1,
-        backgroundColor: "#4C9A2A", 
+        backgroundColor: "hsl(228, 6%, 8%)", 
     },
 
     container__header:{
@@ -16,7 +16,7 @@ export default StyleSheet.create ({
 
     header__title:{
         color:"#FFF",
-        fontSize: 32,
+        fontSize: 26,
         fontFamily: 'Montserrat_700Bold',
     },
     header__text: {
@@ -26,7 +26,7 @@ export default StyleSheet.create ({
     container__weather:{
         width: "98%",
         padding: "6%",
-        backgroundColor: "#ffffff15",
+        backgroundColor: "hsl(228, 6%, 12%)",
         borderRadius: 20,
     },
     container__title: {
@@ -87,12 +87,12 @@ export default StyleSheet.create ({
         alignItems: 'center',
         justifyContent: 'center',
         height: 'auto',
-        backgroundColor: "#ffffff15",
+        backgroundColor: "hsl(228, 6%, 12%)",
         borderRadius: 20,
     },
     floating__container: {
         position: 'absolute',
-        backgroundColor: '#093039',
+        backgroundColor: 'hsl(228, 6%, 8%)',
         borderRadius: 8,
         padding: 16,
         zIndex: 999,
@@ -105,8 +105,9 @@ export default StyleSheet.create ({
         paddingHorizontal: 15,
         borderRadius: 10,
         justifyContent: 'space-between',
+        alignSelf: 'center',
         alignItems: 'center',
-        backgroundColor: '#09303950',
+        backgroundColor: 'hsl(228, 6%, 8%)',
     },
     textDropdown: {
         fontFamily: 'Montserrat_700Bold',
@@ -117,16 +118,16 @@ export default StyleSheet.create ({
         height: 200,
         marginTop: 60,
         position: 'absolute', 
-        backgroundColor: '#093039',
+        backgroundColor: 'hsl(228, 6%, 8%)',
+        alignSelf: 'center',
         elevation: 5,
         borderRadius: 8,
         zIndex: 1000
     },
     dropdownItem: {
         justifyContent: 'center',
-        marginVertical: 3,
         alignItems: 'center',
-        width: '80%',
+        minWidth: '80%',
         height: 50,
         borderBottomWidth: 2,
         borderBottomColor: '#ffffff60',

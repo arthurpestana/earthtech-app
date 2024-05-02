@@ -1,5 +1,4 @@
-import React from "react"
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create ({
     container__connect: {

@@ -3,7 +3,6 @@ import { SafeAreaView, TouchableOpacity, View, Text, Image } from "react-native"
 
 import styles from '../../styles/style_welcome'
 import * as Animatable from 'react-native-animatable'
-import * as FileSystem from 'expo-file-system'
 import { useNavigation } from "@react-navigation/native";
 import { useMQTT } from "../../components/Context";
 import { useSQLiteContext } from 'expo-sqlite/next'
@@ -11,9 +10,8 @@ import { useSQLiteContext } from 'expo-sqlite/next'
 export default function Welcome() {
     const db = useSQLiteContext()
     const Navigation = useNavigation()
-    const { userMail, setMail, userName, setName, loggedIn, setLoggedIn, userId, setId } = useMQTT()
+    const { setMail, setName, setLoggedIn, setId } = useMQTT()
     const [route, setRoute] = useState(null)
-    const [ controle, setControle ] = useState(false)
 
     async function verifyLogged() {
         result = await db.getAllAsync(`SELECT * FROM users WHERE logged = ${1}`)

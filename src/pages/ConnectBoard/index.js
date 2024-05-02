@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useMQTT } from '../../components/Context';
 import { useSQLiteContext } from 'expo-sqlite/next';
-import { Feather } from "@expo/vector-icons"
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
@@ -13,15 +12,7 @@ import InputText from '../../components/LoginCadastroInput';
 
 export default function Connect() {
     const db = useSQLiteContext()
-    const { userId, setId, client, setClient, isConnected, setConnected } = useMQTT();
-    const [nome, setNome] = useState('')
-    const [userName, setUsername] = useState('')
-    const [senha, setSenha] = useState('')
-    const [host, setHost] = useState('')
-    const [port, setPort] = useState('')
-    const [fromBd, setFromBd] = useState(false)
-    const [controle, setControle] = useState('1')
-    let dados_banco = false
+    const { userId, client, setClient, isConnected, setConnected, nome, setNome, userNameMQTT, setUsernameMQTT, senha, setSenha, host, setHost, port, setPort } = useMQTT();
 
     init({
         size: 10000,
@@ -32,45 +23,10 @@ export default function Connect() {
         sync : {
         }
     });
-
-    async function setData(results){
-        setNome(results.name)
-        setUsername(results.username)
-        setSenha(results.senha)
-        setHost(results.host)
-        setPort(results.port)
-        setFromBd(true)
-    }
-    
-    async function getData(){
-        result = await db.getAllAsync(`SELECT * FROM mqtt`)
-        console.log(result)
-        if (result.length != 0 || result[0].port!="" || result[0].userName!="") {
-            for (element of result) {
-                if (element.port=='' || element.host=='') {
-                    return console.log("Sem conexões registradas")
-                }
-                setData(element)
-                const mqttClient = new Paho.MQTT.Client(element.host, parseInt(element.port), element.name);
-                mqttClient.onConnectionLost = onConnectionLost;
-                mqttClient.onMessageArrived = onMessageArrived;
-                mqttClient.connect({ userName: element.username, password: element.senha, onSuccess: onSuccess, useSSL: false });
-                setClient(mqttClient);
-                dados_banco = true
-            }
-        }
-        else {
-            return console.log("Sem conexões registradas")
-        }
-    }
-
-    useEffect(() => {
-        getData()
-    }, [db]);
     
     async function addMQTT() {
         await db.execAsync(`DELETE FROM mqtt`)
-        await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userName}", "${senha}", "${host}", "${port}")`)
+        await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userNameMQTT}", "${senha}", "${host}", "${port}")`)
         console.log("Dados cadastrada")
     }
     
@@ -83,17 +39,12 @@ export default function Connect() {
         setConnected(false)
         console.log("A conexão não foi realizada. Dados incorretos")
     }
-
-    function onMessageArrived(){
-        console.warn('Message arrived')
-    }
     
     function connectBoard(){
         addMQTT()
         const mqttClient = new Paho.MQTT.Client(host, parseInt(port), nome);
         mqttClient.onConnectionLost = onConnectionLost;
-        mqttClient.onMessageArrived = onMessageArrived;
-        mqttClient.connect({ userName: userName, password: senha, onSuccess: onSuccess, useSSL: false });
+        mqttClient.connect({ userName: userNameMQTT, password: senha, onSuccess: onSuccess, useSSL: false });
         setClient(mqttClient);
     }
 
@@ -117,11 +68,11 @@ export default function Connect() {
                 </View>
                 <ScrollView>
                     <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
-                        <InputText bancoDados={dados_banco} iconName="user" delay={500} placeholder="Nome" value={nome} onChangeText={setNome}/>
-                        <InputText bancoDados={dados_banco} iconName="at-sign" delay={600} placeholder="Username" value={userName} onChangeText={setUsername}/>
-                        <InputText bancoDados={dados_banco} iconName="lock" delay={700} placeholder="Senha" value={senha} onChangeText={setSenha} password={1}/>
-                        <InputText bancoDados={dados_banco} iconName="link" delay={800} placeholder="Host" value={host} onChangeText={setHost}/>
-                        <InputText bancoDados={dados_banco} iconName="hash" delay={900} placeholder="Porta" value={port} onChangeText={setPort} numeric = {1} maxLength/>
+                        <InputText bancoDados={dados_banco} iconName="user" delay={500} placeholder={!nome?"Nome":false} value={nome} onChangeText={setNome}/>
+                        <InputText bancoDados={dados_banco} iconName="at-sign" delay={600} placeholder={!userNameMQTT?"Username":false} value={userNameMQTT} onChangeText={setUsernameMQTT}/>
+                        <InputText bancoDados={dados_banco} iconName="lock" delay={700} placeholder={!senha?"Senha":false} value={senha} onChangeText={setSenha} password={1}/>
+                        <InputText bancoDados={dados_banco} iconName="link" delay={800} placeholder={!host?"Host":false} value={host} onChangeText={setHost}/>
+                        <InputText bancoDados={dados_banco} iconName="hash" delay={900} placeholder={!port?"Porta":false} value={port} onChangeText={setPort} numeric = {1} maxLength/>
                     </Animatable.View>
                 </ScrollView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connect}>

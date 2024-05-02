@@ -9,7 +9,6 @@ import React, {useState} from 'react';
 import JSONs from './Cities'
 import styles from '../styles/style_home'
 import * as Animatable from 'react-native-animatable'
-import { index } from 'd3';
 
 export default function(props) {
     const cityNames = [

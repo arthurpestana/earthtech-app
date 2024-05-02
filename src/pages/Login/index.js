@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { SafeAreaView, View, Text,TouchableOpacity } from 'react-native'
 import { useSQLiteContext } from 'expo-sqlite/next'
 import { useMQTT } from '../../components/Context';
 import * as Animatable from 'react-native-animatable'
@@ -14,7 +14,7 @@ export default function Connect() {
     const db = useSQLiteContext()
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const { userMail, setMail, userName, setName, loggedIn, setLoggedIn, userId, setId } = useMQTT()
+    const { setMail, setName, setLoggedIn, setId } = useMQTT()
 
     async function loginAccount(){
         result = await db.getAllAsync(`SELECT * FROM users`)
