@@ -12,6 +12,8 @@ export default function (props) {
         setIsEnabled(!isEnabled)
         props.subscribe()
     })
+
+    circularProgressRef
     return (
         <SafeAreaView style={props.double?styles.dashboard__double:styles.dashboard__items}>
             {props.switch?<View style={styles.dashboard__switch}>
@@ -28,7 +30,7 @@ export default function (props) {
                 <View style={styles.item__div_logo}>
                     {!props.risk?<Feather name={props.typeIcon} size={35} color="hsl(228, 8%, 98%)"/>:
                     <AnimatedCircularProgress
-                    size={150}
+                    size={125}
                     width={12}
                     fill={50}
                     arcSweepAngle={225}
@@ -36,8 +38,9 @@ export default function (props) {
                     tintColor="#00e0ff"
                     backgroundColor="#ffffff30"
                     backgroundWidth={5}
+                    ref={circularProgressRef}
                     lineCap='round'
-                    style= {{marginTop: 50}}>
+                    style= {{marginTop: 40, marginRight: 25}}>
                     {
                       (fill) => (
                         <Text style={[styles.item__title, {marginBottom: 20}]}>
