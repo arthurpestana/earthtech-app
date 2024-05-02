@@ -1,10 +1,14 @@
-import { useState } from 'react'
-import { View, Text, TextInput, StyleSheet} from "react-native";
+import {useState, useEffect} from 'react'
+import { View, Text, TextInput, StyleSheet } from "react-native";
+import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
-
 export default function (props) {
-    const [onFocusedInput, setFocusedInput] = useState(true)
+    const [onFocusedInput, setFocusedInput] = useState(false)
+
+    useEffect((props) => {
+        customOnBlur()
+    }, [])
 
     const customOnFocus = () => {
         setFocusedInput(true)
@@ -20,21 +24,26 @@ export default function (props) {
     }
 
     return (
-        <Animatable.View animation={'fadeInLeft'} delay={props.delay} style={styles.main__form}>
-            <View style={onFocusedInput ? styles.form_box__textFocused : styles.form_box__text}>
-                <Text style={styles.form__text}>{props.placeholder}</Text>
+        <Animatable.View animation={'fadeInLeft'} delay={props.delay} style={[props.addTopic?styles.main__formTopic:styles.main__form]}>
+            <View style={styles.form__icon}>
+                <Feather name={props.iconName} size={20} color={"#fff"}/>
             </View>
-            <TextInput 
-                style={styles.form__input}
-                placeholder=''
-                value={props.value}
-                onChangeText={props.onChangeText}
-                keyboardType={props.numeric?'numeric':'default'}
-                maxLength={props.maxLength?4:30}
-                secureTextEntry={props.password?true:false}
-                onPressIn={customOnFocus}
-                onBlur={customOnBlur}
-            />
+            <View style={styles.form__container}>
+                <View style={onFocusedInput ? styles.form_box__textFocused : styles.form_box__text}>
+                    <Text style={styles.form__text}>{props.placeholder}</Text>
+                </View>
+                <TextInput 
+                    style={styles.form__input}
+                    placeholder=''
+                    value={props.value}
+                    onChangeText={props.onChangeText}
+                    keyboardType={props.numeric?'numeric':'default'}
+                    maxLength={props.maxLength?4:30}
+                    secureTextEntry={props.password?true:false}
+                    onPressIn={customOnFocus}
+                    onBlur={customOnBlur}
+                />
+            </View>
         </Animatable.View>
     )
 }
@@ -42,52 +51,57 @@ export default function (props) {
 const styles = StyleSheet.create ({
     main__form: {
         display: 'flex',
-        flexDirection: 'column',
-        width: '100%'
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: 60,
+        paddingHorizontal: 25,
+        borderRadius: 15,
+        backgroundColor: "hsl(228, 6%, 4%)",
+        marginBottom: 20,
     },
 
-    form_box__text: {
-        marginBottom: 12,
+    main__formTopic: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: 50,
+        paddingHorizontal: 25,
+        borderRadius: 10,
+        backgroundColor: "hsl(228, 6%, 4%)",
+        marginBottom: 20,
+        marginTop: 20,
     },
 
-    form_box__textFocused: {
-        marginBottom: 40,
+    form__icon: {
+        marginRight: 10
+    },
+
+    form__container: {
+        width: "100%"
     },
 
     form__text: {
+        display: 'flex',
         position: 'absolute',
-        fontSize: 16,
-        color: "#0a8967",
-        marginTop: 20,
-        fontWeight: 'bold',
+        fontSize: 12,
+        marginTop: 12,
+        fontFamily: 'Montserrat_600SemiBold',
+        textTransform: 'uppercase',
+        color: "hsl(228, 8%, 70%)",
     },
 
-    main__text: {
-        color: '#a1a1a1',
-        fontSize: 14,
-        alignSelf: 'flex-end',
-        marginTop: 5,
-    },
-
-    hyperlink__style: {
-        color: 'blue',
-        textDecorationLine: 'underline'
-    }, 
-
-    blur_text: {
-        backgroundColor: '#000'
-    },  
-
-    focus_text: {
-        backgroundColor: "#555"
+    form_box__textFocused: {
+        display: 'none'
     },
 
     form__input: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#0a8967',
         height: 40,
-        marginBottom: 10,
-        fontSize: 14,
-        color: '#a1a1a1',
+        fontSize: 12,
+        fontFamily: 'Montserrat_600SemiBold',
+        color: 'hsl(228, 8%, 98%)'
     },
 })

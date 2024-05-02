@@ -5,7 +5,7 @@ import { useSQLiteContext } from 'expo-sqlite/next'
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_login-cadastro'
-import LoginCadastroInput from '../../components/LoginCadastroInput';
+import LoginCadastroInput from '../../components/InputText';
 import { useNavigation } from '@react-navigation/native'
 import { Feather } from "@expo/vector-icons"
 

@@ -13,7 +13,6 @@ export default function (props) {
         props.subscribe()
     })
 
-    circularProgressRef
     return (
         <SafeAreaView style={props.double?styles.dashboard__double:styles.dashboard__items}>
             {props.switch?<View style={styles.dashboard__switch}>
@@ -38,7 +37,7 @@ export default function (props) {
                     tintColor="#00e0ff"
                     backgroundColor="#ffffff30"
                     backgroundWidth={5}
-                    ref={circularProgressRef}
+                    ref={null}
                     lineCap='round'
                     style= {{marginTop: 40, marginRight: 25}}>
                     {

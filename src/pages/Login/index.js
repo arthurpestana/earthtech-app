@@ -4,7 +4,7 @@ import { useSQLiteContext } from 'expo-sqlite/next'
 import { useMQTT } from '../../components/Context';
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_login-cadastro'
-import LoginCadastroInput from '../../components/LoginCadastroInput';
+import LoginCadastroInput from '../../components/InputText';
 import { useNavigation } from '@react-navigation/native'
 
 

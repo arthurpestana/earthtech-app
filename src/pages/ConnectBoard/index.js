@@ -8,7 +8,7 @@ import { useSQLiteContext } from 'expo-sqlite/next';
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
-import InputText from '../../components/LoginCadastroInput';
+import InputText from '../../components/InputText';
 
 export default function Connect() {
     const db = useSQLiteContext()
@@ -68,11 +68,11 @@ export default function Connect() {
                 </View>
                 <ScrollView>
                     <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
-                        <InputText bancoDados={dados_banco} iconName="user" delay={500} placeholder={!nome?"Nome":false} value={nome} onChangeText={setNome}/>
-                        <InputText bancoDados={dados_banco} iconName="at-sign" delay={600} placeholder={!userNameMQTT?"Username":false} value={userNameMQTT} onChangeText={setUsernameMQTT}/>
-                        <InputText bancoDados={dados_banco} iconName="lock" delay={700} placeholder={!senha?"Senha":false} value={senha} onChangeText={setSenha} password={1}/>
-                        <InputText bancoDados={dados_banco} iconName="link" delay={800} placeholder={!host?"Host":false} value={host} onChangeText={setHost}/>
-                        <InputText bancoDados={dados_banco} iconName="hash" delay={900} placeholder={!port?"Porta":false} value={port} onChangeText={setPort} numeric = {1} maxLength/>
+                        <InputText iconName="user" delay={500} placeholder={!nome?"Nome":false} value={nome} onChangeText={setNome}/>
+                        <InputText iconName="at-sign" delay={600} placeholder={!userNameMQTT?"Username":false} value={userNameMQTT} onChangeText={setUsernameMQTT}/>
+                        <InputText iconName="lock" delay={700} placeholder={!senha?"Senha":false} value={senha} onChangeText={setSenha} password={1}/>
+                        <InputText iconName="link" delay={800} placeholder={!host?"Host":false} value={host} onChangeText={setHost}/>
+                        <InputText iconName="hash" delay={900} placeholder={!port?"Porta":false} value={port} onChangeText={setPort} numeric = {1} maxLength/>
                     </Animatable.View>
                 </ScrollView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connect}>
