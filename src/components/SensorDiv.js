@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, Text, View, TouchableOpacity, Animated, StyleSheet, Switch} from 'react-native'
+import { SafeAreaView, Text, View, StyleSheet, Switch} from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Feather } from "@expo/vector-icons"
 import { Canvas, Rect } from "@shopify/react-native-skia"
