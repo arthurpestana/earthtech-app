@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { View, Text, Dimensions } from 'react-native';
 import {LinearGradient, Path, Skia} from '@shopify/react-native-skia';
 
 export default function(props) {

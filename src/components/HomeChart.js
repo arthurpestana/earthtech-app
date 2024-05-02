@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import styles from '../styles/style_home'
-import * as Animatable from 'react-native-animatable'
 import {Canvas, Path, Skia} from '@shopify/react-native-skia';
 import {curveBasis, line, scaleLinear, scalePoint} from 'd3';
 import JSONs from './Cities'
