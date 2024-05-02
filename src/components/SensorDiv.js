@@ -30,7 +30,7 @@ export default function (props) {
                     <AnimatedCircularProgress
                     size={125}
                     width={12}
-                    fill={50}
+                    fill={props.risk}
                     arcSweepAngle={225}
                     rotation={248}
                     tintColor="#ff0000"
