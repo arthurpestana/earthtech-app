@@ -46,7 +46,7 @@ export default function StatusInformation() {
             <HeaderMenu/>
             <ScrollView style={styles.switch__container}>
                 <View style={styles.switch__items}>
-                    <SensorDiv typeIcon='1' title='Teste' subscribe = {subscribeToTopic} double = {true}/>
+                    <SensorDiv typeIcon='1' title='Teste' subscribe = {subscribeToTopic} double = {true} risk = {true}/>
                     <SensorDiv typeIcon='1' title='Teste'/>
                     <SensorDiv typeIcon='1' title='Teste'/>
                     <SensorDiv typeIcon='1' title='Teste'/>

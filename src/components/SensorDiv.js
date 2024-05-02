@@ -13,8 +13,8 @@ export default function (props) {
         props.subscribe()
     })
     return (
-        <SafeAreaView style={[styles.dashboard__items, props.double?{width: "100%"}:false]}>
-            <View style={styles.dashboard__switch}>
+        <SafeAreaView style={props.double?styles.dashboard__double:styles.dashboard__items}>
+            {props.switch?<View style={styles.dashboard__switch}>
                 <Text style={styles.switch__text}>ON/OFF</Text>
                 <Switch
                     trackColor={{false: '#E94A35', true: '#37924e'}}
@@ -23,22 +23,24 @@ export default function (props) {
                     value={isEnabled}
                     style={styles.box_switch}
                 />
-            </View>
-            <View style={styles.dashboard__dados}>
+            </View>:false}
+            <View style={[styles.dashboard__dados, props.double?{flexDirection: 'row'}:false]}>
                 <View style={styles.item__div_logo}>
-                    {!props.double?<Feather name={props.typeIcon} size={35} color="hsl(228, 8%, 98%)"/>:
+                    {!props.risk?<Feather name={props.typeIcon} size={35} color="hsl(228, 8%, 98%)"/>:
                     <AnimatedCircularProgress
                     size={150}
-                    width={15}
+                    width={12}
                     fill={50}
-                    arcSweepAngle={180}
-                    rotation={270}
+                    arcSweepAngle={225}
+                    rotation={248}
                     tintColor="#00e0ff"
-                    backgroundColor="#3d5875"
-                    lineCap='round'>
+                    backgroundColor="#ffffff30"
+                    backgroundWidth={5}
+                    lineCap='round'
+                    style= {{marginTop: 50}}>
                     {
                       (fill) => (
-                        <Text style={{color: 'white'}}>
+                        <Text style={[styles.item__title, {marginBottom: 20}]}>
                           { fill }%
                         </Text>
                       )
@@ -59,6 +61,18 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         backgroundColor: "hsl(228, 6%, 12%)",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 25,
+        borderRadius: 25,
+    },
+
+    dashboard__double: {
+        width: '100%',
+        height: 150,
+        backgroundColor: "hsl(228, 6%, 12%)",
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 25,
         borderRadius: 25,
     },
