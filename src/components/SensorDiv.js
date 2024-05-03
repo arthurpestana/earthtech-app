@@ -25,7 +25,7 @@ export default function (props) {
     const altSwitch = () => {
         let msg
         setIsEnabled(!isEnabled)
-        isEnabled==false?msg='1':msg='0'        
+        isEnabled==true?msg='1':msg='0'        
         publishMsg(msg)
     }
     
