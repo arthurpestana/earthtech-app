@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
 export default function MethodDropdown(props) {
-    const methods_list = ['Risco', 'Umidade', 'Irrigação Automática', 'Ligar Irrigador', 'Temperatura do Ambiente']
+    const methods_list = ['Risco', 'Umidade do Ambiente', 'Irrigação Automática', 'Ligar Irrigador', 'Temperatura do Ambiente']
     const [clicked, setIsClicked] = useState(false);
     const [selectedOption, setSelectedOption] = useState(methods_list[0])
 

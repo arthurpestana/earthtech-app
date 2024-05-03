@@ -1,19 +1,58 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView, Text, View, StyleSheet, Switch} from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Feather } from "@expo/vector-icons"
 import { Canvas, Rect } from "@shopify/react-native-skia"
+import { useMQTT } from './Context'
 
 export default function (props) {
     const [isEnabled, setIsEnabled] = useState(false)
+    const { client, userNameMQTT } = useMQTT()
+    const [subscribed, setSubscribed] = useState(false);
+    const [messagePayload, setMessagePayload] = useState(null)
+    const [data, setData] = useState(0)
 
-    const altSwitch = (() => {
+    const publishMsg = (messagePayload) => {
+        try {
+            var message = new Paho.MQTT.Message(messagePayload)
+            message.destinationName = `${userNameMQTT}/${props.topic}` 
+            client.send(message)
+        }catch(err){
+            console.log(err)
+        }
+
+    }   
+    const altSwitch = () => {
+        let msg
         setIsEnabled(!isEnabled)
-        props.subscribe()
-    })
+        isEnabled==false?msg='1':msg='0'        
+        publishMsg(msg)
+    }
+    
+    const subscribeToTopic = () => {
+        try{
+            console.log('Subscrevendo no tópico...');
+            client.subscribe(`${userNameMQTT}/${props.topic}`, { qos: 0 });
+            setSubscribed(true);
+        }catch(err){
+            console.log('Ocorreu um erro: '+ err)
+        }  
+    };
+
+    useEffect(() => {
+        subscribeToTopic()
+    }, [])
+
+    useEffect(() => {
+        if(props.data!=null){
+            if(props.data.destinationName == `${userNameMQTT}/${props.topic}`){
+                setData(props.data.payloadString)
+                console.log(props.data.payloadString)
+        }}
+    }, [props.data])
 
     return (
-        <SafeAreaView style={props.double?styles.dashboard__double:styles.dashboard__items}>
+        <SafeAreaView style={props.type==0?styles.dashboard__double:styles.dashboard__items}>
             {props.switch?<View style={styles.dashboard__switch}>
                 <Text style={styles.switch__text}>ON/OFF</Text>
                 <Switch
@@ -24,13 +63,13 @@ export default function (props) {
                     style={styles.box_switch}
                 />
             </View>:false}
-            <View style={[styles.dashboard__dados, props.double?{flexDirection: 'row'}:false]}>
+            <View style={[styles.dashboard__dados, props.type==0?{flexDirection: 'row'}:false]}>
                 <View style={styles.item__div_logo}>
-                    {!props.risk?<Feather name={props.typeIcon} size={35} color="hsl(228, 8%, 98%)"/>:
+                    {props.type!=0?<Feather name={props.typeIcon} size={35} color="hsl(228, 8%, 98%)"/>:
                     <AnimatedCircularProgress
                     size={125}
                     width={12}
-                    fill={props.risk}
+                    fill={data?data:0}
                     arcSweepAngle={225}
                     rotation={248}
                     tintColor="#ff0000"
@@ -51,25 +90,26 @@ export default function (props) {
                 </View>
                 <View style={styles.item__div_info}>
                     <Text style={styles.item__title}>{props.title}</Text>
-                    {!props.risk?<Text style={[styles.item__text]}>{props.subscribeInfo}</Text>:
+                    {props.type!=0?<Text style={[styles.item__text]}>{props.subscribeInfo}</Text>:  
                     <View style={{}}>
+                        <Text style={[styles.item__text, {marginBottom: 7, fontFamily: 'Montserrat_700Bold'}]}>Umidade</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Canvas style={{width: 10, height: 10, flexDirection: 'row'}}>
                                 <Rect width={256} height={256} color="#00ff00" />
                             </Canvas>
-                            <Text style={[styles.item__text, {marginLeft: 5}]}>Verde</Text>
+                            <Text style={[styles.item__text, {marginLeft: 5}]}>51 a 100%</Text>
                         </View>
                         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
                             <Canvas style={{width: 10, height: 10}}>
                                 <Rect width={256} height={256} color="orange" />
                             </Canvas>
-                            <Text style={[styles.item__text, {marginLeft: 5}]}>Laranja</Text>
+                            <Text style={[styles.item__text, {marginLeft: 5}]}>31 a 50%</Text>
                         </View>
                         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
                             <Canvas style={{width: 10, height: 10}}>
                                 <Rect width={256} height={256} color="#ff0000" />
                             </Canvas>
-                            <Text style={[styles.item__text, {marginLeft: 5}]}>Vermelho</Text>
+                            <Text style={[styles.item__text, {marginLeft: 5}]}>0 a 30%</Text>
                         </View>
                     </View>
                     }

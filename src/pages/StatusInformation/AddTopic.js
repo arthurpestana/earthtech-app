@@ -8,6 +8,7 @@ import InputText from '../../components/InputText';
 import styles from '../../styles/style__addtopic'
 import * as Animatable from 'react-native-animatable'
 import { useSQLiteContext } from 'expo-sqlite/next';
+import { useMQTT } from '../../components/Context'
 
 
 export default function AddTopic() {
@@ -16,7 +17,7 @@ export default function AddTopic() {
     const [title, setTitle] = useState('')
     const [topic, setTopic] = useState("")
     const [type_method, setTypeMethod] = useState(0)
-
+    const { setChangeStatus } = useMQTT()
     const Navigation = useNavigation()
     const [onFocusedInput, setFocusedInput] = useState(false)
 
@@ -35,7 +36,8 @@ export default function AddTopic() {
 
     async function addDashboardDB() {
         //await db.execAsync(`DELETE FROM dashboard`)
-        await db.execAsync(`INSERT INTO dashboard (title, type, risk, topic) VALUES ("${title}", "${type_method}", "${0}", "${topic}")`)
+        await db.execAsync(`INSERT INTO dashboard (type, topic, name) VALUES ("${type_method}", "${topic}", "${title}")`)
+        setChangeStatus(true)
         console.log("Dashboard cadastrada")
     }
         

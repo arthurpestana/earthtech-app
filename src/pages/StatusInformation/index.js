@@ -16,41 +16,26 @@ import FabButton from '../../components/FabButton';
 export default function StatusInformation() {
     const db = useSQLiteContext()
     const [items, setItems] = useState([])
-    const { client } = useMQTT();
-    const [subscribed, setSubscribed] = useState(false);
-    const [isEnabled, setIsEnabled] = useState(false)
-    const [messagePayload, setMessagePayload] = useState('0')
     //const [items, setItems] = useState([])
-
-    function publishMsg(){
-        var message = new Paho.MQTT.Message(messagePayload); //criar variavel userMessage no formulário do publish
-        message.destinationName = 'brunolustosads@gmail.com/switch1'; //criar variavel messageDestination no formulário do publish
-        client.send(message)
-    }
-
-    const altSwitch = () => {
-        console.log(client)
-        setIsEnabled(previousState => !previousState)
-        isEnabled==false?setMessagePayload('1'):setMessagePayload('0')
-        publishMsg()
-    }
-    const handleIncomingMessage = (message) => {
-        console.log('Mensagem recebida:', message.payloadString);
-    };
-
-    const subscribeToTopic = () => {
-        console.log('Subscrevendo no tópico "umidade_solo"...');
-        client.subscribe('brunolustosads@gmail.com/umidade_solo', { qos: 0 });
-        client.onMessageArrived = handleIncomingMessage
-        setSubscribed(true);
-    };
+    const { userNameMQTT, client, changeStatus, setChangeStatus } = useMQTT()
+    const [data, setData] = useState(null)
 
     async function getDashboardData(){
         const result = await db.getAllAsync(`SELECT * FROM dashboard`)
         console.log(result)
+        client.onMessageArrived = handleIncomingMessage
         setItems(result)
     }
 
+    const handleIncomingMessage = (message) => {
+        setData(message)
+    };
+
+    if(changeStatus==true){
+        getDashboardData()
+        setChangeStatus(false)
+    }
+    
     useEffect(() => {
         getDashboardData()
     }, [db])
@@ -63,15 +48,15 @@ export default function StatusInformation() {
                     {items.map((element) => {
                         switch (element.type) {
                             case 0:
-                                return(<SensorDiv title={element.title} subscribe={subscribeToTopic} double={true} risk={true}/>)
+                                return(<SensorDiv key={element.id} title={element.name} type={element.type} data={data} topic = {element.topic}/>)
                             case 1:
-                                return(<SensorDiv typeIcon='droplet' title={element.title} subscribe={subscribeToTopic} double={false} risk={false} subscribeInfo={'Teste • Teste'}/>)
+                                return(<SensorDiv typeIcon='droplet' key={element.id} title={element.name} data={data} subscribeInfo={'Umidade do Ambiente'} topic = {element.topic}  />)
                             case 2:
-                                return(<SensorDiv typeIcon='power' title={element.title} subscribe={subscribeToTopic} double={false} risk={false} switch subscribeInfo={'Teste • Teste'}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
                             case 3:
-                                return(<SensorDiv typeIcon='power' title={element.title} subscribe={subscribeToTopic} double={false} risk={false} switch subscribeInfo={'Teste • Teste'}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
                             case 4: 
-                                return(<SensorDiv typeIcon='thermometer' title={element.title} subscribe={subscribeToTopic} double={false} risk={false} subscribeInfo={'Teste • Teste'}/>)
+                                return(<SensorDiv typeIcon='thermometer' key={element.id} title={element.title} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic}/>)
                         }
                     })}
                 </View>
