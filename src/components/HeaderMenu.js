@@ -1,16 +1,18 @@
 import React from 'react'
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
 export default function HeaderMenu() {
+    const Navigation = useNavigation()
     return (
         <View style={styles.container__header}>
             <View style={styles.header__menu}>
                 <View style={styles.menu__dados}>
                     <View style={styles.menu__config}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => Navigation.navigate('Configuration')}>
                             <Feather name="settings" size={20} color={"hsl(228, 8%, 98%)"} style={{
                                 padding: 15,
                                 backgroundColor: "hsl(228, 6%, 12%)",
@@ -19,7 +21,7 @@ export default function HeaderMenu() {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.menu__profile}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => Navigation.navigate('Profile')}>
                             <Feather name="user" size={20} color={"hsl(228, 8%, 98%)"} style={{
                                 padding: 15,
                                 backgroundColor: "hsl(228, 6%, 12%)",

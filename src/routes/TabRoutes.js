@@ -8,12 +8,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Feather } from '@expo/vector-icons'
 
 import ConnectBoard from '../pages/ConnectBoard'
-import Profile from '../pages/Profile'
+import Profile from '../pages/Profile/index'
 import StatusInformation from '../pages/StatusInformation/index';
 import AddTopic from '../pages/StatusInformation/AddTopic';
 import Home from '../pages/Home'
 import Configuration from '../pages/Configuration'
-import Cadastro from '../pages/Cadastro'
+import Cadastro from '../pages/Cadastro/index'
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -85,10 +85,22 @@ function StatusPageStack() {
                 options={{
                     headerShown: false,
                     title: "",
-                    headerStyle: {
-                        backgroundColor: '#fff',
-                    },
-                    headerTintColor: '#000',
+                }}
+            />
+            <Stack.Screen
+                name= 'Profile'
+                component={Profile}
+                options={{
+                    headerShown: false,
+                    title: "",
+                }}
+            />
+            <Stack.Screen
+                name= 'Configuration'
+                component={Configuration}
+                options={{
+                    headerShown: false,
+                    title: "",
                 }}
             />
         </Stack.Navigator>
