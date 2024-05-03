@@ -3,6 +3,7 @@ import {SafeAreaView, View, Text, ScrollView, Switch, Image, TouchableOpacity} f
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 import { useSQLiteContext } from 'expo-sqlite/next'
+import { useNavigation } from '@react-navigation/native'
 import { Feather } from "@expo/vector-icons"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,6 +15,7 @@ import HeaderMenu from '../../components/HeaderMenu';
 import FabButton from '../../components/FabButton';
 
 export default function StatusInformation() {
+    const Navigation = useNavigation()
     const db = useSQLiteContext()
     const [items, setItems] = useState([])
     //const [items, setItems] = useState([])
