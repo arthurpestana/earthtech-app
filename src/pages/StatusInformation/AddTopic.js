@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
 import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Animated} from 'react-native'
-import { Feather } from "@expo/vector-icons"
-import { AntDesign, Entypo} from '@expo/vector-icons'
+import { AntDesign, Entypo, Feather} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import MethodDropdown from '../../components/MethodDropdown';
 import InputText from '../../components/InputText';
-import styles from '../../styles/style__addtopic'
+import styles from '../../styles/style_addtopic'
 import * as Animatable from 'react-native-animatable'
 import { useSQLiteContext } from 'expo-sqlite/next';
 import { useMQTT } from '../../components/Context'
