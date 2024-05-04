@@ -52,13 +52,13 @@ export default function StatusInformation() {
                             case 0:
                                 return(<SensorDiv key={element.id} title={element.name} type={element.type} data={data} topic = {element.topic}/>)
                             case 1:
-                                return(<SensorDiv typeIcon='droplet' key={element.id} title={element.name} data={data} subscribeInfo={'Umidade do Ambiente'} topic = {element.topic}  />)
+                                return(<SensorDiv typeIcon='droplet' key={element.id} type={element.type} title={element.name} data={data} subscribeInfo={'Umidade do Ambiente'} topic = {element.topic}  />)
                             case 2:
-                                return(<SensorDiv typeIcon='power' key={element.id} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
                             case 3:
-                                return(<SensorDiv typeIcon='power' key={element.id} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
                             case 4: 
-                                return(<SensorDiv typeIcon='thermometer' key={element.id} title={element.title} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic}/>)
+                                return(<SensorDiv typeIcon='thermometer' key={element.id} type={element.type} title={element.name} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic}/>)
                         }
                     })}
                 </View>

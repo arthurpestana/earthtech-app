@@ -39,6 +39,14 @@ export default function (props) {
         }  
     };
 
+    const getTemperatureColor = () => {
+        if(!data==0){
+            const blue = Math.min(255, data * 5)
+            const red = Math.max(0, data - 20)
+            return `rgb(${red}, 0, ${blue})`
+        }
+      };
+
     useEffect(() => {
         subscribeToTopic()
     }, [])
@@ -90,7 +98,7 @@ export default function (props) {
                 </View>
                 <View style={styles.item__div_info}>
                     <Text style={styles.item__title}>{props.title}</Text>
-                    {props.type!=0?<Text style={[styles.item__text]}>{props.subscribeInfo}</Text>:  
+                    {props.type!=0?<Text style={[styles.item__title, props.type==4?{color: "orange"}:false]}>{props.type==1||props.type==4?props.type==4?data+"ºC":data+"%":props.subscribeInfo}</Text>:  
                     <View style={{}}>
                         <Text style={[styles.item__text, {marginBottom: 7, fontFamily: 'Montserrat_700Bold'}]}>Umidade</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
