@@ -161,7 +161,7 @@ export default function Home() {
         <GestureHandlerRootView style={{flex: 1}}>
             <SafeAreaView style={styles.container_home}>       
                 <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
-                    <Text style={styles.header__title}>Bem-vindo(a) {userName}</Text>
+                    <Text style={styles.header__title}>Bem-vindo(a) <Text style={{textTransform: 'capitalize'}}>{userName}</Text></Text>
                     <View style={styles.connection__box}>
                         <Text style={styles.header__text}>Gerencie sua plantação!</Text>
                     </View> 

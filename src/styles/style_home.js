@@ -4,7 +4,8 @@ export default StyleSheet.create ({
     container_home: {
         alignItems: "center",
         flex: 1,
-        backgroundColor: "hsl(228, 6%, 8%)", 
+        backgroundColor: "hsl(228, 6%, 8%)",
+        paddingHorizontal: 20
     },
 
     container__header:{
@@ -28,6 +29,7 @@ export default StyleSheet.create ({
         padding: "6%",
         backgroundColor: "hsl(228, 6%, 12%)",
         borderRadius: 20,
+        marginBottom: 20,
     },
     container__title: {
         marginLeft: '7%',
@@ -81,11 +83,9 @@ export default StyleSheet.create ({
         fontFamily: 'Montserrat_700Bold',
     },
     container__graphic: {
-        width: "98%",
+        width: "100%",
         padding: "6%",
         marginTop: "2%",
-        alignItems: 'center',
-        justifyContent: 'center',
         height: 'auto',
         backgroundColor: "hsl(228, 6%, 12%)",
         borderRadius: 20,

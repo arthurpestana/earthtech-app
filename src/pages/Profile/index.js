@@ -47,9 +47,7 @@ export default function Profile() {
             <View style={styles.container__main}>
                 <View style={styles.main__profile}>
                     <View style={styles.profile__image}>
-                        <View style={styles.logo_image}>
-                            <Text style={styles.logo_text}>{userName[0]}</Text>
-                        </View>
+                        <Feather name="user" size={50} color={"hsl(228, 8%, 98%)"} style={styles.logo_image}/>
                     </View>
                     <View style={styles.profile__info}>
                         <Text style={styles.profile_name}>{userName}</Text>

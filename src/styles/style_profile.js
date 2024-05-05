@@ -34,20 +34,9 @@ export default StyleSheet.create({
     },
 
     logo_image: {
-        width: 100,
-        height: 100,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'hsl(93, 40%, 30%)',
-        borderRadius: 200
-    },
-
-    logo_text: {
-        fontFamily: 'Montserrat_400Regular',
-        color: 'hsl(228, 8%, 98%)',
-        textTransform: 'capitalize',
-        fontSize: 60
+        padding: 25,
+        backgroundColor: "hsl(228, 6%, 12%)",
+        borderRadius: 35,
     },
 
     profile__info: {
@@ -86,9 +75,9 @@ export default StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         paddingHorizontal: 15,
-        paddingVertical: 5,
+        paddingVertical: 8,
         borderRadius: 10,
-        backgroundColor: 'hsl(93, 40%, 30%)',
+        backgroundColor: 'hsl(228, 6%, 12%)',
         gap: 10
     },
 

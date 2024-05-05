@@ -36,7 +36,7 @@ export default function () {
     }, [])
 
     const chartHeight = 150
-    const chartWidth = Dimensions.get('window').width
+    const chartWidth = Dimensions.get('window').width/1.1
     const chartMargin = 20
 
     const xDomain = data.map((dataPoint) => dataPoint.Data)
@@ -96,7 +96,11 @@ export default function () {
         return cx.value > Dimensions.get('window').width/4 && cx.value < (Dimensions.get('window').width/4)*3
     }
     return (
-    <View>
+    <View style={{
+        display: 'flex', 
+        alignItems: 'center',
+        justifyContent: 'center'
+    }}>
         <CitiesDropdown 
             setData = {setData}
         />
