@@ -2,8 +2,11 @@ import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, SafeAreaView, Image } from 'react-native'
 import { Feather, MaterialIcons } from '@expo/vector-icons'
 import * as Animatable from 'react-native-animatable'
+import { useNavigation } from '@react-navigation/native'
 
-export default function Catalog(props) {
+export default function CatalogDiv(props) {
+    const Navigation = useNavigation()
+
     return (
         <Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
             <View style={styles.item__div_img}>
@@ -16,7 +19,7 @@ export default function Catalog(props) {
                 </View>
             </View>
             <View style={styles.dashboard__dados}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Navigation.navigate('CatalogItem')}>
                     <Feather name='chevron-right' size={25} color={'hsl(228, 8%, 98%)'}/>
                 </TouchableOpacity>
             </View>
