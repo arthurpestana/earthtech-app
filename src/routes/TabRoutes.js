@@ -14,6 +14,7 @@ import AddTopic from '../pages/StatusInformation/AddTopic';
 import Home from '../pages/Home'
 import Configuration from '../pages/Configuration'
 import Cadastro from '../pages/Cadastro/index'
+import Catalogo from '../pages/Catalogo/index';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -55,6 +56,15 @@ export default function TabRoutes() {
                         tabBarShowLabel: false,
                         tabBarLabel: '',
                         tabBarIcon: ({size, color}) => (<Feather name='activity' color={color} size={20}/>)
+                    }}
+                />
+                <Tab.Screen
+                    name='Catalogo'
+                    component={Catalogo}
+                    options={{
+                        tabBarShowLabel: false,
+                        tabBarLabel: '',
+                        tabBarIcon: ({size, color}) => (<Feather name='book' color={color} size={20}/>)
                     }}
                 />
                 <Tab.Screen
