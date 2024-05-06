@@ -38,11 +38,11 @@ export default function Catalogo() {
                         {culturas.map((element) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogItem nome={element.nome} tipo={element.tipo} clima={element.clima}/>)
+                                    return(<CatalogItem cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima}/>)
                                 }
                             }
                             else {
-                                return(<CatalogItem nome={element.nome} tipo={element.tipo} clima={element.clima}/>)
+                                return(<CatalogItem cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima}/>)
                             }
                         })}
                     </ScrollView>:

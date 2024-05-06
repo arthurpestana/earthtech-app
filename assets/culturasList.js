@@ -1,5 +1,6 @@
 const culturas = [
     {
+        icon: '🥬',
         nome: "Alface",
         tipo: "Folha",
         clima: "Temperado",
@@ -8,6 +9,7 @@ const culturas = [
         tempoDeCrescimento: "Curto"
     },
     {
+        icon: '🍅',
         nome: "Tomate",
         tipo: "Fruto",
         clima: "Tropical",
@@ -16,6 +18,7 @@ const culturas = [
         tempoDeCrescimento: "Médio"
     },
     {
+        icon: '🥕',
         nome: "Cenoura",
         tipo: "Raiz",
         clima: "Temperado",
@@ -24,6 +27,7 @@ const culturas = [
         tempoDeCrescimento: "Longo"
     },
     {
+        icon: '🫑',
         nome: "Pimentão",
         tipo: "Fruto",
         clima: "Tropical",
@@ -32,6 +36,7 @@ const culturas = [
         tempoDeCrescimento: "Médio"
     },
     {
+        icon: '🍓',
         nome: "Morango",
         tipo: "Fruto",
         clima: "Temperado",
@@ -40,6 +45,7 @@ const culturas = [
         tempoDeCrescimento: "Longo"
     },
     {
+        icon: '🌱',
         nome: "Feijão",
         tipo: "Leguminosa",
         clima: "Tropical",
@@ -48,6 +54,7 @@ const culturas = [
         tempoDeCrescimento: "Médio"
     },
     {
+        icon: '🥔',
         nome: "Batata",
         tipo: "Tuberosa",
         clima: "Temperado",
@@ -56,6 +63,7 @@ const culturas = [
         tempoDeCrescimento: "Longo"
     },
     {
+        icon: '🥒',
         nome: "Abobrinha",
         tipo: "Fruto",
         clima: "Tropical",

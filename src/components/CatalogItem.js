@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, SafeAreaView, Image } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import { Feather, MaterialIcons } from '@expo/vector-icons'
 import * as Animatable from 'react-native-animatable'
 
 export default function Catalog(props) {
     return (
         <Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
             <View style={styles.item__div_img}>
-                <Feather name='slack' size={40} color={'hsl(228, 8%, 98%)'}/>
+                {props.cultivo?<Text style={{fontSize: 35}}>{props.iconName}</Text>:<MaterialIcons name='terrain' size={40} color={'hsl(228, 8%, 98%)'}/>}
             </View>
             <View style={styles.dashboard__dados}>
                 <View style={styles.item__div_info}>
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         marginBottom: '5%',
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between',
+        paddingHorizontal: '5%'
     },
 
     dashboard__dados: {
@@ -68,6 +69,8 @@ const styles = StyleSheet.create({
     item__text: {
         fontFamily: 'Montserrat_400Regular',
         color: 'hsl(228, 8%, 98%)',
-        fontSize: 12
+        fontSize: 12,
+        textAlign: 'center',
+        width: '100%'
     },
 })
