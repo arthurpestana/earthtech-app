@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import styles from '../../styles/style_profile'
 import * as Animatable from 'react-native-animatable'
 import { AntDesign, Entypo, Feather} from '@expo/vector-icons'
+import ReturnPage from '../../components/ReturnPage';
 
 export default function Profile() {
     const Navigation = useNavigation()
@@ -37,13 +38,7 @@ export default function Profile() {
 
     return(
         <SafeAreaView style={styles.container__profile}>
-            <View style={styles.container__header}>
-                <View style={[styles.header__close_button]}>
-                    <TouchableOpacity style={[styles.button]} onPress={() => Navigation.navigate('StatusInformation')}>
-                        <AntDesign name='plus' size={24} color="hsl(228, 8%, 98%)" style={{transform: [{rotate: '45deg'}]}}/>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <ReturnPage nav={'StatusInformation'}/>
             <View style={styles.container__main}>
                 <View style={styles.main__profile}>
                     <View style={styles.profile__image}>

@@ -11,12 +11,6 @@ export default StyleSheet.create({
         paddingHorizontal: 30
     },
 
-    container__header: {
-        position: 'absolute',
-        top: 40,
-        paddingHorizontal: 25,
-    },
-
     container__main: {
         display: 'flex',
         justifyContent: 'space-between',

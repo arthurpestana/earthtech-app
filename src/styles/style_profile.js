@@ -9,12 +9,6 @@ export default StyleSheet.create({
         paddingHorizontal: '10%'
     },
 
-    container__header: {
-        position: 'absolute',
-        top: 40,
-        left: 30,
-    },
-
     container__main: {
         display: 'flex',
         flex: 1,

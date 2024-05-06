@@ -4,6 +4,7 @@ import { AntDesign, Entypo, Feather} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import MethodDropdown from '../../components/MethodDropdown';
 import InputText from '../../components/InputText';
+import ReturnPage from '../../components/ReturnPage';
 import styles from '../../styles/style_addtopic'
 import * as Animatable from 'react-native-animatable'
 import { useSQLiteContext } from 'expo-sqlite/next';
@@ -50,15 +51,7 @@ export default function AddTopic() {
 
     return (
         <SafeAreaView style={styles.container__topic}>
-            <View style={styles.container__header}>
-                <View style={[styles.header__close_button]}>
-                    <TouchableOpacity  onPress={() => Navigation.navigate('StatusInformation')}>
-                        <Animated.View style={[styles.button]}>
-                            <AntDesign name='plus' size={24} color="hsl(228, 8%, 98%)" style={{transform: [{rotate: '45deg'}]}}/>
-                        </Animated.View>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <ReturnPage nav={'StatusInformation'}/>
             <View style={styles.container__main}>
                 <Animatable.View animation={'fadeInLeft'} delay={500} style={styles.main__panel_title}>
                     <View style={{width: '40%'}}>
