@@ -74,9 +74,11 @@ export default function Home() {
         setWeather(data)
         console.log(JSON.stringify(data, null, 2))
     }
+
     useEffect(() => {
         getData()
     }, [db])
+    
     useEffect(() => {
         (async () => {
         try {
