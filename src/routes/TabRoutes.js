@@ -8,13 +8,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Feather } from '@expo/vector-icons'
 
 import ConnectBoard from '../pages/ConnectBoard'
-import Profile from '../pages/Profile/index'
+
+import Home from '../pages/Home'
+
 import StatusInformation from '../pages/StatusInformation/index';
 import AddTopic from '../pages/StatusInformation/AddTopic';
-import Home from '../pages/Home'
 import Configuration from '../pages/Configuration'
-import Cadastro from '../pages/Cadastro/index'
+import Profile from '../pages/Profile/index'
+
 import Catalogo from '../pages/Catalogo/index';
+import CatalogItem from '../pages/Catalogo/CatalogItem';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -50,8 +53,8 @@ export default function TabRoutes() {
                     }}
                 />
                 <Tab.Screen
-                    name='StatusPageStack'
-                    component={StatusPageStack}
+                    name='StatusStack'
+                    component={StatusStack}
                     options={{
                         tabBarShowLabel: false,
                         tabBarLabel: '',
@@ -59,8 +62,8 @@ export default function TabRoutes() {
                     }}
                 />
                 <Tab.Screen
-                    name='Catalogo'
-                    component={Catalogo}
+                    name='CatalogStack'
+                    component={CatalogStack}
                     options={{
                         tabBarShowLabel: false,
                         tabBarLabel: '',
@@ -81,7 +84,7 @@ export default function TabRoutes() {
     )
 }
 
-function StatusPageStack() {
+function StatusStack() {
     return (
         <Stack.Navigator  initialRouteName="StatusInformation">
             <Stack.Screen
@@ -108,6 +111,26 @@ function StatusPageStack() {
             <Stack.Screen
                 name= 'Configuration'
                 component={Configuration}
+                options={{
+                    headerShown: false,
+                    title: "",
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+function CatalogStack() {
+    return (
+        <Stack.Navigator  initialRouteName="CatalogoIndex">
+            <Stack.Screen
+                name='CatalogoIndex'
+                component={Catalogo}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name= 'CatalogItem'
+                component={CatalogItem}
                 options={{
                     headerShown: false,
                     title: "",
