@@ -15,7 +15,8 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        marginTop: '10%'
+        marginTop: '10%',
+        width: '100%'
     }, 
 
     header__titles: {
@@ -31,10 +32,19 @@ export default StyleSheet.create({
 
     header__search: {
         display: 'flex',
-        alignItems: 'flex-start',
+        alignSelf: 'center',
+        alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '15%',
-        flexDirection: 'row'
+        width: '100%',
+        marginTop: '8%',
+        flexDirection: 'row',
+        gap: 10
+    },
+
+    search_button: {
+        backgroundColor: 'hsl(228, 6%, 4%)',
+        padding: 12,
+        borderRadius: 10
     },
 
     catalog__main: {
@@ -54,7 +64,7 @@ export default StyleSheet.create({
         justifyContent: 'space-around',
         width: '100%',
         marginTop: '5%',
-        marginBottom: '8%'
+        marginBottom: '10%'
     },
 
     filter__text: {
@@ -64,11 +74,24 @@ export default StyleSheet.create({
     },
 
     filter__button: {
-        paddingHorizontal: "15%",
+        width: '45%',
         paddingVertical: 5,
+        display: 'flex',
+        alignItems: 'center',
+    },
+    
+    filter_on: {
+        borderBottomColor: 'hsl(93, 40%, 30%)',
+        borderBottomWidth: 1,
     },
     
     main__catalog_items: {
-        width: '100%',
+        alignSelf: 'center',
+        width: '110%',
+        paddingHorizontal: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
+        height: '55%',
+        bottom: 10
     },
 })
