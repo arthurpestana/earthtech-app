@@ -18,15 +18,14 @@ export default function StatusInformation() {
     const Navigation = useNavigation()
     const db = useSQLiteContext()
     const [items, setItems] = useState([])
-    //const [items, setItems] = useState([])
     const { userNameMQTT, client, changeStatus, setChangeStatus } = useMQTT()
     const [data, setData] = useState(null)
 
     async function getDashboardData(){
         const result = await db.getAllAsync(`SELECT * FROM dashboard`)
         console.log(result)
-        client.onMessageArrived = handleIncomingMessage
         setItems(result)
+        client.onMessageArrived = handleIncomingMessage
     }
 
     const handleIncomingMessage = (message) => {
@@ -63,7 +62,7 @@ export default function StatusInformation() {
                     })}
                 </View>
             </ScrollView>
-            <FabButton style={{bottom: 130, left: "80%"}}/>
+            {items.length<5?<FabButton style={{bottom: 130, left: "80%"}}/>:false}
         </View>
     )
 }
