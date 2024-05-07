@@ -19,6 +19,7 @@ export const MQTTProvider = ({ children }) => {
   const [host, setHost] = useState('')
   const [port, setPort] = useState('')
   const [changeStatus, setChangeStatus] = useState(false)
+  const [indexCatalog, setIndexCatalog] = useState('')
 
   function backToWelcome(){
     Navigation.navigate('Welcome')
@@ -31,7 +32,7 @@ export const MQTTProvider = ({ children }) => {
   }, [loggedIn]);
 
   return (
-    <MQTTContext.Provider value={{ client, setClient, isConnected, setConnected, userMail, setMail, userName, setName, loggedIn, setLoggedIn, userId, setId, latitude, setLatitude, longitude, setLongitude, nome, setNome, userNameMQTT, setUsernameMQTT, senha, setSenha, host, setHost, port, setPort, changeStatus, setChangeStatus }}>
+    <MQTTContext.Provider value={{ client, setClient, isConnected, setConnected, userMail, setMail, userName, setName, loggedIn, setLoggedIn, userId, setId, latitude, setLatitude, longitude, setLongitude, nome, setNome, userNameMQTT, setUsernameMQTT, senha, setSenha, host, setHost, port, setPort, changeStatus, setChangeStatus, indexCatalog, setIndexCatalog }}>
       {children}
     </MQTTContext.Provider>
   );

@@ -3,9 +3,17 @@ import { View, TouchableOpacity, Text, StyleSheet, SafeAreaView, Image } from 'r
 import { Feather, MaterialIcons } from '@expo/vector-icons'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
+import { useSQLiteContext } from 'expo-sqlite/next';
+import { useMQTT } from './Context'
 
 export default function CatalogDiv(props) {
     const Navigation = useNavigation()
+    const { setIndexCatalog } = useMQTT()
+
+    function NavigateCatalogItem() {
+        setIndexCatalog(props.index)
+        Navigation.navigate('CatalogItem')
+    }
 
     return (
         <Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
@@ -19,7 +27,7 @@ export default function CatalogDiv(props) {
                 </View>
             </View>
             <View style={styles.dashboard__dados}>
-                <TouchableOpacity onPress={() => Navigation.navigate('CatalogItem')}>
+                <TouchableOpacity onPress={NavigateCatalogItem}>
                     <Feather name='chevron-right' size={25} color={'hsl(228, 8%, 98%)'}/>
                 </TouchableOpacity>
             </View>
