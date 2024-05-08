@@ -1,17 +1,34 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { SafeAreaView, View, Text, TouchableOpacity, ScrollView} from 'react-native'
 import styles from '../../styles/style_catalog'
 import CatalogDiv from '../../components/CatalogDiv'
 import InputText from '../../components/InputText'
 import { Feather } from '@expo/vector-icons'
 import solos from '../../../assets/solosList'
-import culturas from '../../../assets/culturasList'
 import * as Animatable from 'react-native-animatable'
+import axios from 'axios'
 
 
 export default function Catalogo() {
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState(0)
+    const [culturas, setCulturas] = useState(null)
+    
+    useEffect(() => {
+        (async () =>{
+            try {
+                const options = {
+                    method: 'GET',
+                    url: 'https://earthtechapi.up.railway.app/api/zoneamento',
+                };
+                let response = await axios.request(options)
+                setCulturas(response.data)
+                console.log(response.data[0])
+            }catch(err){
+                console.log("Erro: ", err)
+            }
+        })()
+    }, [])
     
     return (
         <SafeAreaView style={styles.catalog__container}>
@@ -35,16 +52,16 @@ export default function Catalogo() {
                 
                 {filter==0?
                     <ScrollView style={styles.main__catalog_items}>
-                        {culturas.map((element, key) => {
+                        {culturas!=null?culturas.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} index={key}/>)
+                                    return(<CatalogDiv cultivo nome={element.cultura} tipo={element.microrregiao} clima={element.solo} index={key}/>)
                                 }
                             }
                             else {
-                                return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} index={key}/>)
+                                return(<CatalogDiv cultivo nome={element.cultura} tipo={element.microrregiao} clima={element.solo} index={key}/>)
                             }
-                        })}
+                        }):false}
                     </ScrollView>:
                     <ScrollView style={styles.main__catalog_items}>
                         {solos.map((element, key) => {

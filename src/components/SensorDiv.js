@@ -77,7 +77,7 @@ export default function (props) {
                     <AnimatedCircularProgress
                     size={125}
                     width={12}
-                    fill={data?data:0}
+                    fill={data?parseInt(data):0}
                     arcSweepAngle={225}
                     rotation={248}
                     tintColor="#ff0000"
