@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     status__page: {
@@ -11,7 +11,7 @@ export default StyleSheet.create({
 
     switch__container: {
         flex: 1,
-        backgroundColor: 'hsl(228, 6%, 8%)'
+        backgroundColor: 'hsl(228, 6%, 8%)',
     },
 
     switch__items: {
@@ -24,4 +24,19 @@ export default StyleSheet.create({
         paddingEnd: '8%',
         marginTop: "8%"
     },
+
+    error_text: {
+        color: '#FFF',
+        textAlign: 'center',
+        margin: 'auto',
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 18
+    },
+    confirm__container: {
+        width: 300,
+        height: 500,
+        backgroundColor: '#FFF',
+        position: 'absolute',
+        borderRadius: 20
+    }
 })

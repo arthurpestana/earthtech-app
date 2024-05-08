@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet, Switch} from 'react-native'
+import { SafeAreaView, Text, View, StyleSheet, Switch, Alert} from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Feather } from "@expo/vector-icons"
 import { Canvas, Rect } from "@shopify/react-native-skia"
 import { useMQTT } from './Context'
+import MessageModal from './MessageModal'
 
 export default function (props) {
     const [isEnabled, setIsEnabled] = useState(false)
@@ -23,10 +24,14 @@ export default function (props) {
 
     }   
     const altSwitch = () => {
+        if(props.type == 2 && isEnabled == true){
+            props.setChange(true)
+        }else{
         let msg
         setIsEnabled(!isEnabled)
         isEnabled==true?msg='1':msg='0'        
         publishMsg(msg)
+        }
     }
     
     const subscribeToTopic = () => {
@@ -35,7 +40,7 @@ export default function (props) {
             client.subscribe(`${userNameMQTT}/${props.topic}`, { qos: 0 });
             setSubscribed(true);
         }catch(err){
-            console.log('Ocorreu um erro: '+ err)
+            props.catchErr(err)
         }  
     };
 
@@ -58,6 +63,15 @@ export default function (props) {
                 console.log(props.data.payloadString)
         }}
     }, [props.data])
+
+    useEffect(() => {
+        if(props.confirmation == true){
+            let msg
+            setIsEnabled(!isEnabled)
+            isEnabled==true?msg='1':msg='0'        
+            publishMsg(msg)
+        }
+    }, [props.confirmation])
 
     return (
         <SafeAreaView style={props.type==0?styles.dashboard__double:styles.dashboard__items}>

@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {SafeAreaView, View, Text, ScrollView, Switch, Image, TouchableOpacity} from 'react-native'
+import {SafeAreaView, View, Text, ScrollView, Switch, Image, TouchableOpacity, Alert} from 'react-native'
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 import { useSQLiteContext } from 'expo-sqlite/next'
 import { useNavigation } from '@react-navigation/native'
-import { Feather } from "@expo/vector-icons"
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import MessageModal from '../../components/MessageModal';
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_status'
@@ -17,8 +16,11 @@ import FabButton from '../../components/FabButton';
 export default function StatusInformation() {
     const Navigation = useNavigation()
     const db = useSQLiteContext()
+    const [error, setError] = useState(null)
     const [items, setItems] = useState([])
-    const { userNameMQTT, client, changeStatus, setChangeStatus } = useMQTT()
+    const [changeAutoIrriga, setChangeAutoIrriga] = useState(false)
+    const [confirmation, setConfirmation] = useState(false)
+    const { userNameMQTT, client, changeStatus, setChangeStatus, isConnected } = useMQTT()
     const [data, setData] = useState(null)
 
     async function getDashboardData(){
@@ -36,32 +38,43 @@ export default function StatusInformation() {
         getDashboardData()
         setChangeStatus(false)
     }
+
+    function catchErr(err){
+        setError(err)
+    }
+
+    function autoIrriga(set){
+        setChangeAutoIrriga(set)
+        console.log(changeAutoIrriga)
+    }
     
     useEffect(() => {
         getDashboardData()
     }, [db])
 
     return (
+        
         <View style={styles.status__page}>
             <HeaderMenu/>
             <ScrollView style={styles.switch__container}>
                 <View style={styles.switch__items}>
-                    {items.map((element) => {
+                    {error==null?items.map((element) => {
                         switch (element.type) {
                             case 0:
-                                return(<SensorDiv key={element.id} title={element.title} type={element.type} data={data} topic = {element.topic}/>)
+                                return(<SensorDiv key={element.id} title={element.name} type={element.type} data={data} topic = {element.topic} catchErr = {() => catchErr}/>)
                             case 1:
-                                return(<SensorDiv typeIcon='droplet' key={element.id} type={element.type} title={element.title} data={data} subscribeInfo={'Umidade do Ambiente'} topic = {element.topic}  />)
+                                return(<SensorDiv typeIcon='droplet' key={element.id} type={element.type} title={element.name} data={data} subscribeInfo={'Umidade do Ambiente'} topic = {element.topic} catchErr = {() => catchErr}/>)
                             case 2:
-                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.title} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic} catchErr = {() => catchErr} setChange = {setChangeAutoIrriga} confirmation = {confirmation}/>)
                             case 3:
-                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.title} data={data} switch subscribeInfo={''} topic = {element.topic}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic} catchErr = {() => catchErr}/>)
                             case 4: 
-                                return(<SensorDiv typeIcon='thermometer' key={element.id} type={element.type} title={element.name} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic}/>)
+                                return(<SensorDiv typeIcon='thermometer' key={element.id} type={element.type} title={element.name} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic} catchErr = {() => catchErr}/>)
                         }
-                    })}
+                    }): <Text style={[styles.error_text]}>Faça a conexão MQTT para iniciar.</Text>}
                 </View>
             </ScrollView>
+            {changeAutoIrriga==true?<MessageModal setChange = {setChangeAutoIrriga} confirmation = {setConfirmation}/>:false}
             {items.length<5?<FabButton style={{bottom: 130, left: "80%"}}/>:false}
         </View>
     )
