@@ -168,7 +168,7 @@ export default function Home() {
                         <Text style={styles.header__text}>Gerencie sua plantação!</Text>
                     </View> 
                 </Animatable.View>
-                <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__weather}>
+                <View animation={'fadeInLeft'} delay={400} style={styles.container__weather}>
                     <View style={{flexDirection:'row', justifyContent: 'space-evenly'}}>
                         <View style={{flexDirection:'row'}}>
                             {data.length > 0?
@@ -204,10 +204,10 @@ export default function Home() {
                             />
                         )}                    
                     </View>
-                </Animatable.View>
-                <Animatable.View style={styles.container__graphic} animation={"fadeInLeft"}>
+                </View>
+                <View style={styles.container__graphic} animation={"fadeInLeft"}>
                     <HomeChart/>
-                </Animatable.View>
+                </View>
             </SafeAreaView>
         </GestureHandlerRootView>
     )

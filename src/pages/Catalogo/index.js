@@ -35,26 +35,26 @@ export default function Catalogo() {
                 
                 {filter==0?
                     <ScrollView style={styles.main__catalog_items}>
-                        {culturas.map((element) => {
+                        {culturas.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima}/>)
+                                    return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} index={key}/>)
                                 }
                             }
                             else {
-                                return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima}/>)
+                                return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} index={key}/>)
                             }
                         })}
                     </ScrollView>:
                     <ScrollView style={styles.main__catalog_items}>
-                        {solos.map((element) => {
+                        {solos.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.classe.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade}/>)
+                                    return(<CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>)
                                 }
                             }
                             else {
-                                return(<CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade}/>)
+                                return(<CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>)
                             }
                         })}
                     </ScrollView>

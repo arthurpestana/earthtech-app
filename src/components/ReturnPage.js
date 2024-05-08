@@ -7,7 +7,7 @@ export default (props) => {
     const Navigation = useNavigation()
 
     return (
-        <View style={styles.container__header}>
+        <View style={[styles.container__header, props.catalog?styles.catalogReturn:false]}>
             <TouchableOpacity  onPress={() => Navigation.navigate(props.nav)}>
                 <View style={[styles.button]}>
                     <AntDesign name='plus' size={24} color="hsl(228, 8%, 98%)" style={{transform: [{rotate: '45deg'}]}}/>
@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
     container__header: {
         position: 'absolute',
         top: 50,
-        paddingHorizontal: 25,
+        left: 25,
+        padding: 5,
+    },
+
+    catalogReturn: {
+        backgroundColor: '#272c252c',
+        borderRadius: 10,
     },
 })
