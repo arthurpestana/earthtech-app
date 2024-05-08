@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
         top: 50,
         left: 25,
         padding: 5,
+        zIndex: 1000
     },
 
     catalogReturn: {
-        backgroundColor: '#272c252c',
+        backgroundColor: '#0000003c',
         borderRadius: 10,
     },
 })

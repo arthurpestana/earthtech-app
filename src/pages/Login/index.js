@@ -8,7 +8,6 @@ import LoginCadastroInput from '../../components/InputText';
 import { useNavigation } from '@react-navigation/native'
 
 
-
 export default function Connect() {
     const Navigation = useNavigation()
     const db = useSQLiteContext()
