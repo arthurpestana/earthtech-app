@@ -11,14 +11,26 @@ import { useNavigation } from '@react-navigation/native'
 import styles from '../../styles/style_catalogItem'
 import ReturnPage from '../../components/ReturnPage'
 import InfoDados from  '../../components/InfoDados'
+import culturas from '../../../assets/culturasList.json'
+import solos from '../../../assets/solosList.json'
 
 export default function CatalogItem() {
-    const { indexCatalog, setIndexCatalog } = useMQTT()
-    const [culturas, setCulturas] = useState(null)
-    console.log(indexCatalog)
+    const { indexCatalog, setIndexCatalog, typeCatalog, setTypeCatalog } = useMQTT()
+    const [dados, setDados] = useState('')
+    
+    function tryType() {
+        if (typeCatalog==0) {
+            setDados(culturas[indexCatalog])
+        }
+        else {
+            setDados(solos[indexCatalog])
+        }
+    }
+
 
     useEffect(() => {
-        (async () =>{
+        tryType()
+        /*(async () =>{
             try {
                 const options = {
                     method: 'GET',
@@ -30,7 +42,7 @@ export default function CatalogItem() {
             }catch(err){
                 console.log("Erro: ", err)
             }
-        })()
+        })()*/
     }, [])
 
     return (
@@ -38,19 +50,21 @@ export default function CatalogItem() {
             <ReturnPage nav={'CatalogoIndex'} />
             <View style={styles.item__header}>
                 <View style={styles.header__icon}>
-                    <MaterialIcons name='terrain' color={'hsl(228, 8%, 98%)'} size={60}/>
+                    {typeCatalog==0?<Text style={{fontSize: 48, height: 60}}>{dados.icon}</Text>
+                    :<MaterialIcons name='terrain' color={'hsl(228, 8%, 98%)'} size={60}/>}
                 </View>
                 <View style={styles.header__info}>
-                    <Text style={styles.header__title}>Nome</Text>
-                    <Text style={styles.header__text}>Tipo</Text>
+                    <Text style={styles.header__title}>{dados.nome}</Text>
+                    <Text style={styles.header__text}>Tipo de {typeCatalog==0?'Cultura':'Solo'}: {dados.tipo}</Text>
                 </View>
             </View>
             <ScrollView style={styles.item__main}>
                 <View style={styles.main__info}>
-                    <InfoDados title={'Detalhes'} detail/>
-                    <InfoDados title={"Descrição"} desc/>
-                    <InfoDados title={"Galeria de Fotos"} images/>
+                    <InfoDados title={'Detalhes'} detail text={[dados.clima, dados.tempoDeCrescimento, dados.necessidadeDeAgua]}/>
+                    <InfoDados title={"Descrição"} desc text={dados.descricao}/>
+                    <InfoDados title={"Galeria de Fotos"} images loadImage={''}/>
                     <InfoDados title={"Tipo de Solo"} typeSolo/>
+                    <InfoDados title={"Necessidade de Água"} agua quantAgua={dados.necessidadeDeAgua}/>
                 </View>
             </ScrollView>
         </SafeAreaView>

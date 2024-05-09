@@ -6,7 +6,7 @@ export default StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: 'hsl(228, 6%, 8%)',
-        paddingHorizontal: '8%',
+        
         paddingVertical: '8%'
     },
 
@@ -17,6 +17,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         gap: 30,
         marginTop: '25%',
+        paddingHorizontal: '8%',
     },
 
     header__icon: {
@@ -59,6 +60,7 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        gap: 10
+        gap: 10,
+        paddingHorizontal: '4%',
     },
 })

@@ -1,9 +1,89 @@
 import React, {useState} from "react";
 import {Text, View, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList} from 'react-native'
 import { Feather, MaterialIcons } from '@expo/vector-icons'
+import { style } from "d3";
 
 export default (props) => {
-    const [viewMore, setViewMore] = useState(false)
+    
+    const styles = StyleSheet.create({
+        info: {
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            backgroundColor: 'hsl(228, 6%, 4%)',
+            gap: 15,
+            paddingVertical: 20,
+            paddingHorizontal: 20,
+            borderRadius: 10
+        },
+    
+        shadowProp: {
+            shadowColor: '#0000003f',
+            shadowOffset: {width: 5, height: 4},
+            shadowOpacity: 0.2,
+            shadowRadius: 3,
+            elevation: 10
+        },
+    
+        info__header: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+    
+        info__title: {
+            fontFamily: 'Montserrat_600SemiBold',
+            color: 'hsl(228, 8%, 98%)',
+            fontSize: 17
+        },
+    
+        info__dados: {
+            paddingHorizontal: 10,
+            gap: 10,
+            width: '100%'
+        },
+    
+        info__text: {
+            fontFamily: 'Montserrat_400Regular',
+            color: 'hsl(228, 8%, 70%)',
+            fontSize: 13,
+            textAlign: 'justify'
+        },
+    
+        info__galeria: {
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%',
+            flexWrap: 'nowrap',
+            gap: 20,
+            marginVertical: 10,
+        },
+    
+        info__dadosAgua: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+    
+        dados__bar: {
+            width: '100%',
+            height: 35,
+            borderRadius: 10,
+            backgroundColor: 'hsl(228, 6%, 12%)',
+            marginTop: 10,
+            marginBottom: 10
+        },
+    
+        loading_bar: {
+            width: props.quantAgua,
+            height: 35,
+            backgroundColor: 'hsl(93, 40%, 30%)',
+            borderRadius: 10
+        },
+    })
+
+    const [viewMore, setViewMore] = useState(true)
 
     const dataImages = ['../images/soja.jpg', '../images/soja.jpg']
 
@@ -25,20 +105,27 @@ export default (props) => {
                 </TouchableOpacity>
             </View>
             {(viewMore==true && props.detail)?<View style={styles.info__dados}>
-                <Text style={styles.info__text}>Ano da Safra:</Text>
-                <Text style={styles.info__text}>Município:</Text>
-                <Text style={styles.info__text}>Microrregião:</Text>
+                <Text style={styles.info__text}>Clima Propício:     {props.text[0]}</Text>
+                <Text style={styles.info__text}>Tempo de Crescimento:      {props.text[1]}</Text>
+                <Text style={styles.info__text}>Necessidade de Água:       {props.text[2]<=30?'Baixa':props.text[2]<70?'Média':'Alta'}</Text>
             </View>:null}
             {(viewMore==true && props.desc)?<View style={styles.info__dados}>
-                <Text style={styles.info__text}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+                <Text style={styles.info__text}>{props.text}</Text>
             </View>:null}
             {(viewMore==true && props.images)?<View style={styles.info__dados}>
                 <View style={styles.info__galeria}>
-                    <Image resizeMode={'cover'} source={require('../images/soja.jpg')} style={{width: '100%', height: 200, borderRadius: 15}}/>
+                    {props.loadImage!=''?<Image resizeMode={'cover'} source={require('../images/soja.jpg')} style={{width: '100%', height: 200, borderRadius: 15}}/>:<Text style={styles.info__text}>Não há imagens cadastradas!</Text>}
+                    
                 </View>
             </View>:null}
             {(viewMore==true && props.typeSolo)?<View style={styles.info__dados}>
                 <Text style={styles.info__text}>Solo:</Text>
+            </View>:null}
+            {(viewMore==true && props.agua)?<View style={[styles.info__dados, styles.info__dadosAgua]}>
+                <View style={styles.dados__bar}>
+                    <View style={styles.loading_bar}></View>
+                </View>
+                <Text style={styles.info__text}>{props.quantAgua<=30?'Baixa':props.quantAgua<70?'Média':'Alta'}</Text>
             </View>:null}
         </View>
     )
@@ -54,57 +141,3 @@ export default (props) => {
                 </View>
             </View> */
 
-const styles = StyleSheet.create({
-    info: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        backgroundColor: 'hsl(228, 6%, 4%)',
-        gap: 15,
-        paddingVertical: 20,
-        paddingHorizontal: 20,
-        borderRadius: 10
-    },
-
-    shadowProp: {
-        shadowColor: '#0000003f',
-        shadowOffset: {width: 5, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 10
-    },
-
-    info__header: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-
-    info__title: {
-        fontFamily: 'Montserrat_600SemiBold',
-        color: 'hsl(228, 8%, 98%)',
-        fontSize: 17
-    },
-
-    info__dados: {
-        paddingHorizontal: 10,
-        gap: 10
-    },
-
-    info__text: {
-        fontFamily: 'Montserrat_400Regular',
-        color: 'hsl(228, 8%, 70%)',
-        fontSize: 13,
-        textAlign: 'justify'
-    },
-
-    info__galeria: {
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-        flexWrap: 'nowrap',
-        gap: 20,
-        marginVertical: 10,
-    },
-})

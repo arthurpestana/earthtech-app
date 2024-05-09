@@ -8,10 +8,11 @@ import { useMQTT } from './Context'
 
 export default function CatalogDiv(props) {
     const Navigation = useNavigation()
-    const { setIndexCatalog } = useMQTT()
+    const { setIndexCatalog, setTypeCatalog } = useMQTT()
 
     function NavigateCatalogItem() {
         setIndexCatalog(props.index)
+        props.cultivo?setTypeCatalog(0):setTypeCatalog(1)
         Navigation.navigate('CatalogItem')
     }
 

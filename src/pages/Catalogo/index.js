@@ -3,8 +3,8 @@ import { SafeAreaView, View, Text, TouchableOpacity, ScrollView} from 'react-nat
 import styles from '../../styles/style_catalog'
 import CatalogDiv from '../../components/CatalogDiv'
 import InputText from '../../components/InputText'
-import solos from '../../../assets/solosList'
-import culturas from '../../../assets/culturasList'
+import solos from '../../../assets/solosList.json'
+import culturas from '../../../assets/culturasList.json'
 import * as Animatable from 'react-native-animatable'
 import axios from 'axios'
 
@@ -71,12 +71,12 @@ export default function Catalogo() {
                     <ScrollView style={styles.main__catalog_items}>
                         {solos.map((element, key) => {
                             if (search!='') {
-                                if (search.toLocaleLowerCase()==element.classe.slice(0, search.length).toLocaleLowerCase()) {
-                                    <CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>
+                                if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
+                                    return(<CatalogDiv nome={element.nome} tipo={element.tipo} clima={element.profundidade} index={key}/>)
                                 }
                             }
                             else {
-                                <CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>
+                                return(<CatalogDiv nome={element.nome} tipo={element.tipo} clima={element.profundidade} index={key}/>)
                             }
                         })}
                     </ScrollView>
