@@ -11,12 +11,12 @@ import { useSQLiteContext } from 'expo-sqlite/next';
 import { useMQTT } from '../../components/Context'
 
 
-export default function AddTopic() {
+export default function AddTopic(props) {
     const db = useSQLiteContext()
 
-    const [title, setTitle] = useState('')
-    const [topic, setTopic] = useState("")
-    const [type_method, setTypeMethod] = useState(0)
+    const [title, setTitle] = useState(props.route.params && props.route.params.name?props.route.params.name:'')
+    const [topic, setTopic] = useState(props.route.params && props.route.params.topic?props.route.params.topic:'')
+    const [type_method, setTypeMethod] = useState(props.route.params && props.route.params.type?props.route.params.type:0)
     const { setChangeStatus } = useMQTT()
     const Navigation = useNavigation()
     const [onFocusedInput, setFocusedInput] = useState(false)
@@ -24,6 +24,8 @@ export default function AddTopic() {
     function customOnFocus() {
         setFocusedInput(true)
     }
+
+
 
     function customOnBlur() {
         if (title!="") {
@@ -40,12 +42,23 @@ export default function AddTopic() {
         setChangeStatus(true)
         console.log("Dashboard cadastrada")
     }
+    
+    async function editDashboardDB() {
+        //await db.execAsync(`DELETE FROM dashboard`)
+        await db.execAsync(`UPDATE dashboard SET name = "${title}", topic = "${topic}", type = "${type_method}" WHERE id = ${props.route.params.id}`)
+        setChangeStatus(true)
+        console.log("Dashboard atualizada")
+    }
         
     function saveDashboardConfig(){
         if (title=="" || topic=="") {
             return console.log("Preencha todos os campos!")
         }
-        addDashboardDB()
+        if(props.route.params && props.route.params.edit){
+            editDashboardDB()
+        }else{
+            addDashboardDB()
+        }
         Navigation.navigate('StatusInformation')
     }
 
@@ -56,7 +69,7 @@ export default function AddTopic() {
                 <Animatable.View animation={'fadeInLeft'} delay={500} style={styles.main__panel_title}>
                     <View style={{width: '40%'}}>
                         {onFocusedInput==false?<View style={onFocusedInput ? styles.form_box__textFocused : styles.form_box__text} >
-                            <Text style={styles.form__text}>Sem Título</Text>
+                            <Text style={styles.form__text}>{title==''?'Sem Título':false}</Text>
                         </View>:false}
                         <TextInput
                             style={styles.form__input}

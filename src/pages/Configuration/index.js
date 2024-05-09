@@ -6,12 +6,16 @@ import { Feather } from '@expo/vector-icons'
 import * as Animatable from 'react-native-animatable'
 import { useMQTT } from '../../components/Context'
 import { useNavigation } from '@react-navigation/native'
+import MessageModal from '../../components/MessageModal'
 
 export default function Configuration() {
     const db = useSQLiteContext()
     const [items, setItems] = useState([])
     const { changeStatus, setChangeStatus} = useMQTT()
     const Navigation = useNavigation()
+    const [confirmation, setConfirmation] = useState(false)
+    const [deleteStatus, setDeleteStatus] = useState(false)
+    const [itemId, setId] = useState(null)
 
     
     async function getDashboardData(){
@@ -26,10 +30,23 @@ export default function Configuration() {
     }
 
     async function deleteItem(id) {
-        await db.execAsync(`DELETE FROM dashboard WHERE id = ${id}`)
-        setChangeStatus(true)
-        Navigation.navigate('StatusInformation')
+        setDeleteStatus(true) 
+        setId(id)
     }
+
+    function editItem(ids, tipo, nome, topico){
+        Navigation.navigate('AddTopic', {id: ids, type: tipo, name: nome, topic: topico, edit: true})
+    }
+
+    useEffect(() => {
+        if(confirmation == true){
+            (async() => {
+                await db.execAsync(`DELETE FROM dashboard WHERE id = ${itemId}`)
+                setChangeStatus(true)
+                Navigation.navigate('StatusInformation')
+            })()
+        }
+    }, [confirmation])
 
     useEffect(() => {
         getDashboardData()
@@ -39,7 +56,7 @@ export default function Configuration() {
         <SafeAreaView style={styles.config__container}>
             <ReturnPage nav={'StatusInformation'}/>
             <View style = {{marginTop: '25%'}}>
-                {items.length > 0?items.map((element, index) => {
+                {items.length > 0?items.map((element, key) => {
                 return(<Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
                     <View style={styles.item__div_img}>
                         <Feather name={element.type==0?'alert-triangle':element.type==1?'droplet':element.type==2?'power':element.type==3?'power':'thermometer'} size={35} color="hsl(228, 8%, 98%)"/>
@@ -47,11 +64,11 @@ export default function Configuration() {
                     <View style={styles.dashboard__dados}>
                         <View style={styles.item__div_info}>
                             <Text style={styles.item__title}>{element.name}</Text>
-                            <Text style={styles.item__text}>{index} • {element.type==0?'Monitor de Risco':element.type==1?'Umidade do ambiente':element.type==2?'Irrigação Automática':element.type==3?'Ligar Irrigador':'Temperatura do ambiente'}</Text> 
+                            <Text style={styles.item__text}>{key} • {element.type==0?'Monitor de Risco':element.type==1?'Umidade do ambiente':element.type==2?'Irrigação Automática':element.type==3?'Ligar Irrigador':'Temperatura do ambiente'}</Text> 
                         </View>
                     </View>
                     <View style={styles.dashboard__dados}>
-                        <TouchableOpacity style={{marginRight: 5}}>
+                        <TouchableOpacity style={{marginRight: 5}} onPress={() => editItem(element.id, element.type, element.name, element.topic)}>
                             <Feather name='edit' size={25} color={'hsl(228, 8%, 98%)'}/>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => deleteItem(element.id)}>
@@ -60,6 +77,7 @@ export default function Configuration() {
                     </View>
                 </Animatable.View>)}):false}
             </View>
+            {deleteStatus?<MessageModal confirmation = {setConfirmation} setChange = {setDeleteStatus} message = "Deseja continuar com a exclusão do item?"/>:false}
         </SafeAreaView>
         
     )

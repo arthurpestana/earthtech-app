@@ -38,5 +38,22 @@ export default StyleSheet.create({
         backgroundColor: '#FFF',
         position: 'absolute',
         borderRadius: 20
-    }
+    },
+    connect__button: {
+        marginTop: '5%',
+        alignSelf: 'center',
+        width: '60%',
+        padding: 15,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'hsl(93, 40%, 30%)',
+        marginBottom: 15,
+    }, 
+    
+    button_text: {
+        color: 'hsl(228, 8%, 98%)',
+        fontSize: 16,
+        fontFamily: 'Montserrat_700Bold',
+    },
 })
