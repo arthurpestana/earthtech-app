@@ -1,0 +1,80 @@
+[
+    {
+        "nome": "Neossolos",
+        "tipo": "Areia",
+        "profundidade": "Superficial",
+        "acidez": "Baixa"
+    },
+    {
+        "nome": "Latossolos",
+        "tipo": "Argila",
+        "profundidade": "Profunda",
+        "acidez": "Baixa"
+    },
+    {
+        "nome": "Argissolos",
+        "tipo": "Argila",
+        "profundidade": "Profunda",
+        "acidez": "Média"
+    },
+    {
+        "nome": "Cambissolos",
+        "tipo": "Varia",
+        "profundidade": "Média",
+        "acidez": "Baixa a média"
+    },
+    {
+        "nome": "Gleissolos",
+        "tipo": "Argila",
+        "profundidade": "Superficial a muito profunda",
+        "acidez": "Alta"
+    },
+    {
+        "nome": "Nitosolos",
+        "tipo": "Argila",
+        "profundidade": "Superficial a profunda",
+        "acidez": "Média a alta"
+    },
+    {
+        "nome": "Luvissolos",
+        "tipo": "Argila",
+        "profundidade": "Profunda",
+        "acidez": "Alta"
+    },
+    {
+        "nome": "Arenossolos",
+        "tipo": "Areia",
+        "profundidade": "Superficial a profunda",
+        "acidez": "Baixa"
+    },
+    {
+        "nome": "Chernossolos",
+        "tipo": "Argila",
+        "profundidade": "Superficial a muito profunda",
+        "acidez": "Alta"
+    },
+    {
+        "nome": "Plintossolos",
+        "tipo": "Varia",
+        "profundidade": "Média a muito profunda",
+        "acidez": "Baixa"
+    },
+    {
+        "nome": "Espodossolos",
+        "tipo": "Varia",
+        "profundidade": "Média a profunda",
+        "acidez": "Muito baixa"
+    },
+    {
+        "nome": "Vertissolos",
+        "tipo": "Argila",
+        "profundidade": "Superficial a profunda",
+        "acidez": "Média a alta"
+    },
+    {
+        "nome": "Planossolos",
+        "tipo": "Varia",
+        "profundidade": "Superficial a muito profunda",
+        "acidez": "Média a alta"
+    }
+]
