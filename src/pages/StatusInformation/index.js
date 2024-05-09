@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {SafeAreaView, View, Text, ScrollView, Switch, Image, TouchableOpacity, Alert} from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 import { useSQLiteContext } from 'expo-sqlite/next'
 import { useNavigation } from '@react-navigation/native'
 import MessageModal from '../../components/MessageModal';
 
-import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_status'
 
 import SensorDiv from '../../components/SensorDiv'
@@ -34,18 +33,13 @@ export default function StatusInformation() {
         setData(message)
     };
 
-    if(changeStatus==true){
-        getDashboardData()
-        setChangeStatus(false)
-    }
-
     function catchErr(err){
         setError(err)
     }
 
-    function autoIrriga(set){
-        setChangeAutoIrriga(set)
-        console.log(changeAutoIrriga)
+    if(changeStatus == true){
+        getDashboardData()
+        setChangeStatus(false)
     }
     
     useEffect(() => {
@@ -71,7 +65,9 @@ export default function StatusInformation() {
                             case 4: 
                                 return(<SensorDiv typeIcon='thermometer' key={element.id} type={element.type} title={element.name} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic} catchErr = {() => catchErr}/>)
                         }
-                    }): <Text style={[styles.error_text]}>Faça a conexão MQTT para iniciar.</Text>}
+                    }):<Text style={[styles.error_text]}>Faça a conexão MQTT para iniciar.</Text>
+                    }
+                    {items.length < 1? <Text style={[styles.error_text]}>Adicione itens para iniciar.</Text>: false}
                 </View>
             </ScrollView>
             {changeAutoIrriga==true?<MessageModal setChange = {setChangeAutoIrriga} confirmation = {setConfirmation}/>:false}

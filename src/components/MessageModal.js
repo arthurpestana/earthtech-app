@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     Image
   } from 'react-native';
-import { Feather } from '@expo/vector-icons'
 
 export default function MessageModal(props) {
     const positiveConfirmation = () => {

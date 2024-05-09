@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet, Switch, Alert} from 'react-native'
+import { SafeAreaView, Text, View, StyleSheet, Switch} from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Feather } from "@expo/vector-icons"
 import { Canvas, Rect } from "@shopify/react-native-skia"
 import { useMQTT } from './Context'
-import MessageModal from './MessageModal'
 
 export default function (props) {
     const [isEnabled, setIsEnabled] = useState(false)

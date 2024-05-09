@@ -3,9 +3,7 @@ import { SafeAreaView, View, Text, TouchableOpacity, ScrollView} from 'react-nat
 import styles from '../../styles/style_catalog'
 import CatalogDiv from '../../components/CatalogDiv'
 import InputText from '../../components/InputText'
-import { Feather } from '@expo/vector-icons'
 import solos from '../../../assets/solosList'
-import * as Animatable from 'react-native-animatable'
 import axios from 'axios'
 
 
@@ -55,11 +53,11 @@ export default function Catalogo() {
                         {culturas!=null?culturas.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv cultivo nome={element.cultura} tipo={element.microrregiao} clima={element.solo} index={key}/>)
+                                    <CatalogDiv cultivo nome={element.cultura} tipo={element.microrregiao} clima={element.solo} index={key}/>
                                 }
                             }
                             else {
-                                return(<CatalogDiv cultivo nome={element.cultura} tipo={element.microrregiao} clima={element.solo} index={key}/>)
+                                <CatalogDiv cultivo nome={element.cultura} tipo={element.microrregiao} clima={element.solo} index={key}/>
                             }
                         }):false}
                     </ScrollView>:
@@ -67,11 +65,11 @@ export default function Catalogo() {
                         {solos.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.classe.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>)
+                                    <CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>
                                 }
                             }
                             else {
-                                return(<CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>)
+                                <CatalogDiv nome={element.classe} tipo={element.textura} clima={element.profundidade} index={key}/>
                             }
                         })}
                     </ScrollView>
