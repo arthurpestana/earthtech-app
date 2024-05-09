@@ -4,14 +4,17 @@ import { useNavigation } from '@react-navigation/native'
 
 import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
+import { useMQTT } from './Context'
 
 export default function HeaderMenu() {
     const Navigation = useNavigation()
+    const { isConnected } = useMQTT()
+
     return (
         <View style={styles.container__header}>
             <View style={styles.header__menu}>
                 <View style={styles.menu__dados}>
-                    <View style={styles.menu__config}>
+                    {isConnected==true?<View style={styles.menu__config}>
                         <TouchableOpacity onPress={() => Navigation.navigate('Configuration')}>
                             <Feather name="settings" size={20} color={"hsl(228, 8%, 98%)"} style={{
                                 padding: 15,
@@ -19,7 +22,7 @@ export default function HeaderMenu() {
                                 borderRadius: 20,
                             }}/>
                         </TouchableOpacity>
-                    </View>
+                    </View>:false}
                     <View style={styles.menu__profile}>
                         <TouchableOpacity onPress={() => Navigation.navigate('Profile')}>
                             <Feather name="user" size={20} color={"hsl(228, 8%, 98%)"} style={{

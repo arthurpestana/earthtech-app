@@ -31,7 +31,7 @@ export default function MessageModal(props) {
                     </View>
                     <View style={styles.modal__lower}>
                         <Text style={styles.modal__title}>Tem certeza?</Text>
-                        <Text style={styles.modal__message}>Desligar a irrigação automática pode acarretar em problemas na sua plantação, deseja continuar?</Text>
+                        <Text style={styles.modal__message}>{props.message}</Text>
                         <View style={{flexDirection: 'row'}}>
                             <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
                                 <Text style={styles.modal__text}>Sim</Text>

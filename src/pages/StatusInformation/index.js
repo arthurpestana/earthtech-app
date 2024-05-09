@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 import { useSQLiteContext } from 'expo-sqlite/next'
@@ -52,7 +52,7 @@ export default function StatusInformation() {
             <HeaderMenu/>
             <ScrollView style={styles.switch__container}>
                 <View style={styles.switch__items}>
-                    {error==null?items.map((element) => {
+                    {error==null && isConnected==true?items.map((element) => {
                         switch (element.type) {
                             case 0:
                                 return(<SensorDiv key={element.id} title={element.name} type={element.type} data={data} topic = {element.topic} catchErr = {() => catchErr}/>)
@@ -65,13 +65,19 @@ export default function StatusInformation() {
                             case 4: 
                                 return(<SensorDiv typeIcon='thermometer' key={element.id} type={element.type} title={element.name} data={data}  subscribeInfo={'Temperatura do Ambiente'} topic = {element.topic} catchErr = {() => catchErr}/>)
                         }
-                    }):<Text style={[styles.error_text]}>Faça a conexão MQTT para iniciar.</Text>
+                    }):
+                    <View>
+                        <Text style={[styles.error_text]}>Faça a conexão MQTT para iniciar.</Text>
+                        <TouchableOpacity style={styles.connect__button} onPress={() => Navigation.navigate('Conexão')}>
+                            <Text style={styles.button_text}>Conexão</Text>                           
+                        </TouchableOpacity>
+                    </View>
                     }
-                    {items.length < 1? <Text style={[styles.error_text]}>Adicione itens para iniciar.</Text>: false}
+                    {items.length < 1 && isConnected == true? <Text style={[styles.error_text]}>Adicione itens para iniciar.</Text>: false}
                 </View>
             </ScrollView>
-            {changeAutoIrriga==true?<MessageModal setChange = {setChangeAutoIrriga} confirmation = {setConfirmation}/>:false}
-            {items.length<5?<FabButton style={{bottom: 130, left: "80%"}}/>:false}
+            {changeAutoIrriga==true?<MessageModal setChange = {setChangeAutoIrriga} confirmation = {setConfirmation} message = "Desligar a irrigação automática pode acarretar em problemas na sua plantação, deseja continuar?"/>:false}
+            {items.length<5 && isConnected == true?<FabButton style={{bottom: 130, left: "80%"}}/>:false}
         </View>
     )
 }
