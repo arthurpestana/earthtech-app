@@ -19,7 +19,7 @@ export default function CatalogItem() {
     const listItems = [
         <InfoDados title={'Detalhes'} textClima={dados.clima} textCrescimento={dados.tempoDeCrescimento} detail/>,
         <InfoDados title={"Descrição"} iconName={'alert-octagon'}  desc text={dados.descricao}/>,
-        <InfoDados title={"Galeria de Fotos"} images imagesList={dados.imagens}/>,
+        <InfoDados title={"Galeria de Fotos"} iconName={'camera'} images imagesList={dados.imagens}/>,
         <InfoDados title={"Necessidade de Água"} iconName={'droplet'} quantAgua={dados.necessidadeDeAgua} agua/>,
         <InfoDados title={"Solo"} soloTipo={dados.solo.tipo} soloDrenagem={dados.solo.drenagem} soloPH={dados.solo.phRecomendado} typeSolo/>,
         <InfoDados title={"Painel de risco"} data culturas={typeCatalog==0?culturas[indexCatalog].nome:false}/>,
