@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, SafeAreaView, Image, ScrollView} from 'react-native'
 
-import { useSQLiteContext } from 'expo-sqlite/next';
 import { useMQTT } from '../../components/Context'
-import axios from 'axios'
 
 import { Feather, MaterialIcons } from '@expo/vector-icons'
 import * as Animatable from 'react-native-animatable'
@@ -16,33 +14,15 @@ import solos from '../../../assets/solosList.json'
 
 export default function CatalogItem() {
     const { indexCatalog, setIndexCatalog, typeCatalog, setTypeCatalog } = useMQTT()
-    const [dados, setDados] = useState('')
-    
-    function tryType() {
+    const [dados, setDados] = useState(typeCatalog==0?culturas[indexCatalog]:solos[indexCatalog])
+
+    useEffect(() => {
         if (typeCatalog==0) {
             setDados(culturas[indexCatalog])
         }
         else {
             setDados(solos[indexCatalog])
         }
-    }
-
-
-    useEffect(() => {
-        tryType()
-        /*(async () =>{
-            try {
-                const options = {
-                    method: 'GET',
-                    url: 'https://earthtechapi.up.railway.app/api/zoneamento',
-                };
-                let response = await axios.request(options)
-                setCulturas(response.data)
-                console.log(response.data[indexCatalog])
-            }catch(err){
-                console.log("Erro: ", err)
-            }
-        })()*/
     }, [])
 
     return (
@@ -60,11 +40,11 @@ export default function CatalogItem() {
             </View>
             <ScrollView style={styles.item__main}>
                 <View style={styles.main__info}>
-                    <InfoDados title={'Detalhes'} detail text={[dados.clima, dados.tempoDeCrescimento, dados.necessidadeDeAgua]}/>
-                    <InfoDados title={"Descrição"} desc text={dados.descricao}/>
-                    <InfoDados title={"Galeria de Fotos"} images loadImage={''}/>
-                    <InfoDados title={"Tipo de Solo"} typeSolo/>
-                    <InfoDados title={"Necessidade de Água"} agua quantAgua={dados.necessidadeDeAgua}/>
+                    <InfoDados title={'Detalhes'} textClima={dados.clima} textCrescimento={dados.tempoDeCrescimento} detail/>
+                    <InfoDados title={"Descrição"} iconName={'alert-octagon'}  desc text={dados.descricao}/>
+                    <InfoDados title={"Galeria de Fotos"} images imagesList={dados.imagens}/>
+                    <InfoDados title={"Necessidade de Água"} iconName={'droplet'} quantAgua={dados.necessidadeDeAgua} agua/>
+                    <InfoDados title={"Solo"} soloTipo={dados.solo.tipo} soloDrenagem={dados.solo.drenagem} soloPH={dados.solo.phRecomendado} typeSolo/>
                 </View>
             </ScrollView>
         </SafeAreaView>

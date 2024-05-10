@@ -61,6 +61,7 @@ export default StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         gap: 10,
+        paddingTop: '1%',
         paddingHorizontal: '4%',
     },
 })

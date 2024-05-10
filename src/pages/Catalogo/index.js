@@ -60,11 +60,11 @@ export default function Catalogo() {
                         {culturas!=undefined?culturas.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} index={key}/>)
+                                    return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} key={key} index={key}/>)
                                 }
                             }
                             else {
-                                return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} index={key}/>)
+                                return(<CatalogDiv cultivo iconName={element.icon} nome={element.nome} tipo={element.tipo} clima={element.clima} key={key} index={key}/>)
                             }
                         }):undefined}
                     </ScrollView>:
@@ -72,11 +72,11 @@ export default function Catalogo() {
                         {solos.map((element, key) => {
                             if (search!='') {
                                 if (search.toLocaleLowerCase()==element.nome.slice(0, search.length).toLocaleLowerCase()) {
-                                    return(<CatalogDiv nome={element.nome} tipo={element.tipo} clima={element.profundidade} index={key}/>)
+                                    return(<CatalogDiv nome={element.nome} tipo={element.tipo} clima={element.profundidade} key={key} index={key}/>)
                                 }
                             }
                             else {
-                                return(<CatalogDiv nome={element.nome} tipo={element.tipo} clima={element.profundidade} index={key}/>)
+                                return(<CatalogDiv nome={element.nome} tipo={element.tipo} clima={element.profundidade} key={key} index={key}/>)
                             }
                         })}
                     </ScrollView>
