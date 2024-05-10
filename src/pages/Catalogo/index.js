@@ -12,28 +12,6 @@ import axios from 'axios'
 export default function Catalogo() {
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState(0)
-
-    /*useEffect(() => {
-        (async () =>{
-            try {
-                const options = {
-                    method: 'GET',
-                    url: 'https://earthtechapi.up.railway.app/api/zoneamento',
-                };
-                let response = await axios.request(options)
-                let culturasList = []
-                culturasList.push(response.data[0])
-                culturasList.push(response.data[2504])
-                culturasList.push(response.data[3755])
-                culturasList.push(response.data[4589])
-                culturasList.push(response.data[4643])
-                culturasList.push(response.data[5921])
-                setCulturas(culturasList)
-            }catch(err){
-                console.log("Erro: ", err)
-            }
-        })()
-    }, [])*/
     
     return (
         <SafeAreaView style={styles.catalog__container}>

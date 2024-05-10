@@ -19,7 +19,7 @@ export default function(props) {
         }
         const fontSize = font.measureText(props.text.split("-")[0])
         return (
-            <Text text={props.text.split("-")[0]} color={'#FFF'} x={props.x - fontSize.width/2} y={props.y+fontSize.height*2} font={font}/>
+            <Text text={props.text.split("-")[0]} color={'#FFF'} x={props.x} y={props.y+fontSize.height*2} font={font}/>
         );
     }
     else{

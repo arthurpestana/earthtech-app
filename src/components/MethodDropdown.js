@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {SafeAreaView, View, TouchableOpacity, Text, StyleSheet, FlatList,} from 'react-native'
 
 import { Feather } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
 export default function MethodDropdown(props) {
-    const methods_list = ['Risco', 'Umidade do Ambiente', 'Irrigação Automática', 'Ligar Irrigador', 'Temperatura do Ambiente']
     const [clicked, setIsClicked] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(methods_list[0])
+    const [selectedOption, setSelectedOption] = useState(props.methods_list[0])
+
+    useEffect(() => {
+        setSelectedOption(props.methods_list[0])
+    }, [props.methods_list])
 
     function isClicked(){
         clicked==true?setIsClicked(false):setIsClicked(true)
@@ -30,7 +33,7 @@ export default function MethodDropdown(props) {
             <Animatable.View style={styles.dropdown__area} animation={'fadeInUp'}>
                 <FlatList
                     style={styles.dropdown__flatlist}
-                    data={methods_list}
+                    data={props.methods_list}
                     renderItem={({item, index}) => {
                         return (
                             <TouchableOpacity onPress={() => {setOption(item, index)}} style={styles.dropdownItem}>

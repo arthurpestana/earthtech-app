@@ -1,13 +1,20 @@
-import React, {useState, useEffect} from "react";
-import {Text, View, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList} from 'react-native'
-import { Feather, MaterialIcons } from '@expo/vector-icons'
-import { style } from "d3";
-import * as Animatable from 'react-native-animatable'
 
+import * as Animatable from 'react-native-animatable'
+import React, {useEffect, useState} from "react";
+import {Text, View, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList, Dimensions} from 'react-native'
+import { Feather, MaterialIcons } from '@expo/vector-icons'
+import axios from 'axios'
+import MethodDropdown from "./MethodDropdown";
+import CatalogTable from "./CatalogTable";
 
 export default (props) => {    
     const [viewMore, setViewMore] = useState(true)
     let phNiveis = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    const [activeCity, setActiveCity] = useState(null)
+    const [citiesData, setCitiesData] = useState([])
+    const [apiData, setApiData] = useState([])
+
+    const dataImages = ['../images/soja.jpg', '../images/soja.jpg']
 
     const viewMoreFunction = () => {
         if (viewMore==false) {
@@ -17,6 +24,36 @@ export default (props) => {
             setViewMore(false)
         }
     }    
+
+    useEffect(() => {
+        if(props.data){    
+            (async () =>{
+                try {
+                    const options = {
+                        method: 'GET',
+                        url: `https://earthtechapi.up.railway.app/api/feijao`,
+                    };
+                    let response = await axios.request(options)
+                    let tempCity = response.data[0].municipio
+                    setActiveCity(tempCity)
+                    console.log(apiData)
+                    let dataTemp = []
+                    console.log(response.data)
+                    for(let i = 0; i < response.data.length; i++){
+                        if(!dataTemp.includes(response.data[i].municipio)){
+                            dataTemp.push(response.data[i].municipio)
+                        }
+                        if(response.data[i].municipio == tempCity){
+                            apiData.push(response.data[i])
+                        }
+                    }
+                    setCitiesData(dataTemp)
+                }catch(err){
+                    console.log("Erro: ", err)
+                }
+            })()
+        }
+    }, [])
 
     return (
         <View style={[styles.info, styles.shadowProp]}>
@@ -96,6 +133,11 @@ export default (props) => {
                     </View>
                 </View>
             </View>:null}
+            {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__dadosAgua]}>
+                <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC</Text>
+                <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData}/>
+                <CatalogTable data = {apiData}/>
+            </View>:null}
         </View>
     )
 }
@@ -107,7 +149,7 @@ const styles = StyleSheet.create({
     info: {
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
+        width: Dimensions.get('window').width*0.9,
         backgroundColor: 'hsl(228, 6%, 4%)',
         gap: 15,
         paddingVertical: 20,

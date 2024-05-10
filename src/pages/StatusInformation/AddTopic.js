@@ -13,7 +13,7 @@ import { useMQTT } from '../../components/Context'
 
 export default function AddTopic(props) {
     const db = useSQLiteContext()
-
+    const methods_list = ['Risco', 'Umidade do Ambiente', 'Irrigação Automática', 'Ligar Irrigador', 'Temperatura do Ambiente']
     const [title, setTitle] = useState(props.route.params && props.route.params.name?props.route.params.name:'')
     const [topic, setTopic] = useState(props.route.params && props.route.params.topic?props.route.params.topic:'')
     const [type_method, setTypeMethod] = useState(props.route.params && props.route.params.type?props.route.params.type:0)
@@ -87,7 +87,7 @@ export default function AddTopic(props) {
                 <View style={styles.main__panel}>
                     <Text style={styles.panel__subtitle}>Método</Text>
                     <Text style={[styles.panel__text, {marginBottom: 20}]}>Escolha a função que você deseja adicionar.</Text> 
-                    <MethodDropdown typeMethod={setTypeMethod}/>
+                    <MethodDropdown typeMethod={setTypeMethod} methods_list = {methods_list}/>
                 </View>
                 <View style={styles.main__panel}>
                     <Text style={styles.panel__subtitle}>Topic</Text>

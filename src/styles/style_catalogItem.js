@@ -4,9 +4,7 @@ export default StyleSheet.create({
     container__item: {
         flex: 1,
         width: '100%',
-        height: '100%',
-        backgroundColor: 'hsl(228, 6%, 8%)',
-        
+        backgroundColor: 'hsl(228, 6%, 8%)',      
         paddingVertical: '8%'
     },
 
@@ -50,7 +48,6 @@ export default StyleSheet.create({
     },
 
     item__main: {
-        width: '100%',
         height: '100%',
         marginTop: '10%',
         marginBottom: '10%',

@@ -55,11 +55,11 @@ export default function(props) {
             {clicked && 
             <Animatable.View style={styles.dropdown__area} animation={'fadeInUp'}>
                 <FlatList
-                    data={cityNames}
+                    data={props.citiesList?props.citiesList:cityNames}
                     contentContainerStyle= {{alignItems: 'center'}}
                     renderItem={({item, index}) => {
                         return (
-                        <TouchableOpacity onPress={() => {setCity(data[index], item)}} style={styles.dropdownItem}>
+                        <TouchableOpacity onPress={props.citiesList?props.setCity(item):() => {setCity(data[index], item)}} style={styles.dropdownItem}>
                             <Text style={[styles.textDropdown, {textAlign: 'center'}]}>{item}</Text>
                         </TouchableOpacity>
                         )
