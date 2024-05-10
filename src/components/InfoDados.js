@@ -28,29 +28,31 @@ export default (props) => {
     useEffect(() => {
         if(props.data){    
             (async () =>{
-                try {
-                    const options = {
-                        method: 'GET',
-                        url: `https://earthtechapi.up.railway.app/api/feijao`,
-                    };
-                    let response = await axios.request(options)
-                    let tempCity = response.data[0].municipio
-                    setActiveCity(tempCity)
-                    console.log(apiData)
-                    let dataTemp = []
-                    console.log(response.data)
-                    for(let i = 0; i < response.data.length; i++){
-                        if(!dataTemp.includes(response.data[i].municipio)){
-                            dataTemp.push(response.data[i].municipio)
+                if(props.culturas!=false){
+                    try {
+                        const options = {
+                            method: 'GET',
+                            url: `https://earthtechapi.up.railway.app/api/${props.culturas.toLocaleLowerCase()}`,
+                        };
+                        let response = await axios.request(options)
+                        let tempCity = response.data[0].municipio
+                        setActiveCity(tempCity)
+                        console.log(apiData)
+                        let dataTemp = []
+                        console.log(response.data)
+                        for(let i = 0; i < response.data.length; i++){
+                            if(!dataTemp.includes(response.data[i].municipio)){
+                                dataTemp.push(response.data[i].municipio)
+                            }
+                            if(response.data[i].municipio == tempCity){
+                                apiData.push(response.data[i])
+                            }
                         }
-                        if(response.data[i].municipio == tempCity){
-                            apiData.push(response.data[i])
-                        }
+                        setCitiesData(dataTemp)
+                    }catch(err){
+                        console.log("Erro: ", err)
                     }
-                    setCitiesData(dataTemp)
-                }catch(err){
-                    console.log("Erro: ", err)
-                }
+                }   
             })()
         }
     }, [])

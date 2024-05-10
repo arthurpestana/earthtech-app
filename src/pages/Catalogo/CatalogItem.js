@@ -22,7 +22,7 @@ export default function CatalogItem() {
         <InfoDados title={"Galeria de Fotos"} images imagesList={dados.imagens}/>,
         <InfoDados title={"Necessidade de Água"} iconName={'droplet'} quantAgua={dados.necessidadeDeAgua} agua/>,
         <InfoDados title={"Solo"} soloTipo={dados.solo.tipo} soloDrenagem={dados.solo.drenagem} soloPH={dados.solo.phRecomendado} typeSolo/>,
-        <InfoDados title={"Painel de risco"} data/>,
+        <InfoDados title={"Painel de risco"} data culturas={typeCatalog==0?culturas[indexCatalog].nome:false}/>,
     ]
 
     useEffect(() => {    
