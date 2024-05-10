@@ -84,14 +84,21 @@ export default (props) => {
                 <Text style={styles.info__text}>{props.text}</Text>
             </View>:null}
             {(viewMore==true && props.images)?<View style={styles.info__dados}>
-                {props.imagesList.lenght!==0?<FlatList 
+                {props.imagesList.lenght!==0?<FlatList
+                    style={{
+                        display: 'flex',
+                        width: '100%',
+                        flexDirection: 'row',
+                        gap: 15
+                    }}
                     data={props.imagesList}
                     horizontal={true}
-                    renderItem={({ item, key }) => {
-                        console.log(key)
+                    keyExtractor={(item, index) => index.toString()} 
+                    renderItem={({ item, index }) => {
+                        console.log(item)
                         return(
-                            <View style={styles.info__galeria} key={key}>
-                                <Image resizeMode={'cover'} source={require("../images/soja/soja1.jpg")} style={{width: '100%', height: 180, borderRadius: 15}}/>
+                            <View style={styles.info__galeria} key={index}>
+                                <Image resizeMode={'cover'} fadeDuration={300} src={item} style={{width: '100%', height: 200, borderRadius: 15}}/>
                             </View>
                         )
                     }}
@@ -137,7 +144,7 @@ export default (props) => {
             </View>:null}
             {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__dadosAgua]}>
                 <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC</Text>
-                <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData}/>
+                <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} dropdownRisk/>
                 <CatalogTable data = {apiData}/>
             </View>:null}
         </View>
@@ -151,12 +158,13 @@ const styles = StyleSheet.create({
     info: {
         display: 'flex',
         flexDirection: 'column',
-        width: Dimensions.get('window').width*0.9,
+        width: Dimensions.get('window').width*0.92,
         backgroundColor: 'hsl(228, 6%, 4%)',
         gap: 15,
         paddingVertical: 20,
         paddingHorizontal: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        
     },
 
     shadowProp: {
@@ -200,10 +208,10 @@ const styles = StyleSheet.create({
     info__galeria: {
         display: 'flex',
         flexDirection: 'row',
-        width: '100%',
+        width: 300,
         flexWrap: 'nowrap',
-        gap: 20,
         marginVertical: 10,
+        marginRight: 10
     },
 
     info__dadosAgua: {
