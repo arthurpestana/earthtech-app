@@ -13,9 +13,9 @@
         "tempoDeCrescimento": "90 a 120 dias",
         "descricao": "Um dos principais grãos produzidos globalmente, amplamente utilizado na alimentação humana e animal, assim como na indústria.",
         "imagens": [
-            "../images/soja/soja1.jpg",
-            "../images/soja/soja2.jpg",
-            "../images/soja/soja3.jpg"
+            "https://terramagna.com.br/wp-content/uploads/2022/11/Plantio-de-soja-amadurecimento-verde.jpg",
+            "https://eos.com/wp-content/uploads/2023/05/green-soybeans.jpg.webp",
+            "https://www.infoescola.com/wp-content/uploads/2020/08/soja-1479485951.jpg"
         ]
     },
     {
@@ -32,9 +32,9 @@
         "tempoDeCrescimento": "80 a 100 dias",
         "descricao": "Uma das culturas mais importantes em todo o mundo, amplamente utilizada na alimentação humana, animal e na indústria.",
         "imagens": [
-            "../images/soja/soja1.jpg",
-            "../images/soja/soja2.jpg",
-            "../images/soja/soja3.jpg"
+            "https://pixabay.com/pt/photos/milho-comida-campo-vegetal-1690387/",
+            "https://cdn.pixabay.com/photo/2014/09/09/19/07/corn-field-440338_1280.jpg",
+            "https://cdn.pixabay.com/photo/2018/09/26/21/24/corn-3705687_640.jpg"
         ]
     },
     {
@@ -51,9 +51,9 @@
         "tempoDeCrescimento": "120 a 150 dias",
         "descricao": "Um dos principais alimentos básicos em muitas partes do mundo, especialmente na Ásia, cultivado em áreas inundadas ou em solos bem irrigados.",
         "imagens": [
-            "../images/soja/soja1.jpg",
-            "../images/soja/soja2.jpg",
-            "../images/soja/soja3.jpg"
+            "https://cdn.pixabay.com/photo/2015/01/03/16/53/rice-and-corn-587593_640.jpg",
+            "https://pixabay.com/pt/photos/milho-comida-campo-vegetal-1690387/",
+            "https://cdn.pixabay.com/photo/2019/02/15/03/28/rice-3997767_640.jpg"
         ]
     },
     {
@@ -70,9 +70,9 @@
         "tempoDeCrescimento": "150 a 180 dias",
         "descricao": "Uma cultura amplamente cultivada para a produção de fibras têxteis, óleo vegetal e outros subprodutos.",
         "imagens": [
-            "../images/soja/soja1.jpg",
-            "../images/soja/soja2.jpg",
-            "../images/soja/soja3.jpg"
+            "https://cdn.pixabay.com/photo/2019/11/24/17/08/cotton-4649804_640.jpg",
+            "https://cdn.pixabay.com/photo/2015/05/03/10/55/cotton-750982_640.jpg",
+            "https://cdn.pixabay.com/photo/2017/10/01/22/57/cotton-2807360_640.jpg"
         ]
     },
     {
@@ -89,9 +89,9 @@
         "tempoDeCrescimento": "3 a 4 anos",
         "descricao": "Uma das variedades de café mais apreciadas, conhecida por seu sabor suave e aromático, cultivada em áreas montanhosas.",
         "imagens": [
-            "../images/soja/soja1.jpg",
-            "../images/soja/soja2.jpg",
-            "../images/soja/soja3.jpg"
+            "https://cdn.awsli.com.br/600x450/18/18885/produto/59953405/896e7bcf46.jpg",
+            "https://www.picturethisai.com/wiki-image/1080/348107034927202304.jpeg",
+            "https://hubdocafe.cooxupe.com.br/wp-content/uploads/2022/02/cafe-arabica.jpg"
         ]
     },
     {
@@ -108,9 +108,9 @@
         "tempoDeCrescimento": "60 a 90 dias",
         "descricao": "Um dos alimentos básicos mais consumidos em todo o mundo, rico em proteínas e amplamente cultivado para consumo humano e animal.",
         "imagens": [
-            "../images/soja/soja1.jpg",
-            "../images/soja/soja2.jpg",
-            "../images/soja/soja3.jpg"
+            "https://blog.aegro.com.br/wp-content/uploads/2020/04/preparo-do-solo-para-plantio-de-feijao.jpg",
+            "https://blog.aegro.com.br/wp-content/uploads/2020/04/plantio-de-feijao.jpg",
+            "https://cdn.pixabay.com/photo/2018/09/25/20/09/bush-beans-3702999_640.jpg"
         ]
     }
 ]
