@@ -13,6 +13,7 @@ export default (props) => {
     const [activeCity, setActiveCity] = useState(null)
     const [citiesData, setCitiesData] = useState([])
     const [apiData, setApiData] = useState([])
+    const [dados, setDados] = useState(null)
 
     const dataImages = ['../images/soja.jpg', '../images/soja.jpg']
 
@@ -35,17 +36,11 @@ export default (props) => {
                             url: `https://earthtechapi.up.railway.app/api/${props.culturas.toLocaleLowerCase()}`,
                         };
                         let response = await axios.request(options)
-                        let tempCity = response.data[0].municipio
-                        setActiveCity(tempCity)
-                        console.log(apiData)
-                        let dataTemp = []
-                        console.log(response.data)
+                        setDados(response)
+                        let dataTemp = []                      
                         for(let i = 0; i < response.data.length; i++){
                             if(!dataTemp.includes(response.data[i].municipio)){
                                 dataTemp.push(response.data[i].municipio)
-                            }
-                            if(response.data[i].municipio == tempCity){
-                                apiData.push(response.data[i])
                             }
                         }
                         setCitiesData(dataTemp)
@@ -56,6 +51,16 @@ export default (props) => {
             })()
         }
     }, [])
+
+    useEffect(() => {
+        if(dados!=null){
+            for(let i = 0; i < dados.data.length; i++){
+                if(dados.data[i].municipio == activeCity){
+                    apiData.push(dados.data[i])
+                }
+            }
+        }
+    }, [activeCity, dados])
 
     return (
         <View style={[styles.info, styles.shadowProp]}>
@@ -144,7 +149,7 @@ export default (props) => {
             </View>:null}
             {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__dadosAgua]}>
                 <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC</Text>
-                <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} dropdownRisk/>
+                <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData} resetData = {setApiData} table dropdownRisk/>
                 <CatalogTable data = {apiData}/>
             </View>:null}
         </View>

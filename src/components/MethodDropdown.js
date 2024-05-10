@@ -10,6 +10,7 @@ export default function MethodDropdown(props) {
 
     useEffect(() => {
         setSelectedOption(props.methods_list[0])
+        props.typeMethod(props.methods_list[0])
     }, [props.methods_list])
 
     function isClicked(){
@@ -20,7 +21,12 @@ export default function MethodDropdown(props) {
         setSelectedOption(option)
         setIsClicked(false)
         console.log(index)
-        props.typeMethod(index)
+        if(props.table){
+            props.resetData([])
+            props.typeMethod(option)
+        }else{
+            props.typeMethod(index)
+        }       
     }
 
     return (
