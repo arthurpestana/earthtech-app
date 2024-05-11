@@ -23,10 +23,14 @@ export default function StatusInformation() {
     const [data, setData] = useState(null)
 
     async function getDashboardData(){
-        const result = await db.getAllAsync(`SELECT * FROM dashboard`)
-        console.log(result)
-        setItems(result)
-        client.onMessageArrived = handleIncomingMessage
+        try{
+            let result = await db.getAllAsync(`SELECT * FROM dashboard`)
+            console.log(result)
+            setItems(result)
+            client.onMessageArrived = handleIncomingMessage
+        }catch(err){
+            console.log(err)
+        }
     }
 
     const handleIncomingMessage = (message) => {
@@ -37,10 +41,12 @@ export default function StatusInformation() {
         setError(err)
     }
 
-    if(changeStatus == true){
-        getDashboardData()
-        setChangeStatus(false)
-    }
+    useEffect(() => {
+        if (changeStatus) {
+          getDashboardData()
+          setChangeStatus(false)
+        }
+      }, [changeStatus])
     
     useEffect(() => {
         getDashboardData()

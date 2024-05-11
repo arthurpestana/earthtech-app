@@ -86,5 +86,10 @@ export default StyleSheet.create ({
         fontSize: 16,
         fontFamily: 'Montserrat_700Bold',
     },
+    toastText: {
+        color: 'hsl(228, 8%, 98%)',
+        fontSize: 16,
+        fontFamily: 'Montserrat_700Bold',
+    }
 
 })

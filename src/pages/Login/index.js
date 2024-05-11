@@ -6,6 +6,7 @@ import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_login-cadastro'
 import LoginCadastroInput from '../../components/InputText';
 import { useNavigation } from '@react-navigation/native'
+import Toast from 'react-native-toast-message';
 
 
 export default function Connect() {
@@ -32,12 +33,20 @@ export default function Connect() {
             }
         }
         else {
-            console.log('E-mail ou senha incorretos.')
+            Toast.show({
+                position: 'top',
+                type: 'error',
+                text1: 'Erro',
+                text2: 'E-mail ou senha incorretos',
+                visibilityTime: 5000,
+                autoHide: true
+            });
         }
     }
 
     return (
         <SafeAreaView style={styles.container_login}>
+            <Toast text1Style = {{color: 'hsl(228, 8%, 98%)', fontSize: 16, fontFamily: 'Montserrat_700Bold',}} text2Style = {{fontSize: 13, color: 'hsl(228, 8%, 70%)',fontFamily: 'Montserrat_400Regular'}}/>
             <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.header__logo}>  
                 <Animatable.Image 
                     animation={"flipInY"}

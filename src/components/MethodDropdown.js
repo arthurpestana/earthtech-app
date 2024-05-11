@@ -10,7 +10,9 @@ export default function MethodDropdown(props) {
 
     useEffect(() => {
         setSelectedOption(props.methods_list[0])
-        props.typeMethod(props.methods_list[0])
+        if(props.table){
+            props.typeMethod(props.methods_list[0])
+        }
     }, [props.methods_list])
 
     function isClicked(){

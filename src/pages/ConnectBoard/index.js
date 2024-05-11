@@ -9,6 +9,7 @@ import { useSQLiteContext } from 'expo-sqlite/next';
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
 import InputText from '../../components/InputText';
+import Toast from 'react-native-toast-message';
 
 export default function Connect() {
     const db = useSQLiteContext()
@@ -37,7 +38,14 @@ export default function Connect() {
 
     function onConnectionLost(){
         setConnected(false)
-        console.log("A conexão não foi realizada. Dados incorretos")
+        Toast.show({
+            position: 'top',
+            type: 'error',
+            text1: 'Erro',
+            text2: 'Dados incorretos',
+            visibilityTime: 5000,
+            autoHide: true
+        });
     }
     
     function connectBoard(){
@@ -56,6 +64,7 @@ export default function Connect() {
 
     return (
         <SafeAreaView style={styles.container__connect}>
+            <Toast text1Style = {{color: 'hsl(228, 8%, 98%)', fontSize: 16, fontFamily: 'Montserrat_700Bold',}} text2Style = {{fontSize: 13, color: 'hsl(228, 8%, 70%)',fontFamily: 'Montserrat_400Regular'}}/>
             <View style={styles.container__main} keyboardShouldPersistTaps="handled">
                 <View style={styles.main__info}>
                     <Text style={styles.info__title}>Realizar Conexão</Text>

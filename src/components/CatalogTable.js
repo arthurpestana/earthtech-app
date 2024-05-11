@@ -1,23 +1,37 @@
 import {
     ScrollView,
+    TouchableOpacity,
     View,
   } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text } from 'react-native';
+import { Feather } from '@expo/vector-icons'
+import MessageModal from './MessageModal';
 
 export default function(props) {
     const tableHead = [
         "Safra", "Solo", "UF","Cultura", "Grupo", "Município", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36
     ]
+
+    const [infoPressed, setInfoPressed] = useState(false)
+
     return (
         <View style={styles.container__table} >
+            {infoPressed==true?<MessageModal setChange={setInfoPressed} title={'Grupo'} message= "O grupo é..."/>:false}
             <ScrollView horizontal>
                 <View>
                     <View style={styles.table__header}>
                     {
                         tableHead.map((element, key) => {
                             return(
-                                <Text style = {[styles.header__text, {width: element=="Safra"?100:element=="Solo"?100:element=="UF"?60:element=="Cultura"?150:element=="Grupo"?100:element=="Município"?125:45}]} key={key}>{element}</Text>
+                                <View style={{flexDirection: 'row', width: element=="Safra"?100:element=="Solo"?100:element=="UF"?60:element=="Cultura"?125:element=="Grupo"?100:element=="Município"?125:45,  alignItems: 'center'}}>
+                                    <Text style = {[styles.header__text]} key={key}>{element}</Text>
+                                    {element=="Grupo"&&
+                                    <TouchableOpacity onPress={() => setInfoPressed(true)}>
+                                        <Feather name='info' color={'hsl(228, 8%, 98%)'} size={15} style={{top: 1.5}}/>
+                                    </TouchableOpacity>
+                                    }
+                                </View>
                             )
                         })
                     }
@@ -32,8 +46,11 @@ export default function(props) {
                                         <Text style = {[styles.table__text, {width: 100}]}>{item.safra}</Text>
                                         <Text style = {[styles.table__text, {width: 100}]}>{item.solo}</Text>
                                         <Text style = {[styles.table__text, {width: 60}]}>{item.uf}</Text>
-                                        <Text style = {[styles.table__text, {width: 150}]}>{item.cultura}</Text>
-                                        <Text style = {[styles.table__text, {width: 100}]}>{item.grupo}</Text>
+                                        <Text style = {[styles.table__text, {width: 125}]}>{item.cultura}</Text>
+                                        <View style={{flexDirection: 'row'}}>
+                                            <Text style = {[styles.table__text, {width: 100}]}>{item.grupo}</Text>
+                                            
+                                        </View>
                                         <Text style = {[styles.table__text, {width: 125}]}>{item.municipio}</Text>
                                         <Text style = {[styles.table__text, {width: 45}]}>{item.risk1}</Text>
                                         <Text style = {[styles.table__text, {width: 45}]}>{item.risk2}</Text>
@@ -97,7 +114,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat_700Bold',
         color: 'hsl(228, 8%, 98%)',
         fontSize: 16,
-        padding: 10,
+        padding: 8,
     },
     table__text: {
         fontFamily: 'Montserrat_400Regular',

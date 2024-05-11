@@ -29,7 +29,7 @@ export default function Configuration() {
         }
     }
 
-    async function deleteItem(id) {
+    function deleteItem(id) {
         setDeleteStatus(true) 
         setId(id)
     }
@@ -57,7 +57,7 @@ export default function Configuration() {
             <ReturnPage nav={'StatusInformation'}/>
             <View style = {{marginTop: '25%'}}>
                 {items.length > 0?items.map((element, key) => {
-                return(<Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
+                return(<Animatable.View key={key} animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
                     <View style={styles.item__div_img}>
                         <Feather name={element.type==0?'alert-triangle':element.type==1?'droplet':element.type==2?'power':element.type==3?'power':'thermometer'} size={35} color="hsl(228, 8%, 98%)"/>
                     </View>

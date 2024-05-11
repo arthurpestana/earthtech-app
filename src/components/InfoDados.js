@@ -26,6 +26,10 @@ export default (props) => {
         }
     }    
 
+    function normalizeWord(word){
+        return word.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    }
+
     useEffect(() => {
         if(props.data){    
             (async () =>{
@@ -33,7 +37,7 @@ export default (props) => {
                     try {
                         const options = {
                             method: 'GET',
-                            url: `https://earthtechapi.up.railway.app/api/${props.culturas.toLocaleLowerCase()}`,
+                            url: `https://earthtechapi.up.railway.app/api/${props.culturas=="Café Arábica"?"cafe":normalizeWord(props.culturas)}`,
                         };
                         let response = await axios.request(options)
                         setDados(response)
@@ -148,8 +152,10 @@ export default (props) => {
                 </View>
             </View>:null}
             {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__table]}>
-                <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC</Text>
-                <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} resetData = {setApiData} table dropdownRisk/>
+                <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC (Zoneamento Agrícola de Risco Climático).</Text>
+                <Text style={styles.info__text}>Nesse painel estão dispostas informações da safra 2023/2024 em todas as cidades do Tocantins que tem uma safra para a cultura correspondente a essa página</Text>
+                <Text style={styles.info__text}>Do número 1 ao 36 são os decêndios do ano, e abaixo de cada um tem os riscos climáticos envolvidos na condução das lavouras que podem ocasionar perdas na produção, apresentados em porcentagem.</Text>
+                <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData} resetData = {setApiData} table dropdownRisk/>
                 <CatalogTable data = {apiData}/>
             </View>:null}
         </View>

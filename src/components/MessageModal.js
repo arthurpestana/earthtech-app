@@ -10,7 +10,7 @@ import {
 
 export default function MessageModal(props) {
     const positiveConfirmation = () => {
-        props.confirmation(true)
+        props.confirmation?props.confirmation(true):false
         props.setChange(false)
     }
     const negativeConfirmation = () => {
@@ -30,15 +30,15 @@ export default function MessageModal(props) {
                         tintColor={'#496b2e'}/>
                     </View>
                     <View style={styles.modal__lower}>
-                        <Text style={styles.modal__title}>Tem certeza?</Text>
+                        <Text style={styles.modal__title}>{props.confirmation?'Tem certeza?':props.title}</Text>
                         <Text style={styles.modal__message}>{props.message}</Text>
                         <View style={{flexDirection: 'row'}}>
                             <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
-                                <Text style={styles.modal__text}>Sim</Text>
+                                <Text style={styles.modal__text}>{props.confirmation?"Sim":"Entendi"}</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.modal__button, {backgroundColor: '#8b0000'}]} onPress={negativeConfirmation}>
+                            {props.confirmation && <TouchableOpacity style={[styles.modal__button, {backgroundColor: '#8b0000'}]} onPress={negativeConfirmation}>
                                 <Text style={styles.modal__text}>Não</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity>}
                         </View>
                     </View>
                 </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat_700Bold',
     },
     modal__button: {
-        width: '30%',
+        width: 'auto',
         padding: 15,
         borderRadius: 10,
         marginHorizontal: '3%',

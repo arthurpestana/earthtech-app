@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Feather } from '@expo/vector-icons'
 
-import AdCalculator from '../pages/ADCalculator';
+import AdCalculator from '../pages/AdCalculator';
 
 import ConnectBoard from '../pages/ConnectBoard'
 
