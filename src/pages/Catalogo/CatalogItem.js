@@ -56,16 +56,17 @@ export default function CatalogItem() {
                     <Text style={styles.header__text}>Tipo de {typeCatalog==0?'Cultura':'Solo'}: {dados.tipo}</Text>
                 </View>
             </View>
+            <View style={styles.main__info}>
                 <FlatList
                     style={styles.item__main}
-                    contentContainerStyle={styles.main__info}
                     data={listItems}
                     renderItem={({item}) => {
                         return(
                             item
                         )
                     }}
-                />   
+                />
+            </View>
         </SafeAreaView>
     )
 }
