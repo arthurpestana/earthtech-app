@@ -42,6 +42,7 @@ export default function (props) {
                     secureTextEntry={props.password?true:false}
                     onPressIn={customOnFocus}
                     onBlur={customOnBlur}
+                    inputMode={props.numeric?'numeric':props.email?'email':'text'}
                 />
             </View>
         </Animatable.View>
