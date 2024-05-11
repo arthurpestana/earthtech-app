@@ -30,29 +30,24 @@ export default function MethodDropdown(props) {
     }
 
     return (
-        <Animatable.View delay={500} animation={'fadeInLeft'} style={{display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1000}}>
+        <Animatable.View delay={500} animation={'fadeInLeft'} style={{display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1000, width: '100%'}}>
             <TouchableOpacity style={styles.dropdown__container} onPress={isClicked}>
                 <Text style={styles.textDropdown}>{selectedOption}</Text>
                 <Feather name="chevron-down" size={30} color={"hsl(228, 8%, 98%)"} style={clicked?{transform: [{rotate: '180deg'}]}:null}/>
             </TouchableOpacity>
             {clicked?
             <Animatable.View style={[styles.dropdown__area, props.dropdownRisk?styles.dropdown__area_risks:null]} animation={'fadeInUp'}>
-                <ScrollView>
-                    <View>
-                        <FlatList
-                            nestedScrollEnabled
-                            style={styles.dropdown__flatlist}
-                            data={props.methods_list}
-                            renderItem={({item, index}) => {
-                                return (
-                                    <TouchableOpacity onPress={() => {setOption(item, index)}} style={styles.dropdownItem}>
-                                        <Text style={[styles.textDropdown_area]}>{item}</Text>
-                                    </TouchableOpacity>
-                                )
-                            }}
-                        />
-                    </View>
-                </ScrollView>
+                <FlatList
+                    style={styles.dropdown__flatlist}
+                    data={props.methods_list}
+                    renderItem={({item, index}) => {
+                        return (
+                            <TouchableOpacity onPress={() => {setOption(item, index)}} style={styles.dropdownItem}>
+                                <Text style={[styles.textDropdown_area]}>{item}</Text>
+                            </TouchableOpacity>
+                        )
+                    }}
+                />
             </Animatable.View>:false}
         </Animatable.View>
     )
@@ -88,17 +83,17 @@ const styles = StyleSheet.create({
         width: "100%",
     },
 
-    dropdown__area_risks: {
+    /*dropdown__area_risks: {
         position: 'absolute',
         top: '130%',
         backgroundColor: 'hsl(228, 6%, 12%)',
         height: 250,
         borderBottomLeftRadius: 10,
-    },
+    },*/
 
     dropdown__flatlist: {
         width: '100%',
-        height: '100%',
+        display: 'flex',
     },
 
     dropdownItem: {
