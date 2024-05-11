@@ -47,12 +47,6 @@ export default StyleSheet.create({
         color: 'hsl(228, 8%, 70%)',
     },
 
-    item__main: {
-        height: '100%',
-        marginTop: '10%',
-        marginBottom: '10%',
-    },
-
     main__info: {
         display: 'flex',
         flexDirection: 'column',
@@ -61,4 +55,12 @@ export default StyleSheet.create({
         paddingTop: '1%',
         paddingHorizontal: '4%',
     },
+    
+    item__main: {
+        height: '100%',
+        width: '100%',
+        marginTop: '10%',
+        marginBottom: '10%',
+    },
+
 })
