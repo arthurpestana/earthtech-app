@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
 
 import { useSQLiteContext } from 'expo-sqlite/next'
 
@@ -8,6 +8,7 @@ import styles from '../../styles/style_login-cadastro'
 import LoginCadastroInput from '../../components/InputText';
 import { useNavigation } from '@react-navigation/native'
 import { Feather } from "@expo/vector-icons"
+import ReturnPage from '../../components/ReturnPage'
 
 export default function Connect() {
     const db = useSQLiteContext()
@@ -40,21 +41,17 @@ export default function Connect() {
 
     return (
         <SafeAreaView style={styles.container__cadastro}>
-            <View style={styles.return__container}>
-                <TouchableOpacity style={styles.return__button} onPress={() => Navigation.navigate('Login')}>
-                    <Feather name='arrow-left' size={25} color={"hsl(93, 40%, 30%)"}/>
-                </TouchableOpacity>
-            </View>
+            <ReturnPage nav={"Login"}/>
             <View style={[styles.container__main, styles.container__register]} keyboardShouldPersistTaps="handled">
                 <View style={styles.main__info}>
                     <Text style={styles.info__title}>Cadastro</Text>
                     <Text style={styles.info__text}>Por favor, preencha todos os espaços abaixo.</Text>
                 </View>
-                <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={100} style={[styles.main__forms]}>
                     <LoginCadastroInput delay={500} placeholder="NOME" value={nome} onChangeText={setNome} iconName="user"/>
                     <LoginCadastroInput delay={500} placeholder="EMAIL" value={email} onChangeText={setEmail} iconName="mail" email/>
                     <LoginCadastroInput delay={700} placeholder="SENHA" value={senha} onChangeText={setSenha} password={1} iconName="lock"/>
-                </Animatable.View>
+                </KeyboardAvoidingView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
                     <TouchableOpacity style={styles.login__button} onPress={signUp}>
                         <Text style={styles.button_text}>Cadastrar</Text>                           

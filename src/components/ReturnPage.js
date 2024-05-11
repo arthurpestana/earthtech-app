@@ -10,7 +10,7 @@ export default (props) => {
         <View style={[styles.container__header, props.catalog?styles.catalogReturn:false]}>
             <TouchableOpacity  onPress={() => Navigation.navigate(props.nav)}>
                 <View style={[styles.button]}>
-                    <AntDesign name='plus' size={24} color="hsl(228, 8%, 98%)" style={{transform: [{rotate: '45deg'}]}}/>
+                    <Feather name='arrow-left' size={25} color={"hsl(228, 8%, 98%)"}/>
                 </View>
             </TouchableOpacity>
         </View>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, Platform, KeyboardAvoidingView } from 'react-native'
 
 import * as Animatable from 'react-native-animatable'
 import styles from '../../styles/style_connect'
@@ -17,6 +17,10 @@ export default function AdCalculator() {
     const [calc, setCalc] = useState(false)
 
     const Navigation = useNavigation()
+
+    useEffect(() => {
+        setAd(0)
+    }, [])
 
     function calcAD() {
         let argila = parseInt(argilaState)
@@ -56,13 +60,15 @@ export default function AdCalculator() {
                     <Text style={styles.info__text}>Instrução para o cálculo da Água Disponível (AD - mm/cm) no solo:</Text>
                     <Text style={[styles.info__text, {fontSize: 12}]}>- Informe a Areia Total, Silica e Argila, todos os dados devem ser informados em porcentagem (%). Totalizando 100%</Text>
                 </View>
-                <ScrollView>
-                    <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
-                        <InputText iconName="codesandbox" delay={500} placeholder={!areiaTotalState?"Areia Total":false} value={areiaTotalState} onChangeText={setAreiaTotal} numeric/>
-                        <InputText iconName="codesandbox" delay={600} placeholder={!silteState?"Silte":false} value={silteState} onChangeText={setSilte} numeric/>
-                        <InputText iconName="codesandbox" delay={700} placeholder={!argilaState?"Argila":false} value={argilaState} onChangeText={setArgila} numeric/>
-                    </Animatable.View>
-                </ScrollView>
+                <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={80}>
+                    <ScrollView>
+                        <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                            <InputText iconName="codesandbox" delay={500} placeholder={!areiaTotal?"Areia Total":false} value={areiaTotal} onChangeText={setAreiaTotal} numeric/>
+                            <InputText iconName="codesandbox" delay={600} placeholder={!silica?"Silica":false} value={silica} onChangeText={setSilica} numeric/>
+                            <InputText iconName="codesandbox" delay={700} placeholder={!argila?"Argila":false} value={argila} onChangeText={setArgila} numeric/>
+                        </Animatable.View>
+                    </ScrollView>
+                </KeyboardAvoidingView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={[styles.main__connect, {marginTop: '15%'}]}>
                     <TouchableOpacity style={styles.connect__button} onPress={calcAD}>
                         <Text style={styles.button_text}>Calcular AD</Text>                           

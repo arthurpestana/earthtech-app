@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform} from 'react-native'
 import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -75,15 +75,17 @@ export default function Connect() {
                         </Text>
                     </View>
                 </View>
-                <ScrollView>
-                    <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
-                        <InputText iconName="user" delay={500} placeholder={!nome?"Nome":false} value={nome} onChangeText={setNome}/>
-                        <InputText iconName="at-sign" delay={600} placeholder={!userNameMQTT?"Username":false} value={userNameMQTT} onChangeText={setUsernameMQTT}/>
-                        <InputText iconName="lock" delay={700} placeholder={!senha?"Senha":false} value={senha} onChangeText={setSenha} password={1}/>
-                        <InputText iconName="link" delay={800} placeholder={!host?"Host":false} value={host} onChangeText={setHost}/>
-                        <InputText iconName="hash" delay={900} placeholder={!port?"Porta":false} value={port} onChangeText={setPort} numeric = {1} maxLength/>
-                    </Animatable.View>
-                </ScrollView>
+                <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={100}>
+                    <ScrollView>
+                        <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                            <InputText iconName="user" delay={500} placeholder={!nome?"Nome":false} value={nome} onChangeText={setNome}/>
+                            <InputText iconName="at-sign" delay={600} placeholder={!userNameMQTT?"Username":false} value={userNameMQTT} onChangeText={setUsernameMQTT}/>
+                            <InputText iconName="lock" delay={700} placeholder={!senha?"Senha":false} value={senha} onChangeText={setSenha} password={1}/>
+                            <InputText iconName="link" delay={800} placeholder={!host?"Host":false} value={host} onChangeText={setHost}/>
+                            <InputText iconName="hash" delay={900} placeholder={!port?"Porta":false} value={port} onChangeText={setPort} numeric = {1} maxLength/>
+                        </Animatable.View>
+                    </ScrollView>
+                </KeyboardAvoidingView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__connect}>
                     <TouchableOpacity style={styles.connect__button} onPress={connectBoard}>
                         <Text style={styles.button_text}>Conectar</Text>                           

@@ -46,14 +46,16 @@ export default StyleSheet.create ({
 
     main__forms: {
         marginVertical: 15,
+        width: '100%',
+        alignSelf: 'center',
     },
 
     main__login: {
         display: 'flex',
         alignItems: 'center',
-        gap: 20,
+        gap: 5,
         justifyContent: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
 
     login__button: {
@@ -105,7 +107,7 @@ export default StyleSheet.create ({
     },
 
     container__register: {
-        marginTop: '50%'
+        marginTop: '40%'
     },
 
     return__container: {

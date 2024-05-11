@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text,TouchableOpacity } from 'react-native'
+import { SafeAreaView, View, Text,TouchableOpacity , KeyboardAvoidingView, Platform } from 'react-native'
 import { useSQLiteContext } from 'expo-sqlite/next'
 import { useMQTT } from '../../components/Context';
 import * as Animatable from 'react-native-animatable'
@@ -61,10 +61,10 @@ export default function Connect() {
                     <Text style={styles.info__title}>Login</Text>
                     <Text style={styles.info__text}>Por favor, faça o login para continuar.</Text>
                 </View>
-                <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
+                <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} style={styles.main__forms}>
                     <LoginCadastroInput delay={500} placeholder="EMAIL" value={email} onChangeText={setEmail} iconName="mail" email/>
                     <LoginCadastroInput delay={700} placeholder="SENHA" value={senha} onChangeText={setSenha} password={1} iconName="lock"/>
-                </Animatable.View>
+                </KeyboardAvoidingView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
                     <TouchableOpacity style={styles.login__button} onPress={loginAccount}>
                         <Text style={styles.button_text}>Login</Text>                           
