@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Feather } from '@expo/vector-icons'
 
+import AdCalculator from '../pages/ADCalculator';
+
 import ConnectBoard from '../pages/ConnectBoard'
 
 import Home from '../pages/Home'
@@ -77,6 +79,15 @@ export default function TabRoutes() {
                         tabBarShowLabel: false,
                         tabBarLabel: '',
                         tabBarIcon: ({size, color}) => (<Feather name='edit' color={color} size={20}/>)
+                    }}
+                />
+                <Tab.Screen
+                    name='AdCalculator'
+                    component={AdCalculator}
+                    options={{
+                        tabBarShowLabel: false,
+                        tabBarLabel: '',
+                        tabBarIcon: ({size, color}) => (<Feather name='codesandbox' color={color} size={20}/>)
                     }}
                 />
             </Tab.Group>
