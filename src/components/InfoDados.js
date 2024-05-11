@@ -6,8 +6,11 @@ import { Feather, MaterialIcons } from '@expo/vector-icons'
 import axios from 'axios'
 import MethodDropdown from "./MethodDropdown";
 import CatalogTable from "./CatalogTable";
+import { Canvas, Rect } from "@shopify/react-native-skia"
+import { useMQTT } from './Context'
 
 export default (props) => {    
+    const { indexCatalog, setIndexCatalog, typeCatalog, setTypeCatalog } = useMQTT()
     const [viewMore, setViewMore] = useState(true)
     let phNiveis = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
     const [activeCity, setActiveCity] = useState(null)
@@ -33,7 +36,7 @@ export default (props) => {
     useEffect(() => {
         if(props.data){    
             (async () =>{
-                if(props.culturas!=false){
+                if(props.culturas!=false && typeCatalog==0){
                     try {
                         const options = {
                             method: 'GET',
@@ -57,7 +60,7 @@ export default (props) => {
     }, [])
 
     useEffect(() => {
-        if(dados!=null){
+        if(dados!=null && typeCatalog==0){
             for(let i = 0; i < dados.data.length; i++){
                 if(dados.data[i].municipio == activeCity){
                     apiData.push(dados.data[i])
@@ -80,8 +83,8 @@ export default (props) => {
             {(viewMore==true && props.detail)?<View style={styles.info__dados}>
                 <View style={styles.info__text_dados}>
                     <View style={{gap: 5}}>
-                        <Text style={[styles.info__text, styles.info__text_desc]}>Clima Propício:</Text>
-                        <Text style={[styles.info__text, styles.info__text_desc]}>Tempo de Crescimento:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>{typeCatalog==0?'Clima Propício:':'Profundidade do Solo:'}</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>{typeCatalog==0?'Tempo de Crescimento:':'Acidez do Solo:'}</Text>
                     </View>
                     <View style={[styles.info__text_props, {gap: 5}]}>
                         <Text style={styles.info__text}>{props.textClima}</Text>
@@ -121,6 +124,36 @@ export default (props) => {
                 </Animatable.View>
                 <Text style={styles.info__text}>{props.quantAgua<=30?'Evite umidade excessiva!':props.quantAgua<70?'Mantenha uma irrigação média':'Evite condições secas!'}</Text>
             </View>:null}
+            {(viewMore==true && props.nivelSolo)?<View style={styles.info__dados}>
+                <View style={styles.info__text_dados}>
+                    <View style={styles.info__text_props}>
+                        <FlatList
+                            style={{gap: 5}}
+                            data={props.coresList}
+                            keyExtractor={(item, index) => index.toString()} 
+                            renderItem={({ item, index }) => {
+                                return(
+                                    <Canvas style={{width: 17, height: 17}}>
+                                        <Rect width={256} height={256} color={item} />
+                                    </Canvas>
+                                )
+                            }}
+                        />
+                    </View>
+                    <View style={{marginLeft: -10}}>
+                        <FlatList
+                            style={{gap: 5}}
+                            data={props.nivelList}
+                            keyExtractor={(item, index) => index.toString()} 
+                            renderItem={({ item, index }) => {
+                                return(
+                                    <Text style={[styles.info__text, styles.info__text_desc, {textTransform: 'capitalize'}]}>{item}</Text>
+                                )
+                            }}
+                        />
+                    </View>
+                </View>
+            </View>:null}
             {(viewMore==true && props.typeSolo)?<View style={styles.info__dados}>
                 <View style={styles.info__text_dados}>
                     <View style={{gap: 5}}>
@@ -129,25 +162,62 @@ export default (props) => {
                     </View>
                     <View style={[styles.info__text_props, {gap: 5}]}>
                         <Text style={styles.info__text}>{props.soloTipo}</Text>
-                        <Text style={styles.info__text}>{props.soloDrenagem}</Text>
+                        <Text style={[styles.info__text, {maxWidth: '80%', textAlign: 'left'}]}>{props.soloDrenagem}</Text>
                     </View>
                 </View>
                 <View style={styles.info__solo_ph}>
                     <View style={styles.info__solo_ph_items}>
                         {phNiveis.map((element, key) => {
                             return(
-                                element>=Number(props.soloPH.slice(0, 3))&&element<=Number(props.soloPH.slice(4, props.soloPH.lenght))?
-                                <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(93, 40%, 30%)`, borderRadius: 3}} key={key}>
-                                    <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
-                                </View>
-                                :<View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(228, 6%, 12%)`, borderRadius: 3}} key={key}>
-                                    <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
-                                </View>
+                                typeCatalog==0?
+                                    element>=Number(props.soloPH.slice(0, 3))&&element<=Number(props.soloPH.slice(4, props.soloPH.lenght))?
+                                    <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(93, 40%, 30%)`, borderRadius: 3}} key={key}>
+                                        <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
+                                    </View>
+                                    :<View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(228, 6%, 12%)`, borderRadius: 3}} key={key}>
+                                        <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
+                                    </View>
+                                :
+                                    element==Math.round(Number(props.soloPH)) || element==Number(props.soloPH.toFixed(2).slice(0,1))?
+                                    <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(93, 40%, 30%)`, borderRadius: 3}} key={key}>
+                                        <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
+                                    </View>
+                                    :<View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(228, 6%, 12%)`, borderRadius: 3}} key={key}>
+                                        <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
+                                    </View>
                             )
                         })}
                     </View>
                     <View style={styles.info__ph_view}>
+                        {typeCatalog==0?
                         <Text style={[styles.info__text, {fontSize: 12, fontFamily: 'Montserrat_600SemiBold'}]}>{props.soloPH.slice(0, 3)} pH - {props.soloPH.slice(4, props.soloPH.lenght)} pH</Text>
+                        :
+                        <Text style={[styles.info__text, {fontSize: 12, fontFamily: 'Montserrat_600SemiBold'}]}>{props.soloPH} pH</Text>}
+                    </View>
+                </View>
+            </View>:null}
+            {(viewMore==true && props.compSolo)?<View style={styles.info__dados}>
+                <View style={[styles.info__text_dados, {width: '100%', flexDirection: 'row', alignItems: 'center', marginTop: '5%'}]}>
+                    <View style={{gap: 7, width: '30%'}}>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Areia:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Argila:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Sílica:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Fósforo:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Carbono:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Nitro:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>AT:</Text>
+                    </View>
+                    <View style={styles.info__text_props}>
+                        <FlatList
+                            style={{gap: 7}}
+                            data={props.listCompSolo}
+                            keyExtractor={(item, index) => index.toString()} 
+                            renderItem={({ item, index }) => {
+                                return(
+                                    <Text style={[styles.info__text, {textTransform: 'capitalize'}]}>{item}</Text>
+                                )
+                            }}
+                        />
                     </View>
                 </View>
             </View>:null}

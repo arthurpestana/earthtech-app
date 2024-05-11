@@ -22,7 +22,7 @@ export default function AdCalculator() {
         setAd(0)
     }, [])
 
-    function calcAD() {
+    function calcAd() {
         let argila = parseInt(argilaState)
         let areiaTotal = parseInt(areiaTotalState)
         let silte = parseInt(silteState)
@@ -63,19 +63,19 @@ export default function AdCalculator() {
                 <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={80}>
                     <ScrollView>
                         <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
-                            <InputText iconName="codesandbox" delay={500} placeholder={!areiaTotal?"Areia Total":false} value={areiaTotal} onChangeText={setAreiaTotal} numeric/>
-                            <InputText iconName="codesandbox" delay={600} placeholder={!silica?"Silica":false} value={silica} onChangeText={setSilica} numeric/>
-                            <InputText iconName="codesandbox" delay={700} placeholder={!argila?"Argila":false} value={argila} onChangeText={setArgila} numeric/>
+                            <InputText iconName="codesandbox" delay={500} placeholder={!areiaTotalState?"Areia Total":false} value={areiaTotalState} onChangeText={setAreiaTotal} numeric/>
+                            <InputText iconName="codesandbox" delay={600} placeholder={!silteState?"Silica":false} value={silteState} onChangeText={setSilte} numeric/>
+                            <InputText iconName="codesandbox" delay={700} placeholder={!argilaState?"Argila":false} value={argilaState} onChangeText={setArgila} numeric/>
                         </Animatable.View>
                     </ScrollView>
                 </KeyboardAvoidingView>
                 <Animatable.View animation={'fadeIn'} delay={900} style={[styles.main__connect, {marginTop: '15%'}]}>
-                    <TouchableOpacity style={styles.connect__button} onPress={calcAD}>
+                    <TouchableOpacity style={styles.connect__button} onPress={calcAd}>
                         <Text style={styles.button_text}>Calcular AD</Text>                           
                     </TouchableOpacity>                       
                 </Animatable.View>
             </View>
-            {calc?<MessageModal confirmation={setConfirmation} setChange= {setCalc}/>:null}
+            {calc?<MessageModal confirmation={setConfirmation} setChange= {setCalc} message={null}/>:null}
         </SafeAreaView>
     )
 }

@@ -8,6 +8,8 @@ import {
     Image
   } from 'react-native';
 
+import ReturnPage from './ReturnPage';
+
 export default function MessageModal(props) {
     const positiveConfirmation = () => {
         props.confirmation?props.confirmation(true):false
@@ -22,6 +24,7 @@ export default function MessageModal(props) {
         <Modal animationType='slide' visible={true} transparent= {true}>
             <Pressable style={styles.modal__container}>
                 <View style={styles.modal__content}>
+                    {props.confirmation?<ReturnPage nav="AdCalculator" modalView/>:null}
                     <View style={styles.modal__icon}>
                         <Image 
                         source={require('../images/pngwing.png')}
@@ -30,15 +33,25 @@ export default function MessageModal(props) {
                         tintColor={'#496b2e'}/>
                     </View>
                     <View style={styles.modal__lower}>
-                        <Text style={styles.modal__title}>{props.confirmation?'Tem certeza?':props.title}</Text>
+                        <Text style={styles.modal__title}>{props.confirmation?'Classificação do Solo:':props.title}</Text>
                         <Text style={styles.modal__message}>{props.message}</Text>
                         <View style={{flexDirection: 'row'}}>
-                            <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
-                                <Text style={styles.modal__text}>{props.confirmation?"Sim":"Entendi"}</Text>
-                            </TouchableOpacity>
-                            {props.confirmation && <TouchableOpacity style={[styles.modal__button, {backgroundColor: '#8b0000'}]} onPress={negativeConfirmation}>
-                                <Text style={styles.modal__text}>Não</Text>
-                            </TouchableOpacity>}
+                            {props.confirmation?
+                                <View>
+                                    <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
+                                        <Text style={styles.modal__text}>Verificar o Solo</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            :
+                            <View>
+                                <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
+                                    <Text style={styles.modal__text}>{props.confirmation?"Sim":"Verificar Solo"}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.modal__button, {backgroundColor: '#8b0000'}]} onPress={negativeConfirmation}>
+                                    <Text style={styles.modal__text}>Não</Text>
+                                </TouchableOpacity>
+                            </View>}
+                            
                         </View>
                     </View>
                 </View>
@@ -65,12 +78,13 @@ const styles = StyleSheet.create({
     },
     modal__text: {
         color: 'hsl(228, 8%, 98%)',
-        fontSize: 16,
-        fontFamily: 'Montserrat_700Bold',
+        fontSize: 14,
+        fontFamily: 'Montserrat_600SemiBold',
     },
     modal__button: {
         width: 'auto',
-        padding: 15,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
         borderRadius: 10,
         marginHorizontal: '3%',
         justifyContent: 'center',
@@ -96,9 +110,9 @@ const styles = StyleSheet.create({
     modal__title: {
         color: 'hsl(228, 8%, 98%)',
         fontSize: 18,
-        fontFamily: 'Montserrat_700Bold',
+        fontFamily: 'Montserrat_600SemiBold',
         textAlign: 'center',
-        marginBottom: 10
+        marginVertical: 10
     },
     modal__message: {
         color: 'hsl(228, 8%, 98%)',

@@ -24,7 +24,7 @@ export default function CatalogDiv(props) {
             <View style={styles.dashboard__dados}>
                 <View style={styles.item__div_info}>
                     <Text style={styles.item__title}>{props.nome}</Text>
-                    <Text style={styles.item__text}>{props.tipo} • {props.clima}</Text> 
+                    <Text style={styles.item__text}>{props.tipo} • {props.estado}</Text> 
                 </View>
             </View>
             <View style={styles.dashboard__dados}>

@@ -54,6 +54,7 @@ export default StyleSheet.create({
         gap: 10,
         paddingTop: '1%',
         paddingHorizontal: '4%',
+        marginBottom: '65%'
     },
     
     item__main: {

@@ -7,10 +7,10 @@ export default (props) => {
     const Navigation = useNavigation()
 
     return (
-        <View style={[styles.container__header, props.catalog?styles.catalogReturn:false]}>
+        <View style={[styles.container__header, props.modalView?styles.modalView:false]}>
             <TouchableOpacity  onPress={() => Navigation.navigate(props.nav)}>
                 <View style={[styles.button]}>
-                    <Feather name='arrow-left' size={25} color={"hsl(228, 8%, 98%)"}/>
+                    <Feather name={props.modalView?'x':'arrow-left'} size={25} color={"hsl(228, 8%, 98%)"}/>
                 </View>
             </TouchableOpacity>
         </View>
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         zIndex: 1000
     },
 
-    catalogReturn: {
-        backgroundColor: '#0000003c',
-        borderRadius: 10,
+    modalView: {
+        top: 20,
+        left: 10,
     },
 })
