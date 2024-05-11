@@ -53,7 +53,7 @@ export default function Connect() {
                     <Text style={styles.info__text}>Por favor, faça o login para continuar.</Text>
                 </View>
                 <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
-                    <LoginCadastroInput delay={500} placeholder="EMAIL" value={email} onChangeText={setEmail} iconName="mail"/>
+                    <LoginCadastroInput delay={500} placeholder="EMAIL" value={email} onChangeText={setEmail} iconName="mail" email/>
                     <LoginCadastroInput delay={700} placeholder="SENHA" value={senha} onChangeText={setSenha} password={1} iconName="lock"/>
                 </Animatable.View>
                 <Animatable.View animation={'fadeIn'} delay={900} style={styles.main__login}>
