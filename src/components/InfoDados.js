@@ -147,29 +147,26 @@ export default (props) => {
                     </View>
                 </View>
             </View>:null}
-            {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__dadosAgua]}>
+            {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__table]}>
                 <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC</Text>
-                <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData} resetData = {setApiData} table dropdownRisk/>
+                <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} resetData = {setApiData} table dropdownRisk/>
                 <CatalogTable data = {apiData}/>
             </View>:null}
         </View>
     )
 }
-/**<View style={styles.info__galeria}>
-                    {props.loadImage!==''?<Image resizeMode={'cover'} style={{width: '100%', height: 200, borderRadius: 15}}/>:<Text style={styles.info__text}>Não há imagens cadastradas!</Text>}
-                    
-                </View> */
+
 const styles = StyleSheet.create({
     info: {
         display: 'flex',
         flexDirection: 'column',
-        width: Dimensions.get('window').width*0.92,
         backgroundColor: 'hsl(228, 6%, 4%)',
         gap: 15,
         paddingVertical: 20,
         paddingHorizontal: 20,
         borderRadius: 10,
-        
+        width: '100%',
+        marginBottom: '2%'
     },
 
     shadowProp: {
@@ -283,9 +280,13 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         paddingHorizontal: 5,
         borderRadius: 5,
-    }
+    },
+    
+    info__table: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 })
-
-/***/
-
-
