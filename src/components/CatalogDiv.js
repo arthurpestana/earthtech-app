@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, SafeAreaView, Image } from 'react-native'
 import { Feather, MaterialIcons } from '@expo/vector-icons'
 import * as Animatable from 'react-native-animatable'
@@ -9,6 +9,7 @@ import { useMQTT } from './Context'
 export default function CatalogDiv(props) {
     const Navigation = useNavigation()
     const { setIndexCatalog, setTypeCatalog } = useMQTT()
+    const [iconImage, setIconImage] = useState(null)
 
     function NavigateCatalogItem() {
         setIndexCatalog(props.index)
@@ -16,10 +17,39 @@ export default function CatalogDiv(props) {
         Navigation.navigate('CatalogItem')
     }
 
+    function iconSet(){
+        switch(props.iconName){
+            case "soja":
+                tempImage = require("../images/soja.png")
+                break;
+            case "feijao":
+                tempImage = require("../images/feijao.png")
+                break;
+            case "algodao":
+                tempImage = require("../images/algodao.png")
+                break;
+            case "arroz":
+                tempImage = require("../images/arroz.png")
+                break;
+            case "cafe":
+                tempImage = require("../images/cafe-arabico.png")
+                break;
+            case "milho":
+                tempImage = require("../images/milho.png")
+                break;
+            default:
+                tempImage = require("../images/milho.png")
+                break;
+        }
+        setIconImage(tempImage)
+    }
+    useEffect(() => {
+        iconSet()
+    }, [])
     return (
         <Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
             <View style={styles.item__div_img}>
-                {props.cultivo?<Text style={{fontSize: 35}}>{props.iconName}</Text>:<MaterialIcons name='terrain' size={40} color={'hsl(228, 8%, 98%)'}/>}
+                {props.cultivo?<Image source={iconImage} style={{width: 50, height: 50}}/>:<MaterialIcons name='terrain' size={40} color={'hsl(228, 8%, 98%)'}/>}
             </View>
             <View style={styles.dashboard__dados}>
                 <View style={styles.item__div_info}>
@@ -57,7 +87,8 @@ const styles = StyleSheet.create({
     },
 
     item__div_img: {
-        display: 'flex'
+        display: 'flex',
+        right: -15
     },
 
     item__div_logo: {

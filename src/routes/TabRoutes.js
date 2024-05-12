@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Feather } from '@expo/vector-icons'
+import { Feather, MaterialIcons } from '@expo/vector-icons'
 
 import AdCalculator from '../pages/AdCalculator';
 
@@ -87,7 +87,7 @@ export default function TabRoutes() {
                     options={{
                         tabBarShowLabel: false,
                         tabBarLabel: '',
-                        tabBarIcon: ({size, color}) => (<Feather name='codesandbox' color={color} size={20}/>)
+                        tabBarIcon: ({size, color}) => (<MaterialIcons name='calculate' color={color} size={20}/>)
                     }}
                 />
             </Tab.Group>

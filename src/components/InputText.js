@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { View, Text, TextInput, StyleSheet } from "react-native";
-import { Feather } from "@expo/vector-icons"
+import { Feather, MaterialIcons } from "@expo/vector-icons"
 import * as Animatable from 'react-native-animatable'
 
 export default function (props) {
@@ -26,7 +26,8 @@ export default function (props) {
     return (
         <Animatable.View animation={'fadeInLeft'} delay={props.delay} style={[props.addTopic?styles.main__formTopic:styles.main__form]}>
             <View style={styles.form__icon}>
-                <Feather name={props.iconName} size={20} color={"#fff"}/>
+                {props.calc?<MaterialIcons name={props.iconName} size={20} color={"#fff"}/>:
+                <Feather name={props.iconName} size={20} color={"#fff"}/>}
             </View>
             <View style={styles.form__container}>
                 <View style={onFocusedInput ? styles.form_box__textFocused : styles.form_box__text}>

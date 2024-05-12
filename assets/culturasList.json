@@ -1,6 +1,6 @@
 [
     {
-        "icon": "🌱",
+        "icon": "soja",
         "nome": "Soja",
         "tipo": "Grão",
         "clima": "Tropical",
@@ -19,7 +19,7 @@
         ]
     },
     {
-        "icon": "🌽",
+        "icon": "milho",
         "nome": "Milho",
         "tipo": "Grão",
         "clima": "Tropical",
@@ -38,7 +38,7 @@
         ]
     },
     {
-        "icon": "🌾",
+        "icon": "arroz",
         "nome": "Arroz",
         "tipo": "Grão",
         "clima": "Tropical",
@@ -57,7 +57,7 @@
         ]
     },
     {
-        "icon": "🌱",
+        "icon": "algodao",
         "nome": "Algodão",
         "tipo": "Fibra",
         "clima": "Subtropical",
@@ -76,7 +76,7 @@
         ]
     },
     {
-        "icon": "☕",
+        "icon": "cafe",
         "nome": "Café Arábica",
         "tipo": "Grão",
         "clima": "Subtropical",
@@ -95,7 +95,7 @@
         ]
     },
     {
-        "icon": "🌱",
+        "icon": "feijao",
         "nome": "Feijão",
         "tipo": "Grão",
         "clima": "Tropical",
