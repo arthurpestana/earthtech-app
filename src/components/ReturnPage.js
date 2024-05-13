@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         top: 50,
         left: 25,
         padding: 5,
-        zIndex: 1000
+        zIndex: -10
     },
 
     modalView: {

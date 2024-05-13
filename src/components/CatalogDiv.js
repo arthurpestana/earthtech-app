@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        gap: 5
+        gap: 5,
+        width: '70%',
     },
 
     item__title: {
@@ -85,6 +86,6 @@ const styles = StyleSheet.create({
         color: 'hsl(228, 8%, 98%)',
         fontSize: 12,
         textAlign: 'center',
-        width: '100%'
+        width: '100%',
     },
 })

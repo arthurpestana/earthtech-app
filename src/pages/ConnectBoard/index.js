@@ -64,8 +64,8 @@ export default function Connect() {
 
     return (
         <SafeAreaView style={styles.container__connect}>
-            <Toast text1Style = {{color: 'hsl(228, 8%, 98%)', fontSize: 16, fontFamily: 'Montserrat_700Bold',}} text2Style = {{fontSize: 13, color: 'hsl(228, 8%, 70%)',fontFamily: 'Montserrat_400Regular'}}/>
-            <View style={styles.container__main} keyboardShouldPersistTaps="handled">
+            <Toast style={{zIndex: 1000}} text1Style = {{color: 'hsl(228, 8%, 98%)', fontSize: 16, fontFamily: 'Montserrat_700Bold',}} text2Style = {{fontSize: 13, color: 'hsl(228, 8%, 70%)',fontFamily: 'Montserrat_400Regular'}}/>
+            <View style={[styles.container__main, {zIndex: -10}]} keyboardShouldPersistTaps="handled">
                 <View style={styles.main__info}>
                     <Text style={styles.info__title}>Realizar Conexão</Text>
                     <Text style={styles.info__text}>Conecte-se ao Broker MQTT para realizar as automações do seu cultivo.</Text>

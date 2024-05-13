@@ -18,42 +18,44 @@ export default function Connect() {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState('')
 
-    function showToast(message){
-        Toast.show({
+    const toastMessage = (textAlert) => {
+        return Toast.show({
             position: 'top',
             type: 'error',
             text1: 'Erro',
-            text2: message,
-            visibilityTime: 5000,
+            text2: textAlert,
+            visibilityTime: 4000,
             autoHide: true
         });
     }
 
     async function signUp(){
-        if(email.includes('@') && senha.length >= 8 && nome != ''){
-            await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
-            console.log(nome, senha, email)
+        if (email!='' && senha!='' && nome!='') {
+            if (!email.includes('@')) {
+                toastMessage('O email deve incluir um endereço, Ex: @gmail.com')
+            }
+            else if (senha.length<8) {
+                toastMessage('A senha deve ter 8 ou mais caracteres')
+            }
+            else {
+                result = await db.getAllAsync(`SELECT * FROM users`)
+                for (let element of result) {
+                    if (element.email==email) {
+                        return toastMessage('E-mail já cadastrado!')
+                    }
+                }
+                await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
+                console.log(nome, senha, email)
+                console.log("singUP")
+                Navigation.navigate('Login')
+            }
         }
-        else{
-            if(!email.includes('@') && email != ''){
-                showToast('O email deve incluir um endereço, Ex: @gmail.com')
-            }
-            if(!senha.length >= 8){
-                showToast('A senha deve ter 8 ou mais caracteres')
-            }
-            if(!nome != ''){
-                showToast('O nome não pode estar vazio')
-            }
-            if(!email != ''){
-                showToast('O email não pode estar vazio')
-            }
-        }
-        Navigation.navigate('Login')
+        else toastMessage('Preencha todos os campos!')
     }
 
     return (
         <SafeAreaView style={styles.container__cadastro}>
-            <Toast/>
+            <Toast text1Style = {{color: 'hsl(228, 8%, 98%)', fontSize: 16, fontFamily: 'Montserrat_700Bold'}} text2Style = {{fontSize: 13, color: 'hsl(228, 8%, 70%)',fontFamily: 'Montserrat_400Regular'}}/>
             <ReturnPage nav={"Login"}/>
             <View style={[styles.container__main, styles.container__register]} keyboardShouldPersistTaps="handled">
                 <View style={styles.main__info}>
