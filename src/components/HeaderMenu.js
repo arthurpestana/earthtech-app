@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import {View, Text, TouchableOpacity, StyleSheet, Platform} from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { Feather } from "@expo/vector-icons"
@@ -12,26 +12,20 @@ export default function HeaderMenu() {
 
     return (
         <View style={styles.container__header}>
-            <View style={styles.header__menu}>
+            <View style={[styles.header__menu, Platform.OS=='ios' && styles.headerIOS]}>
                 <View style={styles.menu__dados}>
-                    {isConnected==true?<View style={styles.menu__config}>
-                        <TouchableOpacity onPress={() => Navigation.navigate('Configuration')}>
-                            <Feather name="settings" size={20} color={"hsl(228, 8%, 98%)"} style={{
-                                padding: 15,
-                                backgroundColor: "hsl(228, 6%, 12%)",
-                                borderRadius: 20,
-                            }}/>
+                    {isConnected==true?
+                        <TouchableOpacity style={styles.menu__button} onPress={() => Navigation.navigate('Configuration')}>
+                            <View style={styles.menu__config}>
+                                <Feather name="settings" size={20} color={"hsl(228, 8%, 98%)"}/>
+                            </View>
                         </TouchableOpacity>
-                    </View>:false}
-                    <View style={styles.menu__profile}>
-                        <TouchableOpacity onPress={() => Navigation.navigate('Profile')}>
-                            <Feather name="user" size={20} color={"hsl(228, 8%, 98%)"} style={{
-                                padding: 15,
-                                backgroundColor: "hsl(228, 6%, 12%)",
-                                borderRadius: 20,
-                            }}/>
-                        </TouchableOpacity>
-                    </View>
+                    :false}
+                    <TouchableOpacity style={styles.menu__button} onPress={() => Navigation.navigate('Profile')}>
+                        <View style={styles.menu__profile}>
+                            <Feather name="user" size={20} color={"hsl(228, 8%, 98%)"}/>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -42,13 +36,17 @@ const styles = StyleSheet.create({
     container__header: {
         backgroundColor: 'hsl(228, 6%, 8%)',
         position: 'relative',
-        height: "13%"
+        height: '13%'
     },
 
     header__menu: {
         position: 'absolute',
-        top: 40,
+        top: 50,
         paddingHorizontal: 25,
+    },
+
+    headerIOS: {
+        top: 65
     },
 
     menu__dados: {
@@ -58,6 +56,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         width: "100%"
+    },
+
+    menu__button: {
+        padding: 15,
+        backgroundColor: "hsl(228, 6%, 12%)",
+        borderRadius: 15,
     },
 
     header__logo: {

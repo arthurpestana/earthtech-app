@@ -15,6 +15,17 @@ export default function Connect() {
     const db = useSQLiteContext()
     const { userId, client, setClient, isConnected, setConnected, nome, setNome, userNameMQTT, setUsernameMQTT, senha, setSenha, host, setHost, port, setPort } = useMQTT();
 
+    const toastMessage = (textAlert) => {
+        return Toast.show({
+            position: 'top',
+            type: 'error',
+            text1: 'Erro',
+            text2: textAlert,
+            visibilityTime: 5000,
+            autoHide: true
+        });
+    }
+
     init({
         size: 10000,
         storageBackend: AsyncStorage,
@@ -29,6 +40,8 @@ export default function Connect() {
         await db.execAsync(`DELETE FROM mqtt`)
         await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("${userId}", "${nome}", "${userNameMQTT}", "${senha}", "${host}", "${port}")`)
         console.log("Dados cadastrada")
+        result = await db.getAllAsync(`SELECT * FROM mqtt`)
+        console.log(result)
     }
     
     function onSuccess(){
@@ -38,22 +51,31 @@ export default function Connect() {
 
     function onConnectionLost(){
         setConnected(false)
-        Toast.show({
-            position: 'top',
-            type: 'error',
-            text1: 'Erro',
-            text2: 'Dados incorretos',
-            visibilityTime: 5000,
-            autoHide: true
-        });
+        toastMessage('Falha na conexão!')
     }
     
     function connectBoard(){
-        addMQTT()
-        const mqttClient = new Paho.MQTT.Client(host, parseInt(port), nome);
-        mqttClient.onConnectionLost = onConnectionLost;
-        mqttClient.connect({ userName: userNameMQTT, password: senha, onSuccess: onSuccess, useSSL: false });
-        setClient(mqttClient);
+        if (nome!='' && userNameMQTT!='' && senha!='' && host!='' && port!='') {
+            if (!userNameMQTT.includes("@")) {
+                return toastMessage('Informe um usuário MQTT válido!')
+            }
+            else if (host != 'maqiatto.com') {
+                return toastMessage('Informe um host válido!')
+            }
+            else if (typeof(Number(port))!='number') {
+                return toastMessage('A porta deve possuir apenas números!')
+            }
+            else {
+                addMQTT()
+                const mqttClient = new Paho.MQTT.Client(host, parseInt(port), nome);
+                mqttClient.onConnectionLost = onConnectionLost;
+                mqttClient.connect({ userName: userNameMQTT, password: senha, onSuccess: onSuccess, useSSL: false });
+                setClient(mqttClient);
+            }
+        }
+        else {
+            toastMessage('Preencha todos os campos!')
+        }
     }
 
     function publishMsg(){
@@ -75,7 +97,7 @@ export default function Connect() {
                         </Text>
                     </View>
                 </View>
-                <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={100}>
+                <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={Platform.OS=='ios'?120:100}>
                     <ScrollView>
                         <Animatable.View style={styles.main__forms} animation={'fadeInUp'}>
                             <InputText iconName="user" delay={500} placeholder={!nome?"Nome":false} value={nome} onChangeText={setNome}/>

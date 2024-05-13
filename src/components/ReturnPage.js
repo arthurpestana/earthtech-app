@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import {View, Text, TouchableOpacity, StyleSheet, Platform} from 'react-native'
 import { AntDesign, Entypo, Feather} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
@@ -7,9 +7,9 @@ export default (props) => {
     const Navigation = useNavigation()
 
     return (
-        <View style={[styles.container__header, props.modalView?styles.modalView:false]}>
-            <TouchableOpacity  onPress={() => Navigation.navigate(props.nav)}>
-                <View style={[styles.button]}>
+        <View style={[Platform.OS=='ios'?styles.container__headerIOS:styles.container__headerAnd, props.modalView?styles.modalView:false]}>
+            <TouchableOpacity style={styles.button} onPress={() => Navigation.navigate(props.nav)}>
+                <View>
                     <Feather name={props.modalView?'x':'arrow-left'} size={25} color={"hsl(228, 8%, 98%)"}/>
                 </View>
             </TouchableOpacity>
@@ -18,12 +18,24 @@ export default (props) => {
 }
 
 const styles = StyleSheet.create({
-    container__header: {
+    container__headerAnd: {
         position: 'absolute',
-        top: 50,
-        left: 25,
-        padding: 5,
-        zIndex: -10
+        top: 45,
+        left: 20,
+        zIndex: 1000
+    },
+
+    container__headerIOS: {
+        position: 'absolute',
+        top: 60,
+        left: 20,
+        zIndex: 1000
+    },
+
+    button: {
+        padding: 10,
+        borderRadius: 10,
+        zIndex: 1000
     },
 
     modalView: {

@@ -56,6 +56,7 @@ export default StyleSheet.create ({
         gap: 5,
         justifyContent: 'center',
         flexDirection: 'column',
+        paddingBottom: '8%'
     },
 
     login__button: {
@@ -65,7 +66,7 @@ export default StyleSheet.create ({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'hsl(93, 40%, 30%)',
-        marginBottom: 15,
+        marginBottom: 10,
     }, 
     
     button_text: {

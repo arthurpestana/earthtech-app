@@ -6,14 +6,6 @@ import * as Animatable from 'react-native-animatable'
 export default function (props) {
     const [onFocusedInput, setFocusedInput] = useState(false)
 
-    useEffect((props) => {
-        customOnBlur()
-    }, [])
-
-    const customOnFocus = () => {
-        setFocusedInput(true)
-    }
-
     const customOnBlur = () => {
         if (props.value != '') {
             setFocusedInput(true)
@@ -21,6 +13,12 @@ export default function (props) {
         else {
             setFocusedInput(false)
         }
+        props.onFocused?props.onFocused(false):null
+    }
+
+    const customOnFocus = () => {
+        setFocusedInput(true)
+        props.onFocused?props.onFocused(true):null
     }
 
     return (
@@ -41,8 +39,8 @@ export default function (props) {
                     keyboardType={props.numeric?'numeric':'default'}
                     maxLength={props.maxLength?4:30}
                     secureTextEntry={props.password?true:false}
-                    onPressIn={customOnFocus}
                     onBlur={customOnBlur}
+                    onPressIn={customOnFocus}
                     inputMode={props.numeric?'numeric':props.email?'email':'text'}
                 />
             </View>

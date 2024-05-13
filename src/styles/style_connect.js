@@ -69,7 +69,7 @@ export default StyleSheet.create ({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        marginTop: 15,
+        marginTop: 20,
     },
 
     connect__button: {

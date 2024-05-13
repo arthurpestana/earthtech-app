@@ -52,9 +52,10 @@ export default function Home() {
         setFromBd(true)
     }
     
-    async function getData(){
+    async function getData() {
         result = await db.getAllAsync(`SELECT * FROM mqtt`)
         console.log(result)
+        
         if (result.length != 0) {
             setDataBd(result[0])
             const mqttClient = new Paho.MQTT.Client(result[0].host, parseInt(result[0].port), result[0].name);
@@ -77,6 +78,7 @@ export default function Home() {
 
     useEffect(() => {
         getData()
+        
     }, [db])
     
     useEffect(() => {

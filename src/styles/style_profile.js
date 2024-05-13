@@ -6,7 +6,6 @@ export default StyleSheet.create({
         width: "100%",
         height: '100%',
         backgroundColor: 'hsl(228, 6%, 8%)',
-        paddingHorizontal: '10%'
     },
 
     container__main: {
@@ -16,7 +15,8 @@ export default StyleSheet.create({
         height: '100%',
         alignItems: 'flex-start',
         justifyContent: 'space-around',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        paddingHorizontal: '8%'
     },
 
     main__profile: {
@@ -27,10 +27,10 @@ export default StyleSheet.create({
         width: '100%'
     },
 
-    logo_image: {
+    profile__image: {
         padding: 25,
         backgroundColor: "hsl(228, 6%, 12%)",
-        borderRadius: 35,
+        borderRadius: 25,
     },
 
     profile__info: {

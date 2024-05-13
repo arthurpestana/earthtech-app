@@ -14,6 +14,11 @@ export default function Welcome() {
     const [route, setRoute] = useState(null)
 
     async function verifyLogged() {
+        /* ARRUMAR A CONEXÃO DA PLACA
+        await db.execAsync(`DELETE FROM mqtt`)
+        await db.execAsync(`INSERT INTO mqtt (id, name, username, senha, host, port) VALUES ("1", "Bruno", "brunolustosads@gmail.com", "12345678", "maqiatto.com", "8883")`)
+        result = await db.getAllAsync(`SELECT * FROM mqtt`)
+        console.log(result)*/
         result = await db.getAllAsync(`SELECT * FROM users WHERE logged = ${1}`)
         console.log(result[0])
         if (result[0] != undefined) {

@@ -30,30 +30,30 @@ export default function AdCalculator() {
             let AD = 1 + (0.3591*((-0.02128887*areiaTotal) + (-0.01005814*silte) + (-0.01901894*argila) + (0.0001171219*areiaTotal*silte) + (0.0002073924*areiaTotal*argila) + (0.00006118707*silte*argila) + (-0.000006373789*areiaTotal*silte*argila)))
             AD = Math.pow(AD, 2.78474)
             AD = AD * 10
-                if(AD<0.33){
-                    setAd("AD0")
-                }
-                if(AD>=0.34 && AD < 0.46){
-                    setAd("AD1")
-                }
-                if(AD >= 0.46 && AD < 0.61){
-                    setAd("AD2")
-                }
-                if(AD >= 0.61 && AD < 0.80){
-                    setAd("AD3")
-                }   
-                if(AD >= 0.80 && AD < 1.06){ 
-                    setAd("AD4")
-                }
-                if(AD >= 1.06 && AD < 1.40){
-                    setAd("AD5")
-                }
-                if(AD >= 1.40){
-                    setAd("AD6")
-                }
-
+            if(AD < 0.33){
+                setAd("AD0")
+            }
+            else if(AD < 0.46){
+                setAd("AD1")
+            }
+            else if(AD < 0.61){
+                setAd("AD2")
+            }
+            else if(AD < 0.80){
+                setAd("AD3")
+            }   
+            else if(AD < 1.06){ 
+                setAd("AD4")
+            }
+            else if(AD < 1.40){
+                setAd("AD5")
+            }
+            else {
+                setAd("AD6")
+            }
             setCalc(true)
-        }else{
+        }
+        else{
             Toast.show({
                 position: 'top',
                 type: 'error',
@@ -76,7 +76,7 @@ export default function AdCalculator() {
             <Toast text1Style = {styles.toastText} text2Style = {{fontSize: 13, color: 'hsl(228, 8%, 70%)',fontFamily: 'Montserrat_400Regular'}}/>
             <View style={[styles.container__main, {marginTop: '28%'}]} keyboardShouldPersistTaps="handled">
                 <View style={[styles.main__info, {marginBottom: '15%'}]}>
-                    <Text style={styles.info__title}>Calculadora de AD Solo</Text>
+                    <Text style={styles.info__title}>Calculadora de Classe AD</Text>
                     <Text style={styles.info__text}>Instrução para o cálculo da Água Disponível (AD - mm/cm) no solo:</Text>
                     <Text style={[styles.info__text, {fontSize: 12}]}>- Informe a Areia Total, Silica e Argila, todos os dados devem ser informados em porcentagem (%). Totalizando 100%</Text>
                 </View>

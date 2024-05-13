@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, TouchableOpacity, Text } from 'react-native'
+import {View, TouchableOpacity, Text, Platform} from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -25,20 +25,23 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 export default function TabRoutes() {
 
+    const heightTabBar = Platform.OS=='ios'?100:55
+
     return (
         <Tab.Navigator
             initialRouteName="Home"
             screenOptions={({route}) => ({
                 tabBarStyle: {
                     backgroundColor: 'hsl(228, 6%, 12%)',
-                    borderColor: 'transparent',
-                    height: 55,
+                    borderTopColor: 'hsl(228, 6%, 12%)',
+                    height: heightTabBar,
                     
                     position: 'absolute',
                     bottom: 0,
                     borderTopLeftRadius: 10,
                     borderTopRightRadius: 10,
                 },
+
                 tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: 'hsl(93, 40%, 30%)',
                 tabBarInactiveTintColor: 'hsl(228, 8%, 98%)',
