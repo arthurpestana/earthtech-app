@@ -8,7 +8,7 @@ export default (props) => {
 
     return (
         <View style={[Platform.OS=='ios'?styles.container__headerIOS:styles.container__headerAnd, props.modalView?styles.modalView:false]}>
-            <TouchableOpacity style={styles.button} onPress={() => Navigation.navigate(props.nav)}>
+            <TouchableOpacity style={styles.button} onPress={props.modalView?props.modalButton:() => Navigation.navigate(props.nav)}>
                 <View>
                     <Feather name={props.modalView?'x':'arrow-left'} size={25} color={"hsl(228, 8%, 98%)"}/>
                 </View>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
 
     modalView: {
-        top: 20,
+        top: 15,
         left: 10,
     },
 })

@@ -26,12 +26,12 @@ export default StyleSheet.create({
     },
 
     error_text: {
-        color: '#FFF',
+        color: 'hsl(228, 8%, 98%)',
         textAlign: 'center',
-        margin: 'auto',
-        fontFamily: 'Montserrat_700Bold',
+        fontFamily: 'Montserrat_600SemiBold',
         fontSize: 18
     },
+
     confirm__container: {
         width: 300,
         height: 500,
@@ -39,12 +39,14 @@ export default StyleSheet.create({
         position: 'absolute',
         borderRadius: 20
     },
+
     connect__button: {
-        marginTop: '5%',
+        marginTop: '6%',
         alignSelf: 'center',
-        width: '60%',
-        padding: 15,
-        borderRadius: 10,
+        width: '50%',
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'hsl(93, 40%, 30%)',
@@ -54,6 +56,6 @@ export default StyleSheet.create({
     button_text: {
         color: 'hsl(228, 8%, 98%)',
         fontSize: 16,
-        fontFamily: 'Montserrat_700Bold',
+        fontFamily: 'Montserrat_600SemiBold',
     },
 })

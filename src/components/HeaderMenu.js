@@ -20,7 +20,7 @@ export default function HeaderMenu() {
                                 <Feather name="settings" size={20} color={"hsl(228, 8%, 98%)"}/>
                             </View>
                         </TouchableOpacity>
-                    :false}
+                    :<View></View>}
                     <TouchableOpacity style={styles.menu__button} onPress={() => Navigation.navigate('Profile')}>
                         <View style={styles.menu__profile}>
                             <Feather name="user" size={20} color={"hsl(228, 8%, 98%)"}/>

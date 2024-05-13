@@ -13,10 +13,8 @@ export default function AdCalculator() {
     const [silteState, setSilte] = useState(Number)
     const [argilaState, setArgila] = useState(Number)
     const [ad, setAd] = useState(0)
-    const [confirmation, setConfirmation] = useState(false)
     const [calc, setCalc] = useState(false)
-
-    const Navigation = useNavigation()
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
         setAd(0)
@@ -32,24 +30,31 @@ export default function AdCalculator() {
             AD = AD * 10
             if(AD < 0.33){
                 setAd("AD0")
+                setMessage("Solo arenoso com pouca capacidade de retenção de água, inadequado para agricultura.")
             }
             else if(AD < 0.46){
                 setAd("AD1")
+                setMessage("Baixa capacidade de retenção de água, exigindo irrigação cuidadosa para suplementar.")
             }
             else if(AD < 0.61){
                 setAd("AD2")
+                setMessage('Capacidade moderada de retenção de água, requer monitoramento da irrigação.')
             }
             else if(AD < 0.80){
                 setAd("AD3")
+                setMessage('Boa capacidade de retenção de água, favorecendo o crescimento das plantas.')
             }   
             else if(AD < 1.06){ 
                 setAd("AD4")
+                setMessage('Excelente capacidade de retenção de água, proporcionando um suprimento constante para as plantas.')
             }
             else if(AD < 1.40){
                 setAd("AD5")
+                setMessage('Solo saturado, com altissíma retenção de água no solo, permitindo longos períodos sem irrigação.')
             }
             else {
                 setAd("AD6")
+                setMessage('Solo altamente saturado, maior período em que uma cultura conseguirá sobreviver sem a necessidade de chuvas ou irrigação, já que apenas absorve a água armazenada no solo.')
             }
             setCalc(true)
         }
@@ -64,12 +69,6 @@ export default function AdCalculator() {
             });
         }
     }
-
-    useEffect(() => {
-        if(confirmation == true){
-            Navigation.navigate('Conexão') //Arrumar quando tiver páginas para cada classe de solo AD
-        }
-    }, [confirmation])
 
     return (
         <SafeAreaView style={styles.container__connect}>
@@ -95,7 +94,7 @@ export default function AdCalculator() {
                     </TouchableOpacity>                       
                 </Animatable.View>
             </View>
-            {calc && ad!=0?<MessageModal confirmation={setConfirmation} setChange= {setCalc} message={`Que legal! Seu solo é de classe ${ad}, deseja conferir mais informações sobre essa classe?`} title={"Verificar solo?"}/>:null}
+            {calc && ad!=0?<MessageModal closeX setChange={setCalc} classeTexto={`Seu solo é de classe ${ad}`} message={message} title={"Classe AD do Solo"}/>:null}
         </SafeAreaView>
     )
 }

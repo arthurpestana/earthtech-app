@@ -77,6 +77,9 @@ export default function Configuration() {
                     </View>
                 </Animatable.View>)}):false}
             </View>
+            {items.length==0 &&<View style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', marginBottom: '30%'}}>
+                <Text style={{color: 'hsl(228, 8%, 98%)', textAlign: 'center', fontFamily: 'Montserrat_600SemiBold', fontSize: 18}}>Adicione itens para configurar!</Text>
+            </View>}
             {deleteStatus?<MessageModal confirmation = {setConfirmation} setChange = {setDeleteStatus} message = "Deseja continuar com a exclusão do item?"/>:false}
         </SafeAreaView>
         

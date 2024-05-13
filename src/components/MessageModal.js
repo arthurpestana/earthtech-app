@@ -1,12 +1,7 @@
-import {
-    Modal,
-    Pressable,
-    View,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Image
-  } from 'react-native';
+import React from 'react'
+import { Modal, Pressable, View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+
+import ReturnPage from './ReturnPage';
 
 export default function MessageModal(props) {
     const positiveConfirmation = () => {
@@ -22,6 +17,7 @@ export default function MessageModal(props) {
         <Modal animationType='slide' visible={true} transparent= {true}>
             <Pressable style={styles.modal__container}>
                 <View style={styles.modal__content}>
+                    {props.closeX && <ReturnPage modalView modalButton={positiveConfirmation}/>}
                     <View style={styles.modal__icon}>
                         <Image 
                         source={require('../images/pngwing.png')}
@@ -31,15 +27,16 @@ export default function MessageModal(props) {
                     </View>
                     <View style={styles.modal__lower}>
                         <Text style={styles.modal__title}>{props.confirmation?'Tem certeza?':props.title}</Text>
-                        <Text style={styles.modal__message}>{props.message}</Text>
-                        <View style={{flexDirection: 'row'}}>
+                        {props.classeTexto &&<Text style={styles.modal__message}>{props.classeTexto}</Text>}
+                        <Text style={props.classeTexto?styles.modal__text:styles.modal__message}>{props.message}</Text>
+                        {!props.closeX && <View style={{flexDirection: 'row', marginTop: '8%'}}>
                             <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
-                                <Text style={styles.modal__text}>{props.confirmation?"Sim":"Entendi"}</Text>
+                                <Text style={styles.button__text}>{props.confirmation?"Sim":"Entendi"}</Text>
                             </TouchableOpacity>
-                            {props.confirmation && <TouchableOpacity style={[styles.modal__button, {backgroundColor: '#8b0000'}]} onPress={negativeConfirmation}>
-                                <Text style={styles.modal__text}>Não</Text>
+                            {props.confirmation && <TouchableOpacity style={[styles.modal__button, {backgroundColor: 'hsl(93, 40%, 30%)'}]} onPress={negativeConfirmation}>
+                                <Text style={styles.button__text}>Não</Text>
                             </TouchableOpacity>}
-                        </View>
+                        </View>}
                     </View>
                 </View>
             </Pressable>
@@ -55,6 +52,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.6)'
     },
+
     modal__content: {
         width: '100%',
         elevation: 5,
@@ -63,20 +61,23 @@ const styles = StyleSheet.create({
         backgroundColor: "hsl(228, 6%, 8%)",
         paddingTop: '15%'
     },
-    modal__text: {
-        color: 'hsl(228, 8%, 98%)',
-        fontSize: 16,
-        fontFamily: 'Montserrat_700Bold',
-    },
+
     modal__button: {
         width: 'auto',
-        padding: 15,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
         borderRadius: 10,
-        marginHorizontal: '3%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'hsl(93, 40%, 30%)',
     }, 
+    
+    button__text: {
+        color: 'hsl(228, 8%, 98%)',
+        fontSize: 14,
+        fontFamily: 'Montserrat_700Bold',
+    },
+
     modal__icon: {       
         height: 100,
         width: 100,
@@ -85,14 +86,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: "-30%",
         elevation: 5,
-        
     },
+
     modal__lower: {
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20
+        paddingVertical: '8%',
+        paddingHorizontal: '8%',
+
     },
+
     modal__title: {
         color: 'hsl(228, 8%, 98%)',
         fontSize: 18,
@@ -100,11 +104,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10
     },
+
     modal__message: {
         color: 'hsl(228, 8%, 98%)',
         fontSize: 16,
         fontFamily: 'Montserrat_400Regular',
+        textAlign: 'justify',
+        marginBottom: 10
+    },
+
+    modal__text: {
+        color: 'hsl(228, 8%, 70%)',
+        fontSize: 14,
+        fontFamily: 'Montserrat_400Regular',
         textAlign: 'center',
-        marginBottom: 20
     }
+
 })
