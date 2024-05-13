@@ -87,8 +87,8 @@ export default (props) => {
                         <Text style={[styles.info__text, styles.info__text_desc]}>{typeCatalog==0?'Tempo de Crescimento:':'Acidez do Solo:'}</Text>
                     </View>
                     <View style={[styles.info__text_props, {gap: 5}]}>
-                        <Text style={styles.info__text}>{props.textClima}</Text>
-                        <Text style={styles.info__text}>{props.textCrescimento}</Text>
+                        <Text style={[styles.info__text,{width: 130}]}>{props.textClima}</Text>
+                        <Text style={[styles.info__text, {width: 130}]}>{props.textCrescimento}</Text>
                     </View>
                 </View>
             </View>:null}
