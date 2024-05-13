@@ -9,6 +9,7 @@ import LoginCadastroInput from '../../components/InputText';
 import { useNavigation } from '@react-navigation/native'
 import { Feather } from "@expo/vector-icons"
 import ReturnPage from '../../components/ReturnPage'
+import Toast from 'react-native-toast-message'
 
 export default function Connect() {
     const db = useSQLiteContext()
@@ -17,6 +18,17 @@ export default function Connect() {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState('')
 
+    function showToast(message){
+        Toast.show({
+            position: 'top',
+            type: 'error',
+            text1: 'Erro',
+            text2: message,
+            visibilityTime: 5000,
+            autoHide: true
+        });
+    }
+
     async function signUp(){
         if(email.includes('@') && senha.length >= 8 && nome != ''){
             await db.execAsync(`INSERT INTO users (name, password, email, logged) VALUES ("${nome}", "${senha}", "${email}", "${0}")`)
@@ -24,23 +36,24 @@ export default function Connect() {
         }
         else{
             if(!email.includes('@') && email != ''){
-                console.log('O email deve incluir um endereço, Ex: @gmail.com')
+                showToast('O email deve incluir um endereço, Ex: @gmail.com')
             }
             if(!senha.length >= 8){
-                console.log('A senha deve ter 8 ou mais caracteres')
+                showToast('A senha deve ter 8 ou mais caracteres')
             }
             if(!nome != ''){
-                console.log('O nome não pode estar vazio')
+                showToast('O nome não pode estar vazio')
             }
             if(!email != ''){
-                console.log('O email não pode estar vazio')
+                showToast('O email não pode estar vazio')
             }
         }
-        console.log("singUP")
+        Navigation.navigate('Login')
     }
 
     return (
         <SafeAreaView style={styles.container__cadastro}>
+            <Toast/>
             <ReturnPage nav={"Login"}/>
             <View style={[styles.container__main, styles.container__register]} keyboardShouldPersistTaps="handled">
                 <View style={styles.main__info}>

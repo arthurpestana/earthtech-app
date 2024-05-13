@@ -11,6 +11,7 @@ export default function MethodDropdown(props) {
     useEffect(() => {      
         if(props.table){
             props.typeMethod(props.methods_list[0])
+            setSelectedOption(props.methods_list[0])
         }
     }, [props.methods_list])
 
@@ -41,6 +42,7 @@ export default function MethodDropdown(props) {
                 <FlatList
                     style={styles.dropdown__flatlist}
                     data={props.methods_list}
+                    keyExtractor={(item, index) => index.toString()}
                     renderItem={({item, index}) => {
                         return (
                             <TouchableOpacity onPress={() => {setOption(item, index)}} style={styles.dropdownItem}>

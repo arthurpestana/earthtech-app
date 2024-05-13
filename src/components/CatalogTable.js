@@ -24,7 +24,7 @@ export default function(props) {
                     {
                         tableHead.map((element, key) => {
                             return(
-                                <View style={{flexDirection: 'row', width: element=="Safra"?100:element=="Solo"?100:element=="UF"?60:element=="Cultura"?125:element=="Grupo"?100:element=="Município"?125:45,  alignItems: 'center'}}>
+                                <View key={key} style={{flexDirection: 'row', width: element=="Safra"?100:element=="Solo"?100:element=="UF"?60:element=="Cultura"?125:element=="Grupo"?100:element=="Município"?125:45,  alignItems: 'center'}}>
                                     <Text style = {[styles.header__text]} key={key}>{element}</Text>
                                     {element=="Grupo"&&
                                     <TouchableOpacity onPress={() => setInfoPressed(true)}>

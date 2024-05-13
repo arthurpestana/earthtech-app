@@ -64,7 +64,7 @@ export default function Configuration() {
                     <View style={styles.dashboard__dados}>
                         <View style={styles.item__div_info}>
                             <Text style={styles.item__title}>{element.name}</Text>
-                            <Text style={styles.item__text}>{key} • {element.type==0?'Monitor de Risco':element.type==1?'Umidade do ambiente':element.type==2?'Irrigação Automática':element.type==3?'Ligar Irrigador':'Temperatura do ambiente'}</Text> 
+                            <Text style={[styles.item__text, {width: 150}]}>{key} • {element.type==0?'Monitor de Risco':element.type==1?'Umidade do ambiente':element.type==2?'Irrigação Automática':element.type==3?'Ligar Irrigador':'Temperatura do ambiente'}</Text> 
                         </View>
                     </View>
                     <View style={styles.dashboard__dados}>

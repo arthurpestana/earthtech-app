@@ -96,7 +96,7 @@ export default (props) => {
                 <Text style={styles.info__text}>{props.text}</Text>
             </View>:null}
             {(viewMore==true && props.images)?<View style={styles.info__dados}>
-                {props.imagesList.lenght!==0?<FlatList
+                {props.imagesList.length!==0?<FlatList
                     style={{
                         display: 'flex',
                         width: '100%',
@@ -104,7 +104,7 @@ export default (props) => {
                         gap: 15
                     }}
                     data={props.imagesList}
-                    horizontal={true}
+                    horizontal
                     keyExtractor={(item, index) => index.toString()} 
                     renderItem={({ item, index }) => {
                         console.log(item)
@@ -168,9 +168,10 @@ export default (props) => {
                 <View style={styles.info__solo_ph}>
                     <View style={styles.info__solo_ph_items}>
                         {phNiveis.map((element, key) => {
+                            
                             return(
                                 typeCatalog==0?
-                                    element>=Number(props.soloPH.slice(0, 3))&&element<=Number(props.soloPH.slice(4, props.soloPH.lenght))?
+                                    element>=Number(props.soloPH.slice(0, 3))&&element<=Number(props.soloPH.slice(4, props.soloPH.length))?
                                     <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 35, backgroundColor: `hsl(93, 40%, 30%)`, borderRadius: 3}} key={key}>
                                         <Text style={[styles.info__text, {fontSize: 10}]}>{element}</Text>
                                     </View>
@@ -190,7 +191,7 @@ export default (props) => {
                     </View>
                     <View style={styles.info__ph_view}>
                         {typeCatalog==0?
-                        <Text style={[styles.info__text, {fontSize: 12, fontFamily: 'Montserrat_600SemiBold'}]}>{props.soloPH.slice(0, 3)} pH - {props.soloPH.slice(4, props.soloPH.lenght)} pH</Text>
+                        <Text style={[styles.info__text, {fontSize: 12, fontFamily: 'Montserrat_600SemiBold'}]}>{props.soloPH.slice(0, 3)} pH - {props.soloPH.slice(4, props.soloPH.length)} pH</Text>
                         :
                         <Text style={[styles.info__text, {fontSize: 12, fontFamily: 'Montserrat_600SemiBold'}]}>{props.soloPH} pH</Text>}
                     </View>
@@ -222,9 +223,9 @@ export default (props) => {
                 </View>
             </View>:null}
             {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__table]}>
-                <Text style={styles.info__text}>Abaixo temos um painel de risco pego diretamente do ZARC (Zoneamento Agrícola de Risco Climático).</Text>
-                <Text style={styles.info__text}>Nesse painel estão dispostas informações da safra 2023/2024 em todas as cidades do Tocantins que tem uma safra para a cultura correspondente a essa página</Text>
-                <Text style={styles.info__text}>Do número 1 ao 36 são os decêndios do ano, e abaixo de cada um tem os riscos climáticos envolvidos na condução das lavouras que podem ocasionar perdas na produção, apresentados em porcentagem.</Text>
+                <Text style={[styles.info__text, {minWidth: '100%'}]}>Abaixo temos um painel de risco pego diretamente do ZARC (Zoneamento Agrícola de Risco Climático).</Text>
+                <Text style={[styles.info__text, {minWidth: '100%'}]}>Nesse painel estão dispostas informações da safra 2023/2024 em todas as cidades do Tocantins que tem uma safra para a cultura correspondente a essa página.</Text>
+                <Text style={[styles.info__text, {minWidth: '100%'}]}>Do número 1 ao 36 são os decêndios do ano, e abaixo de cada um tem os riscos climáticos envolvidos na condução das lavouras que podem ocasionar perdas na produção, apresentados em porcentagem.</Text>
                 <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData} resetData = {setApiData} table dropdownRisk/>
                 <CatalogTable data = {apiData}/>
             </View>:null}

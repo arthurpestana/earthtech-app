@@ -52,7 +52,7 @@ export default function CatalogItem() {
             <View style={styles.item__header}>
                 <View style={styles.header__icon}>
                     {typeCatalog==0?<Image source={{uri: dados.icon}} style={{width: 60, height: 60}}/>
-                    :<MaterialIcons name='terrain' color={'hsl(228, 8%, 98%)'} size={60}/>}
+                    :<MaterialIcons name='terrain' color={dados.cor} size={60}/>}
                 </View>
                 <View style={styles.header__info}>
                     <Text style={styles.header__title}>{dados.nome}</Text>
@@ -63,6 +63,7 @@ export default function CatalogItem() {
                 <FlatList
                     style={styles.item__main}
                     data={listItems}
+                    keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) => {
                         return(
                             item

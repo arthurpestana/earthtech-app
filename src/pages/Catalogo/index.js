@@ -54,7 +54,7 @@ export default function Catalogo() {
                                 }
                             }
                             else {
-                                return(<CatalogDiv nome={element.nome} tipo={element.tipo} estado={element.profundidade} key={key} index={key}/>)
+                                return(<CatalogDiv nome={element.nome} tipo={element.tipo} estado={element.profundidade} key={key} index={key} color={element.cor}/>)
                             }
                         })}
                     </ScrollView>

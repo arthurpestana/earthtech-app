@@ -17,30 +17,33 @@ export default function Connect() {
     const { setMail, setName, setLoggedIn, setId } = useMQTT()
 
     async function loginAccount(){
-        result = await db.getAllAsync(`SELECT * FROM users`)
-        console.log(result)
+        try{
+            result = await db.getAllAsync(`SELECT * FROM users where email = "${email}" and password = "${senha}"`)
+            console.log(result)
 
-        if (senha!='' && email!='') {
-            for (let element of result) {
-                if (email == element.email && senha == element.password) {
-                    await db.execAsync(`UPDATE users SET logged = ${1} WHERE email = "${element.email}"`)
-                    setMail(element.email)
-                    setName(element.name)
-                    setId(element.id)
-                    setLoggedIn(true)
-                    Navigation.navigate('TabRoutes')
+            if (senha!='' && email!='') {
+                for (let element of result) {
+                    if (email == element.email && senha == element.password) {
+                        await db.execAsync(`UPDATE users SET logged = ${1} WHERE email = "${element.email}"`)
+                        setMail(element.email)
+                        setName(element.name)
+                        setId(element.id)
+                        setLoggedIn(true)
+                        Navigation.navigate('TabRoutes')
+                    }
                 }
             }
-        }
-        else {
-            Toast.show({
-                position: 'top',
-                type: 'error',
-                text1: 'Erro',
-                text2: 'E-mail ou senha incorretos',
-                visibilityTime: 5000,
-                autoHide: true
-            });
+            if(result.length < 1) {
+                Toast.show({
+                    position: 'top',
+                    type: 'error',
+                    text1: 'Erro',
+                    text2: 'E-mail ou senha incorretos',
+                    visibilityTime: 5000,
+                    autoHide: true
+                });
+        }}catch(err){
+            console.log(err)
         }
     }
 

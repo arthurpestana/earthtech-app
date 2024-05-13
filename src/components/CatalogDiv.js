@@ -20,12 +20,12 @@ export default function CatalogDiv(props) {
     return (
         <Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
             <View style={styles.item__div_img}>
-                {props.cultivo?<Image source={{uri: props.iconName}} style={{width: 50, height: 50}}/>:<MaterialIcons name='terrain' size={40} color={`${props.color}`}/>}
+                {props.cultivo?<Image source={{uri: props.iconName}} style={{width: 50, height: 50}}/>:<MaterialIcons name='terrain' size={40} color={props.color}/>}
             </View>
             <View style={styles.dashboard__dados}>
                 <View style={styles.item__div_info}>
                     <Text style={styles.item__title}>{props.nome}</Text>
-                    <Text style={styles.item__text}>{props.tipo} • {props.estado}</Text> 
+                    <Text style={[styles.item__text, {width: 200}]}>{props.tipo} • {props.estado}</Text> 
                 </View>
             </View>
             <View style={styles.dashboard__dados}>
