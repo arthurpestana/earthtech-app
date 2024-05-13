@@ -64,13 +64,7 @@ export default function Connect() {
                     style={{width: '50%', zIndex: -1}}
                     resizeMode="contain"
                     tintColor={'#496b2e'}
-                />:
-                <Animatable.Image 
-                animation={"flipInY"}
-                style={{width: '50%', zIndex: -1}}
-                resizeMode="contain"
-                tintColor={'#496b2e'}
-                />}
+                />:null}
             </Animatable.View>
             <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={5}>
                 <ScrollView>

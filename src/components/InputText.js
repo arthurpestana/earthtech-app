@@ -21,6 +21,10 @@ export default function (props) {
         props.onFocused?props.onFocused(true):null
     }
 
+    const inputFocus = () => {
+        props.onFocused?props.onFocused(true):null
+    }
+
     return (
         <Animatable.View animation={'fadeInLeft'} delay={props.delay} style={[props.addTopic?styles.main__formTopic:styles.main__form]}>
             <View style={styles.form__icon}>
@@ -31,7 +35,7 @@ export default function (props) {
                 <View style={onFocusedInput ? styles.form_box__textFocused : styles.form_box__text}>
                     <Text style={styles.form__text}>{props.placeholder}</Text>
                 </View>
-                <TextInput 
+                <TextInput
                     style={styles.form__input}
                     placeholder=''
                     value={props.value}
@@ -40,6 +44,7 @@ export default function (props) {
                     maxLength={props.maxLength?4:30}
                     secureTextEntry={props.password?true:false}
                     onBlur={customOnBlur}
+                    onFocus={inputFocus}
                     onPressIn={customOnFocus}
                     inputMode={props.numeric?'numeric':props.email?'email':'text'}
                 />
