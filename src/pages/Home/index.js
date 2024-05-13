@@ -104,7 +104,7 @@ export default function Home() {
                 shortColumnNames: '0'
                 },
                 headers: {
-                //'X-RapidAPI-Key': '7458f33178msh4dc7d37228e779cp157f1djsn70574d448a0c',
+                'X-RapidAPI-Key': '7458f33178msh4dc7d37228e779cp157f1djsn70574d448a0c',
                 'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
                 }
             };
@@ -161,52 +161,58 @@ export default function Home() {
     }, []);
     return (
         <GestureHandlerRootView style={{flex: 1}}>
-            <SafeAreaView style={styles.container_home}>       
-                <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
-                    <Text style={styles.header__title}>Bem-vindo(a) <Text style={{textTransform: 'capitalize'}}>{userName}</Text></Text>
-                    <View style={styles.connection__box}>
-                        <Text style={styles.header__text}>Gerencie sua plantação!</Text>
-                    </View> 
-                </Animatable.View>
-                <View animation={'fadeInLeft'} delay={400} style={styles.container__weather}>
-                    <View style={{flexDirection:'row', justifyContent: 'space-evenly'}}>
-                        <View style={{flexDirection:'row'}}>
-                            {data.length > 0?
-                            <Image source={data[0].clouds} style={{width: 60, height: 'auto' }}/>:
-                            false}
-                            <Text style={styles.container__title}>{data.length > 0 ? data[0].temps : '-'}</Text>
-                            <Text style={styles.weather__celsius}>ºC</Text>
+            <SafeAreaView style={styles.container_home}>  
+                <View style={{width: '100%', paddingHorizontal: 20}}>
+                    <Animatable.View animation={'fadeInLeft'} delay={400} style={styles.container__header}>
+                        <Text style={styles.header__title}>Bem-vindo(a) <Text style={{textTransform: 'capitalize'}}>{userName}</Text></Text>
+                        <View style={styles.connection__box}>
+                            <Text style={styles.header__text}>Gerencie sua plantação!</Text>
+                        </View> 
+                    </Animatable.View>
+                </View>     
+                <View style={{width: '100%', paddingHorizontal: 20}}>
+                    <View animation={'fadeInLeft'} delay={400} style={styles.container__weather}>
+                        <View style={{flexDirection:'row', justifyContent: 'space-evenly'}}>
+                            <View style={{flexDirection:'row'}}>
+                                {data.length > 0?
+                                <Image source={data[0].clouds} style={{width: 60, height: 'auto' }}/>:
+                                false}
+                                <Text style={styles.container__title}>{data.length > 0 ? data[0].temps : '-'}</Text>
+                                <Text style={styles.weather__celsius}>ºC</Text>
+                            </View>
+                            <View style={styles.weather__details}>
+                                <Text style={styles.details_text}>Chuva: {data.length > 0 ? data[0].precip : '-'}% </Text>
+                                <Text style={styles.details_text}>Umidade: {data.length > 0 ? data[0].umid : '-'}%</Text>
+                                <Text style={styles.details_text}>Vento: {data.length > 0 ? data[0].wind : '-'} km/h</Text>
+                            </View>
                         </View>
-                        <View style={styles.weather__details}>
-                            <Text style={styles.details_text}>Chuva: {data.length > 0 ? data[0].precip : '-'}% </Text>
-                            <Text style={styles.details_text}>Umidade: {data.length > 0 ? data[0].umid : '-'}%</Text>
-                            <Text style={styles.details_text}>Vento: {data.length > 0 ? data[0].wind : '-'} km/h</Text>
+                        <View style={styles.next__container}>
+                            {isLoading 
+                            ? <Text style={{color: '#FFF', fontFamily: 'Montserrat_700Bold',}}>Aguardando dados...</Text> : error ? (
+                                <Text style={{color: '#FFF'}}>Ocorreu um erro: {error.message}</Text>
+                            ): (
+                                <FlatList
+                                    data={data}
+                                    renderItem={({ item }) => (
+                                        <NextWeather
+                                            minTemp={item.minTemps}
+                                            maxTemp={item.maxTemps}
+                                            date={item.dates}
+                                            clouds={item.clouds}
+                                            id={item.id}
+                                        />
+                                    )}
+                                    horizontal
+                                    contentContainerStyle={{ columnGap: 20 }}
+                                />
+                            )}                    
                         </View>
-                    </View>
-                    <View style={styles.next__container}>
-                        {isLoading 
-                        ? <Text style={{color: '#FFF', fontFamily: 'Montserrat_700Bold',}}>Aguardando dados...</Text> : error ? (
-                            <Text style={{color: '#FFF'}}>Ocorreu um erro: {error.message}</Text>
-                        ): (
-                            <FlatList
-                                data={data}
-                                renderItem={({ item }) => (
-                                    <NextWeather
-                                        minTemp={item.minTemps}
-                                        maxTemp={item.maxTemps}
-                                        date={item.dates}
-                                        clouds={item.clouds}
-                                        id={item.id}
-                                    />
-                                )}
-                                horizontal
-                                contentContainerStyle={{ columnGap: 20 }}
-                            />
-                        )}                    
                     </View>
                 </View>
-                <View style={styles.container__graphic} animation={"fadeInLeft"}>
-                    <HomeChart/>
+                <View style={{width: '100%', paddingHorizontal: 20}}>
+                    <View style={styles.container__graphic} animation={"fadeInLeft"}>
+                        <HomeChart/>
+                    </View>
                 </View>
             </SafeAreaView>
         </GestureHandlerRootView>

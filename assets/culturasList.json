@@ -1,6 +1,6 @@
 [
     {
-        "icon": "soja",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2269/2269025.png",
         "nome": "Soja",
         "tipo": "Grão",
         "clima": "Tropical",
@@ -19,7 +19,7 @@
         ]
     },
     {
-        "icon": "milho",
+        "icon": "https://cdn-icons-png.flaticon.com/512/5346/5346055.png",
         "nome": "Milho",
         "tipo": "Grão",
         "clima": "Tropical",
@@ -38,7 +38,7 @@
         ]
     },
     {
-        "icon": "arroz",
+        "icon": "https://cdn-icons-png.flaticon.com/512/1256/1256471.png",
         "nome": "Arroz",
         "tipo": "Grão",
         "clima": "Tropical",
@@ -57,7 +57,7 @@
         ]
     },
     {
-        "icon": "algodao",
+        "icon": "https://cdn-icons-png.flaticon.com/512/3174/3174960.png",
         "nome": "Algodão",
         "tipo": "Fibra",
         "clima": "Subtropical",
@@ -76,7 +76,7 @@
         ]
     },
     {
-        "icon": "cafe",
+        "icon": "https://cdn-icons-png.flaticon.com/512/924/924514.png",
         "nome": "Café Arábica",
         "tipo": "Grão",
         "clima": "Subtropical",
@@ -95,7 +95,7 @@
         ]
     },
     {
-        "icon": "feijao",
+        "icon": "https://i.pinimg.com/originals/47/39/1f/47391f15d55ff0205cd8d7945572e6de.png",
         "nome": "Feijão",
         "tipo": "Grão",
         "clima": "Tropical",

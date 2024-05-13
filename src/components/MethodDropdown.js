@@ -8,8 +8,7 @@ export default function MethodDropdown(props) {
     const [clicked, setIsClicked] = useState(false);
     const [selectedOption, setSelectedOption] = useState(props.methods_list[0])
 
-    useEffect(() => {
-        setSelectedOption(props.methods_list[0])
+    useEffect(() => {      
         if(props.table){
             props.typeMethod(props.methods_list[0])
         }

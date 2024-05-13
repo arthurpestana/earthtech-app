@@ -5,8 +5,6 @@ export default StyleSheet.create({
         flex: 1,
         width: "100%",
         height: '100%',
-        paddingHorizontal: '8%',
-        paddingVertical: '8%',
         backgroundColor: 'hsl(228, 6%, 8%)'
     },
 
@@ -15,6 +13,8 @@ export default StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         marginTop: '10%',
+        paddingHorizontal: '8%',
+        paddingTop: '8%',
         width: '100%'
     }, 
 
@@ -51,6 +51,7 @@ export default StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         width: '100%',
+        paddingHorizontal: '8%',
     },
 
     main__catalog_items: {

@@ -5,14 +5,15 @@ export default StyleSheet.create ({
         alignItems: "center",
         flex: 1,
         backgroundColor: "hsl(228, 6%, 8%)",
-        paddingHorizontal: 20
+        
     },
 
     container__header:{
         marginTop: "22%",
         marginBottom: '13%',
         paddingStart: '5%',
-        alignSelf: "flex-start"
+        alignSelf: "flex-start",
+        paddingHorizontal: 20
     },
 
     header__title:{
@@ -25,7 +26,7 @@ export default StyleSheet.create ({
         fontFamily: 'Montserrat_400Regular',
     },
     container__weather:{
-        width: "98%",
+        width: "100%",
         padding: "6%",
         backgroundColor: "hsl(228, 6%, 12%)",
         borderRadius: 20,

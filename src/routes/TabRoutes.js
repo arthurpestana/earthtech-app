@@ -33,6 +33,7 @@ export default function TabRoutes() {
                     backgroundColor: 'hsl(228, 6%, 12%)',
                     borderColor: 'transparent',
                     height: 55,
+                    
                     position: 'absolute',
                     bottom: 0,
                     borderTopLeftRadius: 10,

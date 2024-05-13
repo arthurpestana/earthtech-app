@@ -10,7 +10,7 @@ import { useSQLiteContext } from 'expo-sqlite/next'
 export default function Welcome() {
     const db = useSQLiteContext()
     const Navigation = useNavigation()
-    const { setMail, setName, setLoggedIn, setId } = useMQTT()
+    const { setMail, setName, setLoggedIn, loggedIn, setId } = useMQTT()
     const [route, setRoute] = useState(null)
 
     async function verifyLogged() {
@@ -30,7 +30,7 @@ export default function Welcome() {
 
     useEffect(() => {
         verifyLogged()
-    }, []);
+    }, [loggedIn]);
     
     return (
         <SafeAreaView style={styles.container_app}>

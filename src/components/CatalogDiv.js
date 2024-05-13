@@ -17,39 +17,10 @@ export default function CatalogDiv(props) {
         Navigation.navigate('CatalogItem')
     }
 
-    function iconSet(){
-        switch(props.iconName){
-            case "soja":
-                tempImage = require("../images/soja.png")
-                break;
-            case "feijao":
-                tempImage = require("../images/feijao.png")
-                break;
-            case "algodao":
-                tempImage = require("../images/algodao.png")
-                break;
-            case "arroz":
-                tempImage = require("../images/arroz.png")
-                break;
-            case "cafe":
-                tempImage = require("../images/cafe-arabico.png")
-                break;
-            case "milho":
-                tempImage = require("../images/milho.png")
-                break;
-            default:
-                tempImage = require("../images/milho.png")
-                break;
-        }
-        setIconImage(tempImage)
-    }
-    useEffect(() => {
-        iconSet()
-    }, [])
     return (
         <Animatable.View animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
             <View style={styles.item__div_img}>
-                {props.cultivo?<Image source={iconImage} style={{width: 50, height: 50}}/>:<MaterialIcons name='terrain' size={40} color={'hsl(228, 8%, 98%)'}/>}
+                {props.cultivo?<Image source={{uri: props.iconName}} style={{width: 50, height: 50}}/>:<MaterialIcons name='terrain' size={40} color={`${props.color}`}/>}
             </View>
             <View style={styles.dashboard__dados}>
                 <View style={styles.item__div_info}>

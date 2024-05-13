@@ -3,9 +3,7 @@ import { View, Text, SafeAreaView, FlatList, Image, ScrollView} from 'react-nati
 
 import { useMQTT } from '../../components/Context'
 
-import { Feather, MaterialIcons } from '@expo/vector-icons'
-import * as Animatable from 'react-native-animatable'
-import { useNavigation } from '@react-navigation/native'
+import { MaterialIcons } from '@expo/vector-icons'
 import styles from '../../styles/style_catalogItem'
 import ReturnPage from '../../components/ReturnPage'
 import InfoDados from  '../../components/InfoDados'
@@ -53,7 +51,7 @@ export default function CatalogItem() {
             <ReturnPage nav={'CatalogoIndex'} />
             <View style={styles.item__header}>
                 <View style={styles.header__icon}>
-                    {typeCatalog==0?<Text style={{fontSize: 48, height: 60}}>{dados.icon}</Text>
+                    {typeCatalog==0?<Image source={{uri: dados.icon}} style={{width: 60, height: 60}}/>
                     :<MaterialIcons name='terrain' color={'hsl(228, 8%, 98%)'} size={60}/>}
                 </View>
                 <View style={styles.header__info}>
