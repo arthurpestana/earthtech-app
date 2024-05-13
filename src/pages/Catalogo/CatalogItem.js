@@ -21,7 +21,7 @@ export default function CatalogItem() {
 
         <InfoDados title={"Galeria de Fotos"} iconName={'camera'} images imagesList={dados.images}/>,
 
-        typeCatalog==0?<InfoDados title={"Necessidade de Água"} iconName={'droplet'} quantAgua={dados.necessidadeDeAgua} agua/>:<InfoDados title={"Níveis de Solo"} nivelList={dados.nivel2} coresList={dados.cores} nivelSolo/>,
+        typeCatalog==0?<InfoDados title={"Necessidade de Água"} iconName={'droplet'} quantAgua={dados.necessidadeDeAgua} agua/>:<InfoDados title={"Classificações de 2º Nível"} nivelList={dados.nivel2} coresList={dados.cores} nivelSolo/>,
 
         <InfoDados title={"Solo"} soloTipo={typeCatalog==0?dados.solo.tipo:dados.tipo} soloDrenagem={typeCatalog==0?dados.solo.drenagem:dados.drenagem} soloPH={typeCatalog==0?dados.solo.phRecomendado:dados.pH} typeSolo/>,
 

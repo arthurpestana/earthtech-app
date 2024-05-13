@@ -202,11 +202,11 @@ export default (props) => {
                     <View style={{gap: 7, width: '30%'}}>
                         <Text style={[styles.info__text, styles.info__text_desc]}>Areia:</Text>
                         <Text style={[styles.info__text, styles.info__text_desc]}>Argila:</Text>
-                        <Text style={[styles.info__text, styles.info__text_desc]}>Sílica:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Silte:</Text>
                         <Text style={[styles.info__text, styles.info__text_desc]}>Fósforo:</Text>
                         <Text style={[styles.info__text, styles.info__text_desc]}>Carbono:</Text>
-                        <Text style={[styles.info__text, styles.info__text_desc]}>Nitro:</Text>
-                        <Text style={[styles.info__text, styles.info__text_desc]}>AT:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Nitrogênio:</Text>
+                        <Text style={[styles.info__text, styles.info__text_desc]}>Alumínio:</Text>
                     </View>
                     <View style={styles.info__text_props}>
                         <FlatList
