@@ -6,6 +6,7 @@ import { Feather, MaterialIcons } from '@expo/vector-icons'
 import axios from 'axios'
 import MethodDropdown from "./MethodDropdown";
 import CatalogTable from "./CatalogTable";
+import CatalogRiskView from './CatalogRiskView';
 import { Canvas, Rect } from "@shopify/react-native-skia"
 import { useMQTT } from './Context'
 
@@ -17,8 +18,6 @@ export default (props) => {
     const [citiesData, setCitiesData] = useState([])
     const [apiData, setApiData] = useState([])
     const [dados, setDados] = useState(null)
-
-    const dataImages = ['../images/soja.jpg', '../images/soja.jpg']
 
     const viewMoreFunction = () => {
         if (viewMore==false) {
@@ -61,11 +60,13 @@ export default (props) => {
 
     useEffect(() => {
         if(dados!=null && typeCatalog==0){
+            list_dados = []
             for(let i = 0; i < dados.data.length; i++){
-                if(dados.data[i].municipio == activeCity){
-                    apiData.push(dados.data[i])
+                if(dados.data[i].municipio == activeCity) {
+                    list_dados.push(dados.data[i])
                 }
             }
+            setApiData(list_dados)
         }
     }, [activeCity, dados])
 
@@ -222,12 +223,13 @@ export default (props) => {
                     </View>
                 </View>
             </View>:null}
-            {(viewMore==true && props.data)?<View style={[styles.info__dados, styles.info__table]}>
+            {(viewMore==true && props.data)?<View style={[styles.info__dados,]}>
                 <Text style={[styles.info__text, {minWidth: '100%'}]}>Abaixo temos um painel de risco pego diretamente do ZARC (Zoneamento Agrícola de Risco Climático).</Text>
                 <Text style={[styles.info__text, {minWidth: '100%'}]}>Nesse painel estão dispostas informações da safra 2023/2024 em todas as cidades do Tocantins que tem uma safra para a cultura correspondente a essa página.</Text>
                 <Text style={[styles.info__text, {minWidth: '100%'}]}>Do número 1 ao 36 são os decêndios do ano, e abaixo de cada um tem os riscos climáticos envolvidos na condução das lavouras que podem ocasionar perdas na produção, apresentados em porcentagem.</Text>
-                <MethodDropdown typeMethod={setActiveCity} methods_list = {citiesData} resetData = {setApiData} table dropdownRisk/>
-                <CatalogTable data = {apiData}/>
+                <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} resetData={setApiData} table dropdownRisk/>
+                <CatalogRiskView cityRisk={activeCity} data={apiData}/>
+                
             </View>:null}
         </View>
     )
@@ -361,6 +363,7 @@ const styles = StyleSheet.create({
     
     info__table: {
         flex: 1,
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
