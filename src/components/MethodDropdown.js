@@ -32,13 +32,13 @@ export default function MethodDropdown(props) {
     }
 
     return (
-        <Animatable.View delay={500} animation={'fadeInLeft'} style={{display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1000, width: '100%'}}>
+        <Animatable.View delay={500} animation={'fadeInLeft'} style={[{display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1000, width: '100%'}]}>
             <TouchableOpacity style={styles.dropdown__container} onPress={isClicked}>
                 <Text style={styles.textDropdown}>{selectedOption}</Text>
                 <Feather name="chevron-down" size={30} color={"hsl(228, 8%, 98%)"} style={clicked?{transform: [{rotate: '180deg'}]}:null}/>
             </TouchableOpacity>
             {clicked?
-            <Animatable.View style={[styles.dropdown__area, props.dropdownRisk?styles.dropdown__area_risks:null]} animation={'fadeInUp'}>
+            <Animatable.View style={[styles.dropdown__area, props.dropdownRisk?styles.dropdown__area_risks:null, props.addTopicDropdown && {position: 'absolute', zIndex: 1000, top: '115%'}]} animation={'fadeInDown'}>
                 <FlatList
                     style={styles.dropdown__flatlist}
                     data={props.methods_list}

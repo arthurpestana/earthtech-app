@@ -66,7 +66,7 @@ export default function Connect() {
                     tintColor={'#496b2e'}
                 />:null}
             </Animatable.View>
-            <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={5}>
+            <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'}>
                 <ScrollView>
                     <View style={styles.container__main} keyboardShouldPersistTaps="handled">
                         <View style={styles.main__info}>

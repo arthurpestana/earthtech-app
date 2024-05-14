@@ -58,8 +58,8 @@ export default function Configuration() {
             <View style = {{marginTop: '25%'}}>
                 {items.length > 0?items.map((element, key) => {
                 return(
-                    <View style={{paddingHorizontal: '8%'}}>
-                        <Animatable.View key={key} animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
+                    <View>
+                        <Animatable.View key={key} animation={'fadeInLeft'} delay={300} style={styles.dashboard__items}>
                             <View style={styles.item__div_img}>
                                 <Feather name={element.type==0?'alert-triangle':element.type==1?'droplet':element.type==2?'power':element.type==3?'power':'thermometer'} size={35} color="hsl(228, 8%, 98%)"/>
                             </View>

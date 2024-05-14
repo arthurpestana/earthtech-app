@@ -5,7 +5,7 @@ export default StyleSheet.create({
         flex: 1,
         width: "100%",
         height: "100%",
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         position: 'relative',
         backgroundColor: "hsl(228, 6%, 8%)",
         paddingHorizontal: 30
@@ -16,14 +16,14 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'column',
         width: '100%',
-        paddingHorizontal: 30
+        marginTop: '22%'
     },
 
     main__panel_title: {
         display: 'flex',
         flexDirection: 'row',
         gap: 5,
-        marginVertical: "20%",
+        marginVertical: "15%",
         width: '100%',
         position: 'relative'
     },
@@ -84,18 +84,17 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         flexDirection: 'row',
-        marginBottom: 20,
+        marginBottom: '25%'
     },
 
     button_save: {
-        paddingVertical: 10,
+        paddingVertical: 8,
         paddingHorizontal: 20,
         backgroundColor: 'hsl(93, 40%, 30%)',
-        borderRadius: 10
+        borderRadius: 8
     },
 
     button_text: {
-        color: '#fff',
-        
+        color: 'hsl(228, 8%, 98%)',
     },
 })
