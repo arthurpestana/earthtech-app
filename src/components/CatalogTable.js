@@ -15,81 +15,83 @@ export default function(props) {
         <View style={styles.container__table} >
             {infoPressed==true?<MessageModal setChange={setInfoPressed} title={'Grupo'} message= "O grupo é uma classificação utilizada para separar as cultivares de acordo com o número de dias da emergência à maturação da colheita."/>:false}
             <ScrollView horizontal>
-                <View>
-                    <View style={styles.table__header}>
-                    {
-                        tableHead.map((element, key) => {
-                            return(
-                                <View key={key} style={{flexDirection: 'row', width: element=="Safra"?100:element=="Solo"?100:element=="UF"?60:element=="Cultura"?125:element=="Grupo"?100:element=="Município"?125:45,  alignItems: 'center'}}>
-                                    <Text style = {[styles.header__text]} key={key}>{element}</Text>
-                                    {element=="Grupo"&&
-                                    <TouchableOpacity onPress={() => setInfoPressed(true)}>
-                                        <Feather name='info' color={'hsl(228, 8%, 98%)'} size={15} style={{top: 1.5}}/>
-                                    </TouchableOpacity>
-                                    }
-                                </View>
-                            )
-                        })
-                    }
-                    </View>
-                    <View style = {styles}>
-                        <FlatList
-                            data={props.data}
-                            keyExtractor={(item, index) => index.toString()} 
-                            renderItem={({item, index}) => {
-                                return (
-                                    <View style = {styles.table__content}>
-                                        <Text style = {[styles.table__text, {width: 100}]}>{item.safra}</Text>
-                                        <Text style = {[styles.table__text, {width: 100}]}>{item.solo}</Text>
-                                        <Text style = {[styles.table__text, {width: 60}]}>{item.uf}</Text>
-                                        <Text style = {[styles.table__text, {width: 125}]}>{item.cultura}</Text>
-                                        <View style={{flexDirection: 'row'}}>
-                                            <Text style = {[styles.table__text, {width: 100}]}>{item.grupo}</Text>
-                                            
-                                        </View>
-                                        <Text style = {[styles.table__text, {width: 125}]}>{item.municipio}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk1}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk2}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk3}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk4}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk5}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk6}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk7}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk8}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk9}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk10}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk11}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk12}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk13}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk14}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk15}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk16}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk17}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk18}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk19}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk20}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk21}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk22}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk23}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk24}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk25}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk26}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk27}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk28}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk29}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk30}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk31}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk32}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk33}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk34}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk35}</Text>
-                                        <Text style = {[styles.table__text, {width: 45}]}>{item.risk36}</Text>
+                <ScrollView>
+                    <View>
+                        <View style={styles.table__header}>
+                        {
+                            tableHead.map((element, key) => {
+                                return(
+                                    <View key={key} style={{flexDirection: 'row', width: element=="Safra"?100:element=="Solo"?100:element=="UF"?60:element=="Cultura"?125:element=="Grupo"?100:element=="Município"?125:45,  alignItems: 'center'}}>
+                                        <Text style = {[styles.header__text]} key={key}>{element}</Text>
+                                        {element=="Grupo"&&
+                                        <TouchableOpacity onPress={() => setInfoPressed(true)}>
+                                            <Feather name='info' color={'hsl(228, 8%, 98%)'} size={15} style={{top: 1.5}}/>
+                                        </TouchableOpacity>
+                                        }
                                     </View>
                                 )
-                            }}
-                        />
+                            })
+                        }
+                        </View>
+                        <View style = {styles}>
+                            <FlatList
+                                data={props.data}
+                                keyExtractor={(item, index) => index.toString()} 
+                                renderItem={({item, index}) => {
+                                    return (
+                                        <View style = {styles.table__content}>
+                                            <Text style = {[styles.table__text, {width: 100}]}>{item.safra}</Text>
+                                            <Text style = {[styles.table__text, {width: 100}]}>{item.solo}</Text>
+                                            <Text style = {[styles.table__text, {width: 60}]}>{item.uf}</Text>
+                                            <Text style = {[styles.table__text, {width: 125}]}>{item.cultura}</Text>
+                                            <View style={{flexDirection: 'row'}}>
+                                                <Text style = {[styles.table__text, {width: 100}]}>{item.grupo}</Text>
+                                                
+                                            </View>
+                                            <Text style = {[styles.table__text, {width: 125}]}>{item.municipio}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk1}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk2}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk3}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk4}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk5}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk6}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk7}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk8}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk9}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk10}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk11}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk12}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk13}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk14}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk15}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk16}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk17}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk18}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk19}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk20}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk21}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk22}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk23}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk24}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk25}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk26}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk27}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk28}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk29}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk30}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk31}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk32}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk33}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk34}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk35}</Text>
+                                            <Text style = {[styles.table__text, {width: 45}]}>{item.risk36}</Text>
+                                        </View>
+                                    )
+                                }}
+                            />
+                        </View>
                     </View>
-                </View>
+                </ScrollView>
             </ScrollView>
         </View>
     );
@@ -97,7 +99,8 @@ export default function(props) {
 
 const styles = StyleSheet.create({
     container__table: {
-        flex: 1
+        flex: 1,
+        height: 500
     },
     table__header: {
         paddingVertical: 10,

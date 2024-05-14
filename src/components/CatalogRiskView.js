@@ -22,7 +22,7 @@ export default function CatalogRiskTable(props) {
     })
 
     return (
-        <SafeAreaView>
+        <ScrollView style={{height: 400}}>
             <FlatList 
                 data={props.data}
                 keyExtractor={(item, index) => index.toString()}
@@ -44,7 +44,7 @@ export default function CatalogRiskTable(props) {
                     )
                 }}
             />
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 

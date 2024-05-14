@@ -39,6 +39,7 @@ export default function MethodDropdown(props) {
             </TouchableOpacity>
             {clicked?
             <Animatable.View style={[styles.dropdown__area, props.dropdownRisk?styles.dropdown__area_risks:null, props.addTopicDropdown && {position: 'absolute', zIndex: 1000, top: '115%'}]} animation={'fadeInDown'}>
+                <ScrollView>
                 <FlatList
                     style={styles.dropdown__flatlist}
                     data={props.methods_list}
@@ -51,7 +52,9 @@ export default function MethodDropdown(props) {
                         )
                     }}
                 />
-            </Animatable.View>:false}
+                </ScrollView>
+            </Animatable.View>
+            :false}
         </Animatable.View>
     )
 }
@@ -86,13 +89,13 @@ const styles = StyleSheet.create({
         width: "100%",
     },
 
-    /*dropdown__area_risks: {
+    dropdown__area_risks: {
         position: 'absolute',
         top: '130%',
-        backgroundColor: 'hsl(228, 6%, 12%)',
-        height: 250,
+        backgroundColor: 'hsl(228, 6%, 4%)',
+        height: 300,
         borderBottomLeftRadius: 10,
-    },*/
+    },
 
     dropdown__flatlist: {
         width: '100%',

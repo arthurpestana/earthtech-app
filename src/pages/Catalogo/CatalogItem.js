@@ -23,11 +23,11 @@ export default function CatalogItem() {
 
         typeCatalog==0?<InfoDados title={"Necessidade de Água"} iconName={'droplet'} quantAgua={dados.necessidadeDeAgua} agua/>:<InfoDados title={"Classificações de 2º Nível"} nivelList={dados.nivel2} coresList={dados.cores} nivelSolo/>,
 
-        <InfoDados title={"Solo"} soloTipo={typeCatalog==0?dados.solo.tipo:dados.tipo} soloDrenagem={typeCatalog==0?dados.solo.drenagem:dados.drenagem} soloPH={typeCatalog==0?dados.solo.phRecomendado:dados.pH} typeSolo/>,
+        <InfoDados title={"Solo"} iconName={'tag'} soloTipo={typeCatalog==0?dados.solo.tipo:dados.tipo} soloDrenagem={typeCatalog==0?dados.solo.drenagem:dados.drenagem} soloPH={typeCatalog==0?dados.solo.phRecomendado:dados.pH} typeSolo/>,
 
-        dados.nome=="Soja"?<InfoDados/>:false,
+        dados.nome=="Soja"?<InfoDados soja title="Classes de AD" iconName={"sliders"}/>:false,
 
-        typeCatalog==0?<InfoDados title={"Painel de risco"} data culturas={typeCatalog==0?culturas[indexCatalog].nome:false}/>:<InfoDados title={"Composição do Solo"} listCompSolo={[dados.areia, dados.argila, dados.silte, dados.fosforo, dados.carbono, dados.nitro, dados.at]} cor={dados.cor} simbolSolo={dados.simbolo} compSolo/>,
+        typeCatalog==0?<InfoDados title={"Painel de risco"} iconName={"alert-triangle"} data culturas={typeCatalog==0?culturas[indexCatalog].nome:false}/>:<InfoDados title={"Composição do Solo"} listCompSolo={[dados.areia, dados.argila, dados.silte, dados.fosforo, dados.carbono, dados.nitro, dados.at]} cor={dados.cor} simbolSolo={dados.simbolo} compSolo/>
     ]
 
     useEffect(() => {    

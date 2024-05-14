@@ -9,6 +9,7 @@ import CatalogTable from "./CatalogTable";
 import CatalogRiskView from './CatalogRiskView';
 import { Canvas, Rect } from "@shopify/react-native-skia"
 import { useMQTT } from './Context'
+import AdTable from './AdTable';
 
 export default (props) => {    
     const { indexCatalog, setIndexCatalog, typeCatalog, setTypeCatalog } = useMQTT()
@@ -230,6 +231,10 @@ export default (props) => {
                 <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} resetData={setApiData} table dropdownRisk/>
                 <CatalogRiskView cityRisk={activeCity} data={apiData}/>
                 
+            </View>:null}
+            {(viewMore==true && props.soja)?<View style={[styles.info__dados, styles.info__table]}>
+                <Text style={[styles.info__text, {minWidth: '100%'}]}>Abaixo temos uma tabela com as classes de AD (Água Disponível) do solo, com seus respectivos limites inferiores e superiores em (mm cm^-1).</Text>
+                <AdTable/>
             </View>:null}
         </View>
     )
