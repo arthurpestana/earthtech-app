@@ -46,7 +46,7 @@ export default function (props) {
                     onBlur={customOnBlur}
                     onFocus={inputFocus}
                     onPressIn={customOnFocus}
-                    inputMode={props.numeric?'numeric':props.email?'email':'text'}
+                    inputMode={props.numeric?'decimal':props.email?'email':'text'}
                 />
             </View>
         </Animatable.View>

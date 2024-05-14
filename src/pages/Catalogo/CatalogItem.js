@@ -25,6 +25,8 @@ export default function CatalogItem() {
 
         <InfoDados title={"Solo"} soloTipo={typeCatalog==0?dados.solo.tipo:dados.tipo} soloDrenagem={typeCatalog==0?dados.solo.drenagem:dados.drenagem} soloPH={typeCatalog==0?dados.solo.phRecomendado:dados.pH} typeSolo/>,
 
+        dados.nome=="Soja"?<InfoDados/>:false,
+
         typeCatalog==0?<InfoDados title={"Painel de risco"} data culturas={typeCatalog==0?culturas[indexCatalog].nome:false}/>:<InfoDados title={"Composição do Solo"} listCompSolo={[dados.areia, dados.argila, dados.silte, dados.fosforo, dados.carbono, dados.nitro, dados.at]} cor={dados.cor} simbolSolo={dados.simbolo} compSolo/>,
     ]
 
