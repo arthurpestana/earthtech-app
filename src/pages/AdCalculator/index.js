@@ -15,19 +15,21 @@ export default function AdCalculator() {
     const [ad, setAd] = useState(0)
     const [calc, setCalc] = useState(false)
     const [message, setMessage] = useState('')
+    const [adNum, setAdNum] = useState(0)
 
     useEffect(() => {
         setAd(0)
     }, [])
 
     function calcAd() {
-        let argila = parseFloat(argilaState)
-        let areiaTotal = parseFloat(areiaTotalState)
-        let silte = parseFloat(silteState)
+        let argila = parseFloat(argilaState.replace(',', '.'))
+        let areiaTotal = parseFloat(areiaTotalState.replace(',', '.'))
+        let silte = parseFloat(silteState.replace(',', '.'))
         if(argila+areiaTotal+silte == 100){
             let AD = 1 + (0.3591*((-0.02128887*areiaTotal) + (-0.01005814*silte) + (-0.01901894*argila) + (0.0001171219*areiaTotal*silte) + (0.0002073924*areiaTotal*argila) + (0.00006118707*silte*argila) + (-0.000006373789*areiaTotal*silte*argila)))
             AD = Math.pow(AD, 2.78474)
             AD = AD * 10
+            setAdNum(AD.toFixed(2))
             if(AD < 0.33){
                 setAd("AD0")
                 setMessage("Solo arenoso com pouca capacidade de retenção de água, inadequado para agricultura.")
@@ -77,7 +79,7 @@ export default function AdCalculator() {
                 <View style={[styles.main__info, {marginBottom: '15%'}]}>
                     <Text style={styles.info__title}>Calculadora de Classe AD</Text>
                     <Text style={styles.info__text}>Instrução para o cálculo da Água Disponível (AD - mm/cm) no solo:</Text>
-                    <Text style={[styles.info__text, {fontSize: 12}]}>- Informe a Areia Total, Silte e Argila, todos os dados devem ser informados em porcentagem (%). Totalizando 100%</Text>
+                    <Text style={[styles.info__text, {fontSize: 12, textAlign: 'justify'}]}>- Informe a Areia Total, Silte e Argila, todos os dados devem ser informados em porcentagem (%). Totalizando 100%</Text>
                 </View>
                 <KeyboardAvoidingView behavior={Platform.OS == 'ios'?'padding':'height'} keyboardVerticalOffset={80}>
                     <ScrollView>
@@ -94,7 +96,7 @@ export default function AdCalculator() {
                     </TouchableOpacity>                       
                 </Animatable.View>
             </View>
-            {calc && ad!=0?<MessageModal closeX setChange={setCalc} classeTexto={`Seu solo é de classe ${ad}`} message={message} title={"Classe AD do Solo"}/>:null}
+            {calc && ad!=0?<MessageModal closeX setChange={setCalc} classeTexto={`Seu solo é de classe ${ad}, com AD de ${adNum}`} message={message} title={"Classe AD do Solo"}/>:null}
         </SafeAreaView>
     )
 }

@@ -13,7 +13,7 @@ export default function(props) {
 
     return (
         <View style={styles.container__table} >
-            {infoPressed==true?<MessageModal setChange={setInfoPressed} title={'Grupo'} message= "O grupo é..."/>:false}
+            {infoPressed==true?<MessageModal setChange={setInfoPressed} title={'Grupo'} message= "O grupo é uma classificação utilizada para separar as cultivares de acordo com o número de dias da emergência à maturação da colheita."/>:false}
             <ScrollView horizontal>
                 <View>
                     <View style={styles.table__header}>
