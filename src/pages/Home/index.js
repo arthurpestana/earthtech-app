@@ -106,7 +106,7 @@ export default function Home() {
                 shortColumnNames: '0'
                 },
                 headers: {
-                //'X-RapidAPI-Key': '7458f33178msh4dc7d37228e779cp157f1djsn70574d448a0c',
+                'X-RapidAPI-Key': '7458f33178msh4dc7d37228e779cp157f1djsn70574d448a0c',
                 'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
                 }
             };

@@ -8,7 +8,6 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         position: 'relative',
         backgroundColor: "hsl(228, 6%, 8%)",
-        paddingHorizontal: 30
     },
 
     container__main: {
@@ -16,7 +15,8 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'column',
         width: '100%',
-        marginTop: '22%'
+        marginTop: '22%',
+        paddingHorizontal: '8%'
     },
 
     main__panel_title: {
@@ -84,7 +84,8 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         flexDirection: 'row',
-        marginBottom: '25%'
+        marginBottom: '25%',
+        paddingHorizontal: '8%'
     },
 
     button_save: {

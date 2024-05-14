@@ -32,21 +32,21 @@ export default function MethodDropdown(props) {
     }
 
     return (
-        <Animatable.View delay={500} animation={'fadeInLeft'} style={[{display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1000, width: '100%'}]}>
+        <Animatable.View delay={500} animation={'fadeInLeft'} style={[{display: 'flex', flexDirection: 'column', position: 'relative', width: '100%', zIndex: 1000}]}>
             <TouchableOpacity style={styles.dropdown__container} onPress={isClicked}>
                 <Text style={styles.textDropdown}>{selectedOption}</Text>
                 <Feather name="chevron-down" size={30} color={"hsl(228, 8%, 98%)"} style={clicked?{transform: [{rotate: '180deg'}]}:null}/>
             </TouchableOpacity>
             {clicked?
-            <Animatable.View style={[styles.dropdown__area, props.dropdownRisk?styles.dropdown__area_risks:null, props.addTopicDropdown && {position: 'absolute', zIndex: 1000, top: '115%'}]} animation={'fadeInDown'}>
-                <ScrollView>
+            <Animatable.View style={[styles.dropdown__area]} animation={'fadeInDown'}>
+                <ScrollView style={{zIndex: 1000}}>
                 <FlatList
-                    style={styles.dropdown__flatlist}
+                    style={[styles.dropdown__flatlist, {zIndex: 1000}]}
                     data={props.methods_list}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item, index}) => {
                         return (
-                            <TouchableOpacity onPress={() => {setOption(item, index)}} style={styles.dropdownItem}>
+                            <TouchableOpacity onPress={() => {setOption(item, index)}} style={[styles.dropdownItem, {zIndex: 1000}]}>
                                 <Text style={[styles.textDropdown_area]}>{item}</Text>
                             </TouchableOpacity>
                         )

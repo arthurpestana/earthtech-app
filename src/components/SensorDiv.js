@@ -6,11 +6,12 @@ import { Canvas, Rect } from "@shopify/react-native-skia"
 import { useMQTT } from './Context'
 
 export default function (props) {
-    const [isEnabled, setIsEnabled] = useState(false)
+    const [isEnabled, setIsEnabled] = useState(null)
     const { client, userNameMQTT } = useMQTT()
     const [subscribed, setSubscribed] = useState(false);
     const [messagePayload, setMessagePayload] = useState(null)
     const [data, setData] = useState(0)
+    const [initialState, setInitialState] = useState(true)
 
     const publishMsg = (messagePayload) => {
         try {
@@ -28,7 +29,7 @@ export default function (props) {
         }else{
         let msg
         setIsEnabled(!isEnabled)
-        isEnabled==true?msg='1':msg='0'        
+        isEnabled==false?msg='1':msg='0'        
         publishMsg(msg)
         }
     }
@@ -37,9 +38,16 @@ export default function (props) {
         try{
             console.log('Subscrevendo no tópico...');
             client.subscribe(`${userNameMQTT}/${props.topic}`, { qos: 0 });
+            if(props.type == 2 || props.type == 3){
+                client.subscribe(`${userNameMQTT}/${props.topic}_status`, { qos: 0 });
+            }
+            console.log(`${userNameMQTT}/${props.topic}`)
             setSubscribed(true);
         }catch(err){
             props.catchErr(err)
+            if(props.type == 2 || props.type == 3){
+            
+            }
         }  
     };
 
@@ -52,14 +60,24 @@ export default function (props) {
             if(props.data.destinationName == `${userNameMQTT}/${props.topic}`){
                 setData(props.data.payloadString)
                 console.log(props.data.payloadString)
-        }}
+            }
+            if(props.data.destinationName == `${userNameMQTT}/${props.topic}_status` && initialState == true){
+                if(props.data.payloadString == 1){
+                    setIsEnabled(true)
+                    setInitialState(false)
+                }else if(props.data.payloadString == 0){
+                    setIsEnabled(false)
+                    setInitialState(false)
+                }    
+            }
+        }
     }, [props.data])
 
     useEffect(() => {
         if(props.confirmation == true){
             let msg
             setIsEnabled(!isEnabled)
-            isEnabled==true?msg='1':msg='0'        
+            isEnabled==false?msg='1':msg='0'        
             publishMsg(msg)
         }
     }, [props.confirmation])

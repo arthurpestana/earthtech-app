@@ -36,19 +36,20 @@ export default StyleSheet.create ({
     },
     
     connection__box: {
+        width: '35%',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         marginTop: 10,
+        backgroundColor: 'hsl(228, 6%, 12%)',
+        padding: 5,
+        borderRadius: 10,
     },  
 
     connection_status:{
         color: 'hsl(228, 8%, 98%)',
         fontSize: 12,
         fontWeight: '400',
-        backgroundColor: 'hsl(228, 6%, 12%)',
-        padding: 5,
-        borderRadius: 10,
+        
         fontWeight: 'bold'
     },
 

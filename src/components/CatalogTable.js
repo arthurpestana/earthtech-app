@@ -9,6 +9,14 @@ export default function(props) {
         "Safra", "Solo", "UF","Cultura", "Grupo", "Município", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36
     ]
 
+    let risk_list = () => {
+        let array = []
+        for (let i=1; i<=36; i++) {
+            array.push(i)
+        }
+        return array
+    }
+
     const [infoPressed, setInfoPressed] = useState(false)
 
     return (
@@ -49,6 +57,7 @@ export default function(props) {
                                                 
                                             </View>
                                             <Text style = {[styles.table__text, {width: 125}]}>{item.municipio}</Text>
+                                            
                                             <Text style = {[styles.table__text, {width: 45}]}>{item.risk1}</Text>
                                             <Text style = {[styles.table__text, {width: 45}]}>{item.risk2}</Text>
                                             <Text style = {[styles.table__text, {width: 45}]}>{item.risk3}</Text>

@@ -47,19 +47,20 @@ export default function(props) {
     }
 
     return (
-        <View>
+        <View style={{zIndex: 100000}}>
             <TouchableOpacity style={styles.dropdown__container} onPress={setIsClicked}>
                 <Text style={styles.textDropdown}>{selectedCity}</Text>
                 <Image source={require('../images/dropdown.png')} style={{width: 15, height: 15, tintColor: 'white'}}/>
             </TouchableOpacity>
             {clicked && 
-            <Animatable.View style={styles.dropdown__area} animation={'fadeInUp'}>
+            <Animatable.View style={[styles.dropdown__area, {zIndex: 1000}]} animation={'fadeInUp'}>
                 <FlatList
                     data={props.citiesList?props.citiesList:cityNames}
                     contentContainerStyle= {{alignItems: 'center'}}
+                    style={{zIndex: 1000}}
                     renderItem={({item, index}) => {
                         return (
-                        <TouchableOpacity onPress={props.citiesList?props.setCity(item):() => {setCity(data[index], item)}} style={styles.dropdownItem}>
+                        <TouchableOpacity onPress={props.citiesList?props.setCity(item):() => {setCity(data[index], item)}} style={[styles.dropdownItem, {zIndex: 1000}]}>
                             <Text style={[styles.textDropdown, {textAlign: 'center'}]}>{item}</Text>
                         </TouchableOpacity>
                         )

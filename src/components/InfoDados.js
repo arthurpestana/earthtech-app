@@ -229,8 +229,7 @@ export default (props) => {
                 <Text style={[styles.info__text, {minWidth: '100%'}]}>Nesse painel estão dispostas informações da safra 2023/2024 em todas as cidades do Tocantins que tem uma safra para a cultura correspondente a essa página.</Text>
                 <Text style={[styles.info__text, {minWidth: '100%'}]}>Do número 1 ao 36 são os decêndios do ano, e abaixo de cada um tem os riscos climáticos envolvidos na condução das lavouras que podem ocasionar perdas na produção, apresentados em porcentagem.</Text>
                 <MethodDropdown typeMethod={setActiveCity} methods_list={citiesData} resetData={setApiData} table dropdownRisk/>
-                <CatalogRiskView cityRisk={activeCity} data={apiData}/>
-                
+                <CatalogTable data={apiData} />
             </View>:null}
             {(viewMore==true && props.soja)?<View style={[styles.info__dados, styles.info__table]}>
                 <Text style={[styles.info__text, {minWidth: '100%'}]}>Abaixo temos uma tabela com as classes de AD (Água Disponível) do solo, com seus respectivos limites inferiores e superiores em (mm cm^-1).</Text>
@@ -239,6 +238,8 @@ export default (props) => {
         </View>
     )
 }
+
+//<CatalogRiskView cityRisk={activeCity} data={apiData}/>
 
 const styles = StyleSheet.create({
     info: {

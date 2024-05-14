@@ -65,7 +65,7 @@ export default function StatusInformation() {
                             case 1:
                                 return(<SensorDiv typeIcon='droplet' key={element.id} type={element.type} title={element.name} data={data} subscribeInfo={'Umidade do Ambiente'} topic = {element.topic} catchErr = {() => catchErr}/>)
                             case 2:
-                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic} catchErr = {() => catchErr} setChange = {setChangeAutoIrriga} confirmation = {confirmation}/>)
+                                return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic={element.topic} catchErr = {() => catchErr} setChange = {setChangeAutoIrriga} confirmation = {confirmation}/>)
                             case 3:
                                 return(<SensorDiv typeIcon='power' key={element.id} type={element.type} title={element.name} data={data} switch subscribeInfo={''} topic = {element.topic} catchErr = {() => catchErr}/>)
                             case 4: 
