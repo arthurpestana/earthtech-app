@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet, Switch} from 'react-native'
+import { SafeAreaView, Text, View, StyleSheet, Switch, Platform} from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Feather } from "@expo/vector-icons"
 import { Canvas, Rect } from "@shopify/react-native-skia"
@@ -73,7 +73,7 @@ export default function (props) {
                     thumbColor={'#FFF'}
                     onValueChange={altSwitch}
                     value={isEnabled}
-                    style={styles.box_switch}
+                    style={[styles.box_switch, Platform.OS=="ios"?{marginHorizontal: 5, marginVertical: 5}:false]}
                 />
             </View>:false}
             <View style={[styles.dashboard__dados, props.type==0?{flexDirection: 'row'}:false]}>

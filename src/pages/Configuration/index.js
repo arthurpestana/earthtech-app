@@ -57,25 +57,28 @@ export default function Configuration() {
             <ReturnPage nav={'StatusInformation'}/>
             <View style = {{marginTop: '25%'}}>
                 {items.length > 0?items.map((element, key) => {
-                return(<Animatable.View key={key} animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
-                    <View style={styles.item__div_img}>
-                        <Feather name={element.type==0?'alert-triangle':element.type==1?'droplet':element.type==2?'power':element.type==3?'power':'thermometer'} size={35} color="hsl(228, 8%, 98%)"/>
-                    </View>
-                    <View style={styles.dashboard__dados}>
-                        <View style={styles.item__div_info}>
-                            <Text style={styles.item__title}>{element.name}</Text>
-                            <Text style={[styles.item__text, {width: 150}]}>{key} • {element.type==0?'Monitor de Risco':element.type==1?'Umidade do ambiente':element.type==2?'Irrigação Automática':element.type==3?'Ligar Irrigador':'Temperatura do ambiente'}</Text> 
-                        </View>
-                    </View>
-                    <View style={styles.dashboard__dados}>
-                        <TouchableOpacity style={{marginRight: 5}} onPress={() => editItem(element.id, element.type, element.name, element.topic)}>
-                            <Feather name='edit' size={25} color={'hsl(228, 8%, 98%)'}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => deleteItem(element.id)}>
-                            <Feather name='trash' size={25} color={'hsl(228, 8%, 98%)'}/>
-                        </TouchableOpacity>                   
-                    </View>
-                </Animatable.View>)}):false}
+                return(
+                    <View style={{paddingHorizontal: '8%'}}>
+                        <Animatable.View key={key} animation={'fadeInLeft'} delay={600} style={styles.dashboard__items}>
+                            <View style={styles.item__div_img}>
+                                <Feather name={element.type==0?'alert-triangle':element.type==1?'droplet':element.type==2?'power':element.type==3?'power':'thermometer'} size={35} color="hsl(228, 8%, 98%)"/>
+                            </View>
+                            <View style={styles.dashboard__dados}>
+                                <View style={styles.item__div_info}>
+                                    <Text style={styles.item__title}>{element.name}</Text>
+                                    <Text style={[styles.item__text, {width: 150}]}>{key} • {element.type==0?'Monitor de Risco':element.type==1?'Umidade do ambiente':element.type==2?'Irrigação Automática':element.type==3?'Ligar Irrigador':'Temperatura do ambiente'}</Text> 
+                                </View>
+                            </View>
+                            <View style={styles.dashboard__dados}>
+                                <TouchableOpacity style={{marginRight: 5}} onPress={() => editItem(element.id, element.type, element.name, element.topic)}>
+                                    <Feather name='edit' size={25} color={'hsl(228, 8%, 98%)'}/>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => deleteItem(element.id)}>
+                                    <Feather name='trash' size={25} color={'hsl(228, 8%, 98%)'}/>
+                                </TouchableOpacity>                   
+                            </View>
+                        </Animatable.View>
+                    </View>)}):false}
             </View>
             {items.length==0 &&<View style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', marginBottom: '30%'}}>
                 <Text style={{color: 'hsl(228, 8%, 98%)', textAlign: 'center', fontFamily: 'Montserrat_600SemiBold', fontSize: 18}}>Adicione itens para configurar!</Text>

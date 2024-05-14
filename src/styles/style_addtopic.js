@@ -16,6 +16,7 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'column',
         width: '100%',
+        paddingHorizontal: 30
     },
 
     main__panel_title: {

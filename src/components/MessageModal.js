@@ -33,7 +33,7 @@ export default function MessageModal(props) {
                             <TouchableOpacity style={styles.modal__button} onPress={positiveConfirmation}>
                                 <Text style={styles.button__text}>{props.confirmation?"Sim":"Entendi"}</Text>
                             </TouchableOpacity>
-                            {props.confirmation && <TouchableOpacity style={[styles.modal__button, {backgroundColor: 'hsl(93, 40%, 30%)'}]} onPress={negativeConfirmation}>
+                            {props.confirmation && <TouchableOpacity style={[styles.modal__button, {backgroundColor: '#8b0000'}]} onPress={negativeConfirmation}>
                                 <Text style={styles.button__text}>Não</Text>
                             </TouchableOpacity>}
                         </View>}
@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     },
 
     modal__button: {
-        width: 'auto',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
+        width: '30%',
+        padding: 15,
         borderRadius: 10,
+        marginHorizontal: '3%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'hsl(93, 40%, 30%)',

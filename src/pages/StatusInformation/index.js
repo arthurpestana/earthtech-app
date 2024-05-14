@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Platform } from 'react-native'
 import {} from '@react-navigation/native'
 import { useMQTT } from '../../components/Context';
 import { useSQLiteContext } from 'expo-sqlite/next'
@@ -82,7 +82,7 @@ export default function StatusInformation() {
             </View>}
             {items.length < 1 && isConnected == true? <View style={{flex: 2, display: 'flex', alignItems: 'center', justifyContent: 'flex-start', height: '100%'}}><Text style={[styles.error_text]}>Adicione itens para iniciar.</Text></View>: false}
             {changeAutoIrriga==true?<MessageModal setChange = {setChangeAutoIrriga} confirmation = {setConfirmation} message = "Desligar a irrigação automática pode acarretar em problemas na sua plantação, deseja continuar?"/>:false}
-            {items.length<5 && isConnected == true?<FabButton style={{bottom: 130, left: "80%"}}/>:false}
+            {items.length<5 && isConnected == true?<FabButton style={{bottom: Platform.OS=="android"?130:170, left: "80%"}}/>:false}
         </View>
     )
 }
